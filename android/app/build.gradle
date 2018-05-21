@@ -107,14 +107,20 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-    signingConfigs {
-            release {
-                  storeFile file(System.getenv("MYAPP_RELEASE_STORE_FILE"))
-                  storePassword System.getenv("MYAPP_RELEASE_STORE_PASSWORD")
-                  keyAlias System.getenv("MYAPP_RELEASE_KEY_ALIAS")
-                  keyPassword System.getenv("MYAPP_RELEASE_KEY_PASSWORD")
+    if(System.getenv("RELEASE") == 1) {
+        println "True"
+        signingConfigs {
+                    release {
+                          storeFile file(System.getenv("MYAPP_RELEASE_STORE_FILE"))
+                          storePassword System.getenv("MYAPP_RELEASE_STORE_PASSWORD")
+                          keyAlias System.getenv("MYAPP_RELEASE_KEY_ALIAS")
+                          keyPassword System.getenv("MYAPP_RELEASE_KEY_PASSWORD")
+                    }
             }
-        }
+
+    } else {
+        println "False"
+    }
     splits {
         abi {
             reset()
@@ -127,7 +133,12 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
+            if(System.getenv("RELEASE") == 1) {
+                    println "True"
+                    signingConfig signingConfigs.release
+                } else {
+                    println "False"
+            }
         }
     }
     // applicationVariants are e.g. debug, release
