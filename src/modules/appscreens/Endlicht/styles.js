@@ -1,4 +1,4 @@
-import { Dimensions, Platform, PixelRatio, StyleSheet } from 'react-native';
+import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
 import { panelIcon, colorScheme } from 'src/config/styles';
 
 
@@ -6,6 +6,12 @@ const {height, width} = Dimensions.get('window');
 const pixelratio = PixelRatio.get();
 
 export const style = StyleSheet.create({
+    endlichtFrame: {
+        marginTop       : pixelratio*10,
+        marginLeft      : pixelratio*10,
+        marginRight     : pixelratio*10,
+        marginBottom    : pixelratio*10
+    },
     contentContainer: {
         backgroundColor : colorScheme.botticelli,
         height          : '100%'
@@ -14,9 +20,6 @@ export const style = StyleSheet.create({
         marginTop       : pixelratio*5
     },
     page: {
-        marginTop       : pixelratio*5,
-        marginLeft      : pixelratio*5,
-        marginRight     : pixelratio*5,
         backgroundColor : 'white'
     },
     special: {
@@ -62,5 +65,13 @@ export const style = StyleSheet.create({
     endlichtImage: {
         width           : width*0.85,
         height          : height*0.4
+    },
+    loadingView : {
+        height          : (height / 100) * 8,
+        alignItems      : 'center',
+    },
+    loadingText : {
+        fontSize        : 40,
+        fontWeight      : 'bold',
     }
 })

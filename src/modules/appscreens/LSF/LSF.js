@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, Text, View, FlatList, ScrollView} from 'react-native';
+import { Text, View, FlatList, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
@@ -10,6 +10,7 @@ import Panel from 'src/modules/Panel';
 import { strings } from 'src/i18n';
 import { style } from './styles';
 import { panelIcon } from 'src/config/styles';
+import { getBackgroundView } from 'src/config/styles';
 
 class LSF extends Component {
     constructor(props) {
@@ -23,27 +24,28 @@ class LSF extends Component {
         if (this.props.lectures) {
             content = this._renderView();
         } else {
-            content =   <View style={{width: '100%', alignItems: 'center'}}>
+            content =   <View>
                             <Text style={{fontSize: 24}}>{strings("LSF.emptyTxt")}</Text>
                             <Text>{strings("LSF.selectLecture")}</Text>
                         </View>
         }
 
-        return (
-            <View style={style.allAround}>
-                {content}
-            </View>
-        )
+        return content;
     }
 
     _renderView() {
-        return (
+        const content = (
+            <ScrollView style={style.lsfFrame}>
+                <View>
                     <FlatList
                         data={this.props.lectures}
                         renderItem={this._renderItem}
                         keyExtractor={(item, index) => 'panel' + index}
-                     />
+                    />
+                </View>
+            </ScrollView>
         );
+        return getBackgroundView(content, 3);
     }
 
     _renderItem = (listLectures) => {

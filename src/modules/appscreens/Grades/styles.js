@@ -1,16 +1,15 @@
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
 import { colorScheme } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
+const pixelratio = PixelRatio.get();
 
 export const style = StyleSheet.create({
-    allAround: {
-        backgroundColor : colorScheme.botticelli,
-        height          : '100%'
-    },
-    page: {
-        paddingLeft     : '5%',
-        paddingRight    : '5%',
+    gradeFrame: {
+        marginTop       : pixelratio * 10,
+        marginLeft      : pixelratio * 10,
+        marginRight     : pixelratio * 10,
+        marginBottom    : pixelratio * 10,
     },
     gradesPanelHeader: {
         height          : (height / 100) * 7,
@@ -59,5 +58,13 @@ export const style = StyleSheet.create({
         fontSize        : 14,
         fontWeight      : 'bold'
     },
+    loadingView : {
+        height          : (height / 100) * 8,
+        alignItems      : 'center',
+    },
+    loadingText : {
+        fontSize        : 40,
+        fontWeight      : 'bold',
+    }
 
 });

@@ -1,16 +1,14 @@
-import { Dimensions, Platform, PixelRatio, StyleSheet } from 'react-native';
-import { colorScheme } from 'src/config/styles';
+import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
 
 const {height, width} = Dimensions.get('window');
 const pixelratio = PixelRatio.get();
 
-
 export const style = StyleSheet.create({
-    allAround: {
-        backgroundColor : colorScheme.botticelli,
-        paddingHorizontal: pixelratio*5,
-        paddingTop      : pixelratio*5,
-        flex            : 1
+    lsfFrame: {
+        marginTop       : pixelratio*10,
+        marginLeft      : pixelratio*10,
+        marginRight     : pixelratio*10,
+        marginBottom    : pixelratio*10
     },
     headerView: {
         backgroundColor : 'white'
