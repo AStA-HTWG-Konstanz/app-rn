@@ -23,7 +23,7 @@ platform :android do
         build_type: "Release"
       )
       supply(
-        track: "Internal test",
+        track: "internal",
         apk: "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
       )
     end
