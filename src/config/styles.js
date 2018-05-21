@@ -85,7 +85,9 @@ export const getBackgroundView = function(content, imageNumber) {
     const resizeMode = 'cover';
     const imageStyle = {
         flex: 1,
-        resizeMode
+        resizeMode,
+        height: height,
+        width: width
     };
     let img;
     switch (imageNumber) {
