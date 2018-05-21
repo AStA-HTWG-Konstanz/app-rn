@@ -94,9 +94,9 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 def guessVersionCode = { ->
-    project.versionCode = project.versionCode + 1
-    println "VersionCode is set to $project.versionCode"
-    return project.versionCode
+    project.android.defaultConfig.versionCode = project.android.defaultConfig.versionCode + 1
+    println "VersionCode is set to $project.android.defaultConfig.versionCode"
+    return project.android.defaultConfig.versionCode
 }
 
 
