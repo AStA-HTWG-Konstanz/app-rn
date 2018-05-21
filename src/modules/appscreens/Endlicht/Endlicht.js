@@ -6,14 +6,29 @@ import { bindActionCreators } from 'redux';
 import * as endlichtActions from 'src/actions/endlichtActions';
 import { strings } from 'src/i18n';
 import { style } from './styles';
+import { getBackgroundView } from 'src/config/styles';
 
 class Endlicht extends Component{
     constructor(props) {
         super(props);
     }
 
-    render() {
 
+    render() {
+        let content;
+        if (this.props.endlichtData) {  // data already retrieved
+            content = this._renderView();
+        } else {  // loading in progress
+            content = <View style={style.endlichtFrame}>
+                        <View style={style.loadingView}>
+                            <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
+                        </View>
+                    </View>
+        }
+        return content;
+    }
+
+    _renderView() {
         let special, specialPrice, specialContent, title;
         special = this.props.endlichtData.endlicht.special.name;
         specialPrice = this.props.endlichtData.endlicht.special.price;
@@ -39,7 +54,7 @@ class Endlicht extends Component{
 
         return (
             <ScrollView style={style.contentContainer}>
-                <View>
+                <View style={style.EndlichtFrame}>
                     <View style={style.page}>
                         <View style={style.content}>
                             {specialContent}

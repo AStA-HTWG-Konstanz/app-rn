@@ -1,15 +1,14 @@
-
 import React, { Component } from 'react';
 import {Image, FlatList, ScrollView, Text, View} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import moment from 'moment';
 
 import * as eventActions from 'src/actions/eventActions';
 import { strings } from 'src/i18n';
 import { ic_add, ic_remove } from 'src/images';
 import Panel from 'src/modules/Panel';
 import { style } from './styles';
+import { getBackgroundView } from 'src/config/styles';
 
 class Events extends Component{
     constructor(props) {
@@ -24,28 +23,28 @@ class Events extends Component{
             console.log(this.props.events);
             content = this._renderView();
         } else {  // loading in progress
-            // TODO: Busy indicator or just a prettier screen that says no data yet?
-            content = <View/>
+            content =   <View style={style.EventFrame}>
+                            <View style={style.loadingView}>
+                                <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
+                            </View>
+                        </View>
         }
-
-        return content;
-
+        return getBackgroundView(content, 4);
     }
 
     _renderView() {
-        return (
-            <View style={style.contentContainer}>
-                <ScrollView>
-                    <View style={style.EventFrame}>
-                        <FlatList
-                            data={this.props.events.events}
-                            renderItem={this._renderItem}
-                            keyExtractor={(item, index) => 'event' + index}
-                        />
-                    </View>
-                </ScrollView>
-            </View>
+        const content = (
+            <ScrollView>
+                <View style={style.eventFrame}>
+                    <FlatList
+                        data={this.props.events.events}
+                        renderItem={this._renderItem}
+                        keyExtractor={(item, index) => 'event' + index}
+                    />
+                </View>
+            </ScrollView>
         );
+        return getBackgroundView(content, 4);
     }
 
     _renderItem = (event) => {

@@ -10,6 +10,7 @@ import { strings } from 'src/i18n';
 import Panel from 'src/modules/Panel';
 import { style } from './styles';
 import { panelIcon } from 'src/config/styles';
+import { getBackgroundView } from 'src/config/styles';
 
 class Canteen extends Component{
     constructor(props) {
@@ -23,27 +24,28 @@ class Canteen extends Component{
         if (this.props.menu) {  // data already retrieved
             content = this._renderView();
         } else {  // loading in progress
-            content = <View>
-                        <Text>{strings('general.noDataTxt')}</Text>
-                      </View>
+            content = <View style={style.NewsFrame}>
+                        <View style={style.loadingView}>
+                            <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
+                        </View>
+                    </View>
         }
         return content;
     }
 
     _renderView() {
-        return (
-            <View style={style.contentContainer}>
-                <ScrollView>
-                    <View style={style.CanteenFrame}>
-                        <FlatList
-                            data={this.props.menu.menu}
-                            renderItem={this._renderItem}
-                            keyExtractor={(item, index) => 'accordion' + index}
-                        />
-                    </View>
-                </ScrollView>
-            </View>
+        const content = (
+            <ScrollView>
+                <View style={style.canteenFrame}>
+                    <FlatList
+                        data={this.props.menu.menu}
+                        renderItem={this._renderItem}
+                        keyExtractor={(item, index) => 'accordion' + index}
+                    />
+                </View>
+            </ScrollView>
         );
+        return getBackgroundView(content, 5);
     }
 
     _renderItem = (dailyMenu) => {

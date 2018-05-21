@@ -1,23 +1,14 @@
-import { Dimensions, Platform, PixelRatio, StyleSheet } from 'react-native';
-import { colorScheme } from 'src/config/styles';
-
+import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
 
 const {height, width} = Dimensions.get('window');
 const pixelratio = PixelRatio.get();
 
 export const style = StyleSheet.create({
-    contentContainer: {
-        backgroundColor : colorScheme.botticelli,
-        height          : '100%'
-    },
-    CanteenFrame: {
+    canteenFrame: {
         marginTop       : pixelratio*10,
         marginLeft      : pixelratio*10,
         marginRight     : pixelratio*10,
         marginBottom    : pixelratio*10
-    },
-    headerView: {
-        backgroundColor : 'white'
     },
     menuPanelHeader : {
         height          : (height / 100) * 8,
@@ -58,4 +49,12 @@ export const style = StyleSheet.create({
     content : {
         fontSize        : 14,
     },
+    loadingView : {
+        height          : (height / 100) * 8,
+        alignItems      : 'center',
+    },
+    loadingText : {
+        fontSize        : 40,
+        fontWeight      : 'bold',
+    }
 });

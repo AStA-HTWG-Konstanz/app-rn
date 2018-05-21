@@ -13,7 +13,7 @@ export const style = StyleSheet.create({
         height          : (width/100) * 13,
         justifyContent  : 'center',
         alignItems      : 'center',
-        backgroundColor : colorScheme.botticelli,
+        backgroundColor : '#f1f1f1',
     },
     titleText : {
         color           : 'black',
@@ -25,7 +25,7 @@ export const style = StyleSheet.create({
         height          : (width/100) * 15,
         justifyContent  : 'center',
         alignItems      : 'center',
-        backgroundColor : colorScheme.botticelli,
+        backgroundColor : '#f1f1f1',
     },
     specifierText : {
         color           : 'black',
@@ -37,7 +37,7 @@ export const style = StyleSheet.create({
         height          : (width/100) * 23.5,
         justifyContent  : 'center',
         alignItems      : 'center',
-        backgroundColor : colorScheme.botticelli,
+        backgroundColor : '#f1f1f1',
     },
     contentText : {
         color           : 'black',

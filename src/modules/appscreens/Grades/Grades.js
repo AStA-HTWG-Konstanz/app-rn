@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Image, Text, View, FlatList, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as gradesActions from 'src/actions/gradesActions';
@@ -10,6 +9,7 @@ import Panel from 'src/modules/Panel';
 import { strings } from 'src/i18n';
 import { style } from './styles';
 import { panelIcon } from 'src/config/styles';
+import {getBackgroundView} from "../../../config/styles";
 
 class Grades extends Component {
     constructor(props) {
@@ -17,16 +17,33 @@ class Grades extends Component {
     }
 
     render() {
-        const semester  = this.props.grades.gradesReport;
-
-        return (
-            <View style={style.allAround}>
-                <FlatList style={style.listView}
-                    data={Object.keys(semester)}
-                    renderItem={this._renderSemester}
-                />
+        let content;
+        if (this.props.grades) {  // data already retrieved
+            console.log(this.props.grades);
+            content = this._renderView();
+        } else {  // loading in progress
+            content =   <View style={style.GradeFrame}>
+                <View style={style.loadingView}>
+                    <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
+                </View>
             </View>
-        )
+        }
+        return getBackgroundView(content, 1);
+    }
+
+    _renderView() {
+        const semester  = this.props.grades.gradesReport;
+        const content = (
+            <ScrollView>
+                <View style={style.gradeFrame}>
+                    <FlatList style={style.listView}
+                              data={Object.keys(semester)}
+                              renderItem={this._renderSemester}
+                    />
+                </View>
+            </ScrollView>
+        );
+        return getBackgroundView(content, 4);
     }
 
     _renderSemester = (element) => {

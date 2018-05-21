@@ -1,7 +1,9 @@
 // Basic style definitions that are used by multiple components/containers
-import { Dimensions, Platform, PixelRatio, Text, TextInput } from 'react-native';
+import React from 'react';
+import { Dimensions, Image, Platform, PixelRatio, Text, TextInput, View } from 'react-native';
 import CheckBox from 'react-native-checkbox';
 import {checkbox_checked, checkbox_unchecked} from 'src/images';
+import { option1, option2, option3, option4, option5, option6 } from 'src/images';
 
 const {height, width} = Dimensions.get('window');
 const pRatio = PixelRatio.get();
@@ -74,8 +76,61 @@ export const wideRectangleWidget = {
     width           : (width/100) * 90,
     marginTop       : (width/100) * 5,
 };
-    export const highRectangleWidget = {
+export const highRectangleWidget = {
     height          : (width/100) * 90,
     width           : (width/100) * 42.5,
     marginTop       : (width/100) * 5,
+};
+export const getBackgroundView = function(content, imageNumber) {
+    const resizeMode = 'cover';
+    const imageStyle = {
+        flex: 1,
+        resizeMode
+    };
+    let img;
+    switch (imageNumber) {
+        case 1:
+            img = <Image style={imageStyle} source={option1} />;
+            break;
+        case 2:
+            img = <Image style={imageStyle} source={option2} />;
+            break;
+        case 3:
+            img = <Image style={imageStyle} source={option3} />;
+            break;
+        case 4:
+            img = <Image style={imageStyle} source={option4} />;
+            break;
+        case 5:
+            img = <Image style={imageStyle} source={option5} />;
+            break;
+        case 6:
+            img = <Image style={imageStyle} source={option6} />;
+            break;
+        default:
+            img = <Image style={imageStyle} source={option5} />;
+            break;
+    }
+    return  (
+        <View style={{flex:1, backgroundColor: 'transparent'}}>
+            <View style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+            }}>
+            {img}
+            </View>
+            <View
+                style={{
+                    flex: 1,
+                    backgroundColor: 'transparent',
+                    justifyContent: 'center',
+                }}
+            >
+                {content}
+            </View>
+        </View>
+    )
 };
