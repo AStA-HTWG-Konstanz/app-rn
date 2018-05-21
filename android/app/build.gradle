@@ -93,14 +93,6 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-def guessVersionCode = { ->
-    if (System.getenv("RELEASE") == 1) {
-        return System.getenv("VERSION")
-    } else {
-        return 1
-    }
-}
-
 
 android {
     compileSdkVersion 27
@@ -110,7 +102,11 @@ android {
         applicationId "com.htwgcampus"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode guessVersionCode()
+        if(System.getenv("RELEASE") == 1) {
+            versionCode System.getenv("VERSION")
+        } else {
+            versionCode 7
+        }
         versionName "0.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
