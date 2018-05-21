@@ -94,9 +94,11 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 def guessVersionCode = { ->
-    project.android.defaultConfig.versionCode = project.android.defaultConfig.versionCode + 1
-    println "VersionCode is set to $project.android.defaultConfig.versionCode"
-    return project.android.defaultConfig.versionCode
+    if (System.getenv("RELEASE") == 1) {
+        return System.getenv("VERSION")
+    } else {
+        return 1
+    }
 }
 
 
