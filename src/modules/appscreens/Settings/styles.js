@@ -123,6 +123,7 @@ export const styles = StyleSheet.create({
     poweredByView: {
         alignItems          : 'center',
         marginTop           : height / 100 * 4,
+        paddingBottom       : height / 100 * 4,
         width               : '100%'
     },
     poweredByText: {

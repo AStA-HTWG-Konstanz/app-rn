@@ -15,11 +15,13 @@ export class SettingsWidget extends Component {
         return  (
             <View style={style.widgetContainer}>
                 <TouchableOpacity
-                    onPress={() => navigator.toggleDrawer({
-                        side: 'left',
-                        animated: true,
-                        to: 'missing'  // missing = the opposite of current state
-                    })}
+                    onPress={() => {
+                        navigator.toggleDrawer({
+                            side: 'left',
+                            animated: true,
+                            to: 'open'
+                        })
+                    }}
                 >
                     <Icon
                         name={'add'}
