@@ -6,7 +6,7 @@ const pixelratio = PixelRatio.get();
 
 export const iconStyle = {
     color   : 'white',
-    size    : pixelratio * 15
+    size    : Platform.OS === 'ios' ? pixelratio * 15 : pixelratio * 10
 };
 
 

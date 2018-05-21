@@ -36,7 +36,7 @@ class CanteenWidget extends Component {
             let student = strings('canteen.student');
             let androidStudent = student.length > 8 ? student.substring(0, 5) + '...' : student;
             let iosStudent = student.length > 8 ? student.substring(0, 7) + '...' : student;
-            let content
+            let content;
             if(Platform.OS === 'android'){
                 content = ctgry + ' | ' + priceStud + ' € ' + androidStudent
             } else {
