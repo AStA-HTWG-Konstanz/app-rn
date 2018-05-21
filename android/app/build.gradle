@@ -94,14 +94,14 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.htwgcampus"
         minSdkVersion 24
-        targetSdkVersion 26
-        versionCode 2
+        targetSdkVersion 27
+        versionCode 3
         versionName "0.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
