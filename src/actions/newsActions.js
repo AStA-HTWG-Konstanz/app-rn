@@ -6,18 +6,19 @@ export function getNews(page) {
     return (dispatch) => {
         connector.getNews(page)
             .then( function (news) {
-                    dispatch(receiveNews(news));
+                    dispatch(receiveNews(news, page));
                     dispatch(setRefreshing(false));
                 }
             ).catch((err) => {});
     }
 }
 
-export function receiveNews(news) {
+export function receiveNews(news, page) {
     // call reducer
     return {
         type    : types.SET_NEWS,
-        news    : news
+        news    : news,
+        page    : page
     }
 }
 

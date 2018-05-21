@@ -1,7 +1,9 @@
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
 import { colorScheme } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
+const pixelratio = PixelRatio.get();
+
 
 export const style = StyleSheet.create({
     allAround: {
@@ -58,6 +60,13 @@ export const style = StyleSheet.create({
     contentHeaderText: {
         fontSize        : 14,
         fontWeight      : 'bold'
+    },
+    lineStyle:{
+        borderWidth     : 1,
+        borderColor     : 'lightgrey',
+        marginLeft      : pixelratio*10,
+        marginRight     : pixelratio*10,
+        marginBottom    : pixelratio*5
     },
 
 });
