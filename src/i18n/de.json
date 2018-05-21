@@ -1,0 +1,77 @@
+{
+  "general"   : {
+    "noDataTxt"     : "Wird geladen",
+    "notConnectedText": "Oopsie Woopsie, bitte verdinde Dich mit dem Internet.",
+    "toggleOn"      : "An",
+    "toggleOff"     : "Aus",
+    "wrongCredentials": "Oopsie Woopsie, falsches Passwort oder falscher Benutzername"
+  },
+  "login"     : {
+    "signin"        : "Anmelden",
+    "signout"       : "Ausloggen",
+    "remember"      : "angemeldet bleiben",
+    "username"      : "RZ-Benutzername",
+    "password"      : "Passwort"
+  },
+  "dashboard" : {
+    "titleBalance"  : "Guthaben",
+    "titlePrinter"  : "Druckerkonto",
+    "titleWeather"  : "Wetter",
+    "titleTimetable": "Stundenplan",
+    "titleCanteen"  : "Mensa",
+    "menu"          : "Speiseplan",
+    "weekend"       : "Wochenende",
+    "loading"       : "Wird geladen",
+    "canteenOpen"   : "Offen",
+    "canteenClosed" : "Geschlossen",
+    "contentEvent"  : "Termine",
+    "titleLectures" : "Vorlesungen",
+    "noLectureTxt"  : "Wochenende"
+  },
+  "canteen"   : {
+    "screenTitle"   : "SPEISEPLAN",
+    "student"       : "Studierende",
+    "employee"       : "Mitarbeiter"
+  },
+  "endlicht"  : {
+    "closed"        : "Geschlossen",
+    "specialTitle"  : "Spezial",
+    "menuTitle"     : "Menü",
+    "locationTitle" : "Lageplan"
+  },
+  "events"    : {
+    "screenTitle"   : "Termine"
+  },
+  "grades"    : {
+    "title"         : "Noten"
+  },
+  "news"      : {
+    "screenTitle"   : "News"
+  },
+  "LSF"       : {
+    "screenTitle"   : "Stundenplan",
+    "emptyTxt"      : "Keine Vorlesungen verfügbar",
+    "selectLecture" : "Bitte pflege deinen Stundenplan im LSF"
+  },
+  "timetable" : {},
+  "asta"      : {},
+  "settings"  : {
+    "screenTitle"   : "Menü",
+    "about"         : "Über",
+    "news"          : "News",
+    "language"      : "Sprache",
+    "selectedWidgetsHeader" : "Ausgewählte Widgets",
+    "availableWidgetsHeader" : "Verfügbare Widgets",
+    "BALANCE"       : "Guthaben",
+    "CANTEEN"       : "Mensa",
+    "ENDLICHT"      : "Endlicht",
+    "EVENT"         : "Termine",
+    "GRADES"        : "Noten",
+    "LECTURE"       : "LSF",
+    "NEWS"          : "Aktuelles"
+  },
+  "language" : {
+    "en"            : "Englisch",
+    "de"            : "Deutsch"
+  }
+}

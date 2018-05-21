@@ -1,0 +1,77 @@
+{
+  "general"   : {
+    "noDataTxt"     : "No data yet",
+    "notConnectedText": "Oopsie Woopsie, there seems to be a problem with your internet connection",
+    "toggleOn"      : "On",
+    "toggleOff"     : "Off",
+    "wrongCredentials": "Oopsie Woopsie, there seems to be a wrong password / username"
+  },
+  "login"     : {
+    "signin"        : "Sign in",
+    "signout"       : "Logout",
+    "remember"      : "Remember me",
+    "username"      : "Username",
+    "password"      : "Password"
+  },
+  "dashboard" : {
+    "titleBalance"  : "Balance",
+    "titlePrinter"  : "Printer ",
+    "titleWeather"  : "Weather",
+    "titleTimetable": "Timetable",
+    "titleCanteen"  : "Canteen",
+    "menu"          : "Menu",
+    "weekend"       : "Weekend",
+    "loading"       : "Loading",
+    "canteenOpen"   : "Open",
+    "canteenClosed" : "Closed",
+    "contentEvent"  : "Events",
+    "titleLectures" : "Lectures",
+    "noLectureTxt"  : "Weekend"
+  },
+  "canteen"   : {
+    "screenTitle"   : "WEEKLY MENU",
+    "student"       : "Students",
+    "employee"       : "Employees"
+  },
+  "endlicht"  : {
+    "closed"        : "Closed",
+    "specialTitle"  : "Special",
+    "menuTitle"     : "Menu",
+    "locationTitle" : "Location"
+  },
+  "events"    : {
+    "screenTitle"   : "Events"
+  },
+  "news"      : {
+    "screenTitle"   : "News"
+  },
+  "grades"    : {
+    "title": "Grades"
+  },
+  "LSF"       : {
+    "screenTitle"   : "Timetable",
+    "emptyTxt"      : "No lectures found",
+    "selectLecture" : "Please schedule your timetable (LSF)"
+  },
+  "lsf"       : {},
+  "asta"      : {},
+  "settings"  : {
+    "screenTitle"   : "Settings",
+    "about"         : "About",
+    "news"          : "News",
+    "language"      : "Language",
+    "selectedWidgetsHeader" : "Selected Widgets",
+    "availableWidgetsHeader" : "Available Widgets",
+    "BALANCE"       : "Balance",
+    "CANTEEN"       : "Canteen",
+    "ENDLICHT"      : "Endlicht",
+    "EVENT"         : "Events",
+    "GRADES"        : "Grades",
+    "LECTURE"       : "Lectures",
+    "NEWS"          : "News"
+  },
+  "language" : {
+    "en"            : "English",
+    "de"            : "German"
+  }
+}
