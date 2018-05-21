@@ -67,6 +67,7 @@ class Grades extends Component {
                             />
                         </View>
                     </View>
+                    <View style={style.lineStyle}/>
                 </View>
             );
         };

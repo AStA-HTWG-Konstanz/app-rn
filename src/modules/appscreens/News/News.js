@@ -14,12 +14,22 @@ import { getBackgroundView } from 'src/config/styles';
 
 class News extends Component {
 
+    constructor(props) {
+        super(props)  ;
+        this.page = 0;
+    }
+
     componentDidMount() { }
 
     _onRefresh = () => {
         this.props.actions.setRefreshing(true);  // start fetching new data
-        this.props.actions.getNews(0);
+        this.page = 0;
+        this.props.actions.getNews(this.page);
     };
+
+    _loadMore = () => {
+        this.props.actions.getNews(++this.page)
+    }
 
     render() {
         let content;
@@ -44,10 +54,12 @@ class News extends Component {
                 }
             >
                 <View style={style.NewsFrame}>
-                    <FlatList
+                    <FlatList style={style.listView}
                         data={this.props.news.news}
                         renderItem={this._renderItem}
                         keyExtractor={(item, index) => 'accordion' + index}
+                        onThresholdEnd={0}
+                        onEndReached={this._loadMore}
                     />
                 </View>
             </ScrollView>

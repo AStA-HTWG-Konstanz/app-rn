@@ -65,6 +65,13 @@ export const style = StyleSheet.create({
     loadingText : {
         fontSize        : 40,
         fontWeight      : 'bold',
+    },
+    lineStyle:{
+        borderWidth     : 1,
+        borderColor     : 'lightgrey',
+        marginLeft      : pixelratio*10,
+        marginRight     : pixelratio*10,
+        marginBottom    : pixelratio*5
     }
 
 });

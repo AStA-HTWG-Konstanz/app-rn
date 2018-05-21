@@ -7,7 +7,7 @@ const pixelratio = PixelRatio.get();
 export const iconStyle = {
     colorSelected   : '#BEBEBE',
     colorAvailable  : colorScheme.persian_green,
-    size            : pixelratio * 15
+    size            : Platform.OS === 'ios' ? pixelratio * 20 : pixelratio * 10
 };
 
 export const styles = StyleSheet.create({
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         marginBottom    : pixelratio * 5
     },
     rowContainer: {
-        height          : pixelratio * 17,
+        height          : pixelratio * 22,
         flexDirection   : 'row',
         alignItems      : 'center',
         justifyContent  : 'space-between',

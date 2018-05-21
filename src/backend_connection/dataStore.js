@@ -1,6 +1,6 @@
 import PouchDB from 'pouchdb-react-native';
 import I18n from 'react-native-i18n';
-import { NetInfo } from 'react-native';
+import { NetInfo, Platform } from 'react-native';
 
 import { api, endpoint } from 'src/config/api';
 import { constants, newsCategoriesPreselection, widgetPreselection } from 'src/config/settings';
@@ -96,7 +96,7 @@ export default class DataStore {
         });
 
         return new Promise( function(resolve) {
-            if (!instance.isConnected) {
+            if (Platform.OS === 'ios' && !instance.isConnected) {  // could also be undefined
                 resolve(true);  // display cached data within the app
                 return;  // abort
             }
