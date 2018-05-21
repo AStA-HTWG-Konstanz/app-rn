@@ -73,7 +73,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    entryFile: "index.js"
+        entryFile: "index.js"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -107,19 +107,15 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-    if(System.getenv("RELEASE") == 1) {
-        println "True"
+    if (System.getenv("RELEASE") == 1) {
         signingConfigs {
-                    release {
-                          storeFile file(System.getenv("MYAPP_RELEASE_STORE_FILE"))
-                          storePassword System.getenv("MYAPP_RELEASE_STORE_PASSWORD")
-                          keyAlias System.getenv("MYAPP_RELEASE_KEY_ALIAS")
-                          keyPassword System.getenv("MYAPP_RELEASE_KEY_PASSWORD")
-                    }
+            release {
+                storeFile file(System.getenv("MYAPP_RELEASE_STORE_FILE"))
+                storePassword System.getenv("MYAPP_RELEASE_STORE_PASSWORD")
+                keyAlias System.getenv("MYAPP_RELEASE_KEY_ALIAS")
+                keyPassword System.getenv("MYAPP_RELEASE_KEY_PASSWORD")
             }
-
-    } else {
-        println "False"
+        }
     }
     splits {
         abi {
@@ -134,10 +130,7 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             if(System.getenv("RELEASE") == 1) {
-                    println "True"
-                    signingConfig signingConfigs.release
-                } else {
-                    println "False"
+                signingConfig signingConfigs.release
             }
         }
     }
@@ -146,7 +139,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
