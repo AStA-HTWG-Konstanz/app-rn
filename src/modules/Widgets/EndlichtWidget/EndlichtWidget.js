@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Platform, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { style } from './styles';
+import { pRatio } from 'src/config/styles';
 import { strings } from 'src/i18n';
 import { getBackButton }  from 'src/config/navigation';
 import moment from 'moment';
@@ -50,6 +52,16 @@ class EndlichtWidget extends Component {
             }
 
 
+        } else {
+            content = (
+                <View style={{alignItems:'center', justifyContent:'center'}}>
+                    <Icon
+                        name='coffee'
+                        color='white'
+                        size={Platform.OS === 'ios' ? pRatio * 30 : pRatio * 25}
+                    />
+                </View>
+            )
         }
 
         const {navigator} = this.props;

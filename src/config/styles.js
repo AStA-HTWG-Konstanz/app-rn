@@ -6,7 +6,8 @@ import {checkbox_checked, checkbox_unchecked} from 'src/images';
 import { option1, option2, option3, option4, option5, option6 } from 'src/images';
 
 const {height, width} = Dimensions.get('window');
-const pRatio = PixelRatio.get();
+const tmpRatio = PixelRatio.get();
+export const pRatio = tmpRatio > 2 ? 2.25 : tmpRatio;  // 3 on iPhone X would be too large
 
 
 export const colorScheme = {

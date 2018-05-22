@@ -1,31 +1,29 @@
-import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
-import { panelIcon, colorScheme } from 'src/config/styles';
+import { Dimensions, StyleSheet } from 'react-native';
+import { pRatio, colorScheme } from 'src/config/styles';
 
 
 const {height, width} = Dimensions.get('window');
-const pixelratio = PixelRatio.get();
-
 export const style = StyleSheet.create({
     endlichtFrame: {
-        marginTop       : pixelratio*10,
-        marginLeft      : pixelratio*10,
-        marginRight     : pixelratio*10,
-        marginBottom    : pixelratio*10
+        marginTop       : pRatio*10,
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*10
     },
     contentContainer: {
         backgroundColor : colorScheme.botticelli,
         height          : '100%'
     },
     content: {
-        marginTop       : pixelratio*5
+        marginTop       : pRatio*5
     },
     page: {
         backgroundColor : 'white'
     },
     special: {
-        marginLeft      : pixelratio*5,
-        marginRight     : pixelratio*5,
-        marginBottom    : pixelratio*5
+        marginLeft      : pRatio*5,
+        marginRight     : pRatio*5,
+        marginBottom    : pRatio*5
     },
     header: {
         fontWeight      : 'bold',
@@ -35,30 +33,30 @@ export const style = StyleSheet.create({
         fontSize        : 16,
         flexDirection   : 'row',
         justifyContent  : 'space-between',
-        marginRight     : pixelratio*50,
-        marginTop       : pixelratio*5
+        marginRight     : pRatio*50,
+        marginTop       : pRatio*5
     },
     menu: {
-        marginLeft      : pixelratio*5,
-        marginRight     : pixelratio*5,
-        marginBottom    : pixelratio*5
+        marginLeft      : pRatio*5,
+        marginRight     : pRatio*5,
+        marginBottom    : pRatio*5
     },
     addContent: {
         fontSize        : 16,
-        marginRight     : pixelratio*70,
-        marginLeft      : pixelratio*5,
+        marginRight     : pRatio*70,
+        marginLeft      : pRatio*5,
         flexDirection   : 'row',
         justifyContent  : 'space-between'
     },
     locationHeader: {
-        marginTop       : pixelratio*5,
-        marginLeft      : pixelratio*5
+        marginTop       : pRatio*5,
+        marginLeft      : pRatio*5
     },
     map: {
-        marginLeft      : pixelratio*5,
-        marginTop       : pixelratio*5,
-        marginRight     : pixelratio*5,
-        marginBottom    : pixelratio*5,
+        marginLeft      : pRatio*5,
+        marginTop       : pRatio*5,
+        marginRight     : pRatio*5,
+        marginBottom    : pRatio*5,
         justifyContent  : 'center',
         alignItems      : 'center'
     },

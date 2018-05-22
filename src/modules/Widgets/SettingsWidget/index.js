@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import {PixelRatio, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {squareWidget, widgetShadow} from 'src/config/styles';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import {pRatio, squareWidget, widgetShadow} from 'src/config/styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
-const pixelRatio = PixelRatio.get();
 export class SettingsWidget extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +25,7 @@ export class SettingsWidget extends Component {
                     <Icon
                         name={'add'}
                         color={'white'}
-                        size={pixelRatio * 70}
+                        size={pRatio * 60}
                     />
                 </TouchableOpacity>
             </View>

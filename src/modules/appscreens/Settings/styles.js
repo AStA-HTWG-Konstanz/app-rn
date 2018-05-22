@@ -1,12 +1,11 @@
-import {Dimensions, PixelRatio, Platform, StyleSheet} from 'react-native';
-import { colorScheme } from 'src/config/styles';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
+import { colorScheme, pRatio } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
-const pixelratio = PixelRatio.get();
 
 export const iconStyle = {
     color   : 'white',
-    size    : Platform.OS === 'ios' ? pixelratio * 15 : pixelratio * 10
+    size    : Platform.OS === 'ios' ? pRatio * 15 : pRatio * 10
 };
 
 
@@ -18,25 +17,25 @@ export const styles = StyleSheet.create({
     dismissBtn: {
         ...Platform.select({
             ios: {
-                marginTop   : pixelratio*15,
-                marginLeft  : pixelratio*12
+                marginTop   : pRatio*15,
+                marginLeft  : pRatio*12
             },
             android: {
-                marginTop   : pixelratio*7,
-                marginLeft  : pixelratio*5
+                marginTop   : pRatio*7,
+                marginLeft  : pRatio*5
             }
         }),
     },
     container: {
-        marginTop           : pixelratio*6,
+        marginTop           : pRatio*6,
         ...Platform.select({
             ios: {
 
-                marginHorizontal    : pixelratio*15,
+                marginHorizontal    : pRatio*15,
             },
             android: {
 
-                marginHorizontal    : pixelratio*8,
+                marginHorizontal    : pRatio*8,
             }
         }),
         backgroundColor     : 'white',
