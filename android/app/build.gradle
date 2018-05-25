@@ -102,11 +102,7 @@ android {
         applicationId "com.htwgcampus"
         minSdkVersion 23
         targetSdkVersion 27
-        if(System.getenv("RELEASE") == 1) {
-            versionCode System.getenv("VERSION")
-        } else {
-            versionCode 7
-        }
+        versionCode 7
         versionName "0.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
