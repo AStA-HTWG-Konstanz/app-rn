@@ -36,13 +36,13 @@ class EndlichtWidget extends Component {
                 )
             } else {
                 if(strings('endlicht.closed') === 'Geschlossen') {
-                    content =   <View style={style.contentView}>
+                    content =   <View style={style.noDataView}>
                                     <Text style={style.noDataGerman}>
                                         {strings('endlicht.closed')}
                                     </Text>
                                 </View>
                 } else {
-                    content =   <View style={style.contentView}>
+                    content =   <View style={style.noDataView}>
                                     <Text style={style.noData}>
                                         {strings('endlicht.closed')}
                                     </Text>

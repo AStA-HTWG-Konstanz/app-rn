@@ -8,7 +8,7 @@ export const style = StyleSheet.create({
         marginTop       : pRatio * 10,
         marginLeft      : pRatio * 10,
         marginRight     : pRatio * 10,
-        marginBottom    : pRatio * 10,
+        marginBottom    : pRatio * 5,
     },
     gradesPanelHeader: {
         height          : (height / 100) * 7,
@@ -27,9 +27,6 @@ export const style = StyleSheet.create({
     iconContainer: {
         marginTop       : '4%',
         marginRight     : '5%'
-    },
-    listView: {
-        marginTop       : '10%',
     },
     shortDesc: {
         paddingLeft     : '10%',

@@ -76,13 +76,13 @@ class LSF extends Component {
         );
 
         return (
-            <View style={style.lectureContent}>
-                <Panel
-                    expanded={false}
-                    header={panelHeader}
-                    content={panelContent}
-                />
-            </View>
+                <View style={style.lectureContent}>
+                    <Panel
+                        expanded={false}
+                        header={panelHeader}
+                        content={panelContent}
+                    />
+                </View>
 
         )
     };

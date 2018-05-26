@@ -11,8 +11,8 @@ export const style = StyleSheet.create({
         marginBottom    : pRatio*10
     },
     contentContainer: {
-        backgroundColor : colorScheme.botticelli,
-        height          : '100%'
+        //backgroundColor : colorScheme.botticelli,
+        //height          : '100%'
     },
     content: {
         marginTop       : pRatio*5
