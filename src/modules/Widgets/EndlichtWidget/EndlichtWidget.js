@@ -18,7 +18,7 @@ class EndlichtWidget extends Component {
         let open, close;
         let content;
         if (this.props.endlichtData) {
-            const day = moment().lang("en").format('dddd');
+            const day = moment().format('YYYY-MM-DD');
             if (typeof this.props.endlichtData.endlicht.openingHours[day] !== "undefined"){
                 open = this.props.endlichtData.endlicht.openingHours[day].startTime;
                 close = this.props.endlichtData.endlicht.openingHours[day].endTime;

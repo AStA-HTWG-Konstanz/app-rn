@@ -17,11 +17,11 @@ class Endlicht extends Component{
     render() {
         let content;
         if (this.props.endlichtData) {  // data already retrieved
-            content =   <View style={style.endlichtFrame}>
+            content =   <View>
                             {this._renderView()}
                         </View>
         } else {  // loading in progress
-            content = <View style={style.endlichtFrame}>
+            content = <View>
                         <View style={style.loadingView}>
                             <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
                         </View>
