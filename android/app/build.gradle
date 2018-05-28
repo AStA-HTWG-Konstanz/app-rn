@@ -132,6 +132,7 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             if(System.getenv("RELEASE") == 1) {
+                java.lang.System.console("Here")
                 signingConfig signingConfigs.release
             }
         }
