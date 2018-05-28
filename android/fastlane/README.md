@@ -21,6 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane android internal
 ```
 Deploy a new internal test version to the Google Play Store
+### android beta
+```
+fastlane android beta
+```
+Deploy a new beta test version to the Google Play Store
 
 ----
 

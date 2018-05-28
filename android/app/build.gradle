@@ -117,7 +117,7 @@ android {
         applicationId "com.htwgcampus"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 16
+        versionCode 17
         versionName "0.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
