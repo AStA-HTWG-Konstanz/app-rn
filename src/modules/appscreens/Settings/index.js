@@ -110,11 +110,11 @@ class Settings extends Component {
         const aboutContent = (
             <View style={styles.panelContentContainer}>
                 <Text style={styles.creatorsTitle}>
-                    Developed by
+                    {strings('settings.impressumDev')}
                 </Text>
                 <Text>{impressum['developers']}</Text>
                 <Text style={styles.designersTitle}>
-                    Designed by
+                    {strings('settings.impressumDesign')}
                 </Text>
                 <Text>{impressum['designers']}</Text>
             </View>

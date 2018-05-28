@@ -62,6 +62,8 @@
     "language"      : "Sprache",
     "selectedWidgetsHeader" : "Ausgewählte Widgets",
     "availableWidgetsHeader" : "Verfügbare Widgets",
+    "impressumDev"  : "Entwickelt von",
+    "impressumDesign": "Designed von",
     "BALANCE"       : "Guthaben",
     "CANTEEN"       : "Mensa",
     "ENDLICHT"      : "Endlicht",

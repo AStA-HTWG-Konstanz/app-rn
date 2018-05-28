@@ -9,8 +9,7 @@ import * as LSFActions from 'src/actions/lectureActions';
 import Panel from 'src/modules/Panel';
 import { strings } from 'src/i18n';
 import { style } from './styles';
-import { panelIcon } from 'src/config/styles';
-import { getBackgroundView } from 'src/config/styles';
+import { getBackgroundView, panelIcon } from 'src/config/styles';
 
 class LSF extends Component {
     constructor(props) {
@@ -22,29 +21,26 @@ class LSF extends Component {
     render() {
         let content;
         if (this.props.lectures) {
-            content = this._renderView();
+            content = (
+                <ScrollView style={style.lsfFrame}>
+                    <View>
+                        <FlatList
+                            data={this.props.lectures}
+                            renderItem={this._renderItem}
+                            keyExtractor={(item, index) => 'panel' + index}
+                        />
+                    </View>
+                </ScrollView>
+            );
         } else {
-            content =   <View>
-                            <Text style={{fontSize: 24}}>{strings("LSF.emptyTxt")}</Text>
-                            <Text>{strings("LSF.selectLecture")}</Text>
-                        </View>
+            content =   (
+                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{fontSize: 24}}>{strings("LSF.emptyTxt")}</Text>
+                    <Text>{strings("LSF.selectLecture")}</Text>
+                </View>
+            );
         }
 
-        return content;
-    }
-
-    _renderView() {
-        const content = (
-            <ScrollView style={style.lsfFrame}>
-                <View>
-                    <FlatList
-                        data={this.props.lectures}
-                        renderItem={this._renderItem}
-                        keyExtractor={(item, index) => 'panel' + index}
-                    />
-                </View>
-            </ScrollView>
-        );
         return getBackgroundView(content, 3);
     }
 
@@ -80,13 +76,13 @@ class LSF extends Component {
         );
 
         return (
-            <View style={style.lectureContent}>
-                <Panel
-                    expanded={false}
-                    header={panelHeader}
-                    content={panelContent}
-                />
-            </View>
+                <View style={style.lectureContent}>
+                    <Panel
+                        expanded={false}
+                        header={panelHeader}
+                        content={panelContent}
+                    />
+                </View>
 
         )
     };

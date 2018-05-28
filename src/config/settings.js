@@ -31,9 +31,10 @@ export const squareThreshold = 4;
 
 
 export const widgetPreselection = [
-    widgetEnum.LECTURE,
     widgetEnum.CANTEEN,
-    widgetEnum.BALANCE,
     widgetEnum.EVENT,
-    widgetEnum.NEWS
+    widgetEnum.BALANCE,
+    widgetEnum.GRADES,
+    widgetEnum.LECTURE,
+    widgetEnum.ENDLICHT
 ];

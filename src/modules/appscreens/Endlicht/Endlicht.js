@@ -17,7 +17,9 @@ class Endlicht extends Component{
     render() {
         let content;
         if (this.props.endlichtData) {  // data already retrieved
-            content = this._renderView();
+            content =   <View style={style.endlichtFrame}>
+                            {this._renderView()}
+                        </View>
         } else {  // loading in progress
             content = <View style={style.endlichtFrame}>
                         <View style={style.loadingView}>
@@ -25,7 +27,7 @@ class Endlicht extends Component{
                         </View>
                     </View>
         }
-        return content;
+        return getBackgroundView(content, 1);
     }
 
     _renderView() {

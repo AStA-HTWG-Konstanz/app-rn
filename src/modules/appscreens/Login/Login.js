@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
+import {Platform, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CheckBox from 'react-native-checkbox';
@@ -17,7 +17,7 @@ class Login extends Component{
     }
 
     componentDidMount() {
-        if (connector.getConnectionStatus() === false) {  // true, false, undefined <- undefined, if still fetching status
+        if (Platform.OS === 'ios' && connector.getConnectionStatus() === false) {  // true, false, undefined <- undefined, if still fetching status
             Toast.show(strings('general.notConnectedText'), Toast.LONG);
         }
     }

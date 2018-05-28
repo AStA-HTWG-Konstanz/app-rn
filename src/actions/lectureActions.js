@@ -1,3 +1,4 @@
+import SplashScreen from 'react-native-splash-screen';
 import * as types from 'src/actions/actionTypes';
 import connector from 'src/backend_connection';
 
@@ -6,6 +7,7 @@ export function getLectures() {
         connector.getLectures()
             .then( function (lectures) {
                     dispatch(receiveLectures(lectures));
+                    SplashScreen.hide();
                 }
             ).catch((err) => {});
     }
