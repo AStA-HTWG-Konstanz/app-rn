@@ -111,6 +111,7 @@ android {
     if (System.getenv("RELEASE") == 1) {
         signingConfigs {
             release {
+                java.lang.System.console(System.getenv("MYAPP_RELEASE_STORE_PASSWORD"))
                 storeFile file(System.getenv("MYAPP_RELEASE_STORE_FILE"))
                 storePassword System.getenv("MYAPP_RELEASE_STORE_PASSWORD")
                 keyAlias System.getenv("MYAPP_RELEASE_KEY_ALIAS")
