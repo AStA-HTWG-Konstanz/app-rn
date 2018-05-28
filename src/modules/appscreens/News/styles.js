@@ -1,14 +1,14 @@
-import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+import { pRatio } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
-const pixelratio = PixelRatio.get();
 
 export const style = StyleSheet.create({
     NewsFrame: {
-        marginTop       : pixelratio * 10,
-        marginLeft      : pixelratio * 10,
-        marginRight     : pixelratio * 10,
-        marginBottom    : pixelratio * 10,
+        marginTop       : pRatio * 10,
+        marginLeft      : pRatio * 10,
+        marginRight     : pRatio * 10,
+        marginBottom    : pRatio * 10,
     },
     newsPanelHeader : {
         height          : (height / 100) * 8,
@@ -18,8 +18,8 @@ export const style = StyleSheet.create({
     newsPanelHeaderText: {
         fontSize        : 20,
         fontWeight      : 'bold',
-        marginTop       : pixelratio*5,
-        marginLeft      : pixelratio*10
+        marginTop       : pRatio*5,
+        marginLeft      : pRatio*10
     },
     headerView: {
         backgroundColor : 'white',
@@ -27,9 +27,9 @@ export const style = StyleSheet.create({
     lineStyle:{
         borderWidth     : 1,
         borderColor     : 'lightgrey',
-        marginLeft      : pixelratio*10,
-        marginRight     : pixelratio*10,
-        marginBottom    : pixelratio*5
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*5
     },
     iconContainer: {
         marginTop       : '10%',

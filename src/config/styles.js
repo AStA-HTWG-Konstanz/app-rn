@@ -6,7 +6,8 @@ import {checkbox_checked, checkbox_unchecked} from 'src/images';
 import { option1, option2, option3, option4, option5, option6 } from 'src/images';
 
 const {height, width} = Dimensions.get('window');
-export const pRatio = PixelRatio.get();
+const tmpRatio = PixelRatio.get();
+export const pRatio = tmpRatio > 2 ? 2.25 : tmpRatio;  // 3 on iPhone X would be too large
 
 
 export const colorScheme = {
@@ -85,7 +86,9 @@ export const getBackgroundView = function(content, imageNumber) {
     const resizeMode = 'cover';
     const imageStyle = {
         flex: 1,
-        resizeMode
+        resizeMode,
+        height: height,
+        width: width
     };
     let img;
     switch (imageNumber) {

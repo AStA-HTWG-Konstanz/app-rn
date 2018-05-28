@@ -22,7 +22,7 @@ class Grades extends Component {
             console.log(this.props.grades);
             content = this._renderView();
         } else {  // loading in progress
-            content =   <View style={style.GradeFrame}>
+            content =   <View style={style.gradeFrame}>
                 <View style={style.loadingView}>
                     <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
                 </View>
@@ -36,7 +36,7 @@ class Grades extends Component {
         const content = (
             <ScrollView>
                 <View style={style.gradeFrame}>
-                    <FlatList style={style.listView}
+                    <FlatList
                               data={Object.keys(semester)}
                               renderItem={this._renderSemester}
                     />

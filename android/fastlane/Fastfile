@@ -18,14 +18,16 @@ default_platform(:android)
 platform :android do
    desc "Deploy a new internal test version to the Google Play Store"
     lane :internal do
-      increment_version_code
-      gradle(
+    increment_version_code(
+        gradle_file_path: "./app/build.gradle"
+    )
+    gradle(
         task: "assemble",
         build_type: "Release"
-      )
-      supply(
+    )
+    supply(
         track: "internal",
         apk: "./app/build/outputs/apk/app-release.apk"
-      )
+    )
     end
 end
