@@ -6,7 +6,7 @@ import {checkbox_checked, checkbox_unchecked} from 'src/images';
 import { option1, option2, option3, option4, option5, option6 } from 'src/images';
 
 const {height, width} = Dimensions.get('window');
-const pRatio = PixelRatio.get();
+export const pRatio = PixelRatio.get();
 
 
 export const colorScheme = {
