@@ -43,7 +43,7 @@ class Endlicht extends Component{
                                         {special}
                                     </Text>
                                     <Text>
-                                        {specialPrice}€
+                                        {specialPrice} €
                                     </Text>
                                 </View>
                             </View>
@@ -54,7 +54,7 @@ class Endlicht extends Component{
 
         return (
             <ScrollView style={style.contentContainer}>
-                <View style={style.EndlichtFrame}>
+                <View style={style.endlichtFrame}>
                     <View style={style.page}>
                         <View style={style.content}>
                             {specialContent}
@@ -70,7 +70,7 @@ class Endlicht extends Component{
                                                     {item.name}
                                                 </Text>
                                                 <Text>
-                                                    {item.price}€
+                                                    {item.price} €
                                                 </Text>
                                             </View>
                                             )
@@ -86,14 +86,14 @@ class Endlicht extends Component{
                             </Text>
                             <Text>
                                 auch Laktosefrei{'\n'}
-                                1€ Pfand
+                                1 € Pfand
                             </Text>
                         </View>
                         <View style={style.locationHeader}>
                             <Text style={style.header}>{strings('endlicht.locationTitle')}</Text>
                         </View>
                         <View style={style.map}>
-                            <Image source={require('../../../images/Campusplan_Endlicht.png')} style={style.endlichtImage}
+                            <Image source={require('src/images/Campusplan_Endlicht.png')} style={style.endlichtImage}
                             resizeMode={'cover'}/>
                         </View>
                     </View>

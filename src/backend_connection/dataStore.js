@@ -48,26 +48,6 @@ export default class DataStore {
                 ]
             }
         });
-
-        storeLocally('events', {
-            "events"    : [
-                {
-                    "header": "SoSe18",
-                    "title1": "Prüfungsanmeldezeitraum Sommersemester 2018:",
-                    "content1" : "Samstag, 30. Juni bis Mittwoch 25. Juli 2018",
-                    "title2" : "Zweiter Prüfungszeitraum Sommersemester 2018:",
-                    "content2" : "Montag, 24. September bis Freitag, 05. Oktober 2018"
-                },
-                {
-                    "header": "WiSe18/19",
-                    "title1": "Bewerbungsschluss für einen Bachelorstudiengang für das Sommersemester 2018/2019:",
-                    "content1": "15. Juli 2019 (Ausschlussfrist)",
-                    "title2": "Ausnahmen:",
-                    "content2": "Betriebswirtschaftslehre: 15. Mai 2019"
-                }
-            ]
-        });
-
     }
 
     handleConnectionChange = (isConnected) => {

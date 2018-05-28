@@ -34,6 +34,7 @@ export function fetchInitialData() {
         dispatch(balanceActions.getBalance());
         dispatch(openingHoursActions.getBibOpeningHours());
         dispatch(endlichtActions.getEndlichtData());
+        dispatch(eventActions.getEvents());
         dispatch(gradesActions.getGrades());
         dispatch(lectureActions.getLectures());
         dispatch(canteenActions.getMenu());

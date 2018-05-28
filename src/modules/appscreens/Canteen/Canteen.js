@@ -75,13 +75,13 @@ class Canteen extends Component{
 
         const panelContent = (
             <View>
-            <FlatList
-                data={dailyMenu.item['meals']}
-                renderItem={this._renderMeal}
-                listKey={'Menu_' + dailyMenu.index}
-                keyExtractor={(item, index) => 'meal_' + index}
-            />
-            <View style = {style.lineStyle}/>
+                <FlatList
+                    data={dailyMenu.item['meals']}
+                    renderItem={this._renderMeal}
+                    listKey={'Menu_' + dailyMenu.index}
+                    keyExtractor={(item, index) => 'meal_' + index}
+                />
+                <View style = {style.lineStyle}/>
             </View>
         );
 

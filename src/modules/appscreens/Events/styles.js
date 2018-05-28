@@ -12,22 +12,23 @@ export const style = StyleSheet.create({
         marginRight     : pixelratio * 10,
         marginBottom    : pixelratio * 10,
     },
-    headerView: {
+    eventPanelContainer : {
         backgroundColor : 'white'
     },
-    eventPanelHeader : {
-        height          : (height / 100) * 8,
-        flexDirection   : 'row',
-        justifyContent  : 'space-between'
+    headerView: {
+        backgroundColor : 'white',
+        marginBottom    : pixelratio * 5
     },
-    eventPanelHeaderText : {
+    headerText : {
         fontSize        : 20,
         fontWeight      : 'bold',
         marginTop       : pixelratio*5,
         marginLeft      : pixelratio*10
     },
-    eventPanelContainer : {
-        backgroundColor : 'white'
+    eventContent : {
+        marginLeft      : pixelratio*10,
+        marginRight     : pixelratio*10,
+        marginBottom    : pixelratio*5
     },
     lineStyle:{
         borderWidth     : 1,
@@ -36,18 +37,6 @@ export const style = StyleSheet.create({
         marginRight     : pixelratio*10,
         marginBottom    : pixelratio*5
     },
-    accordionIcon       : accordionIcon,
-    iconContainer : {
-        marginTop       : pixelratio*5,
-        marginRight     : pixelratio*10,
-        backgroundColor : 'white',
-    },
-    eventContent : {
-        marginLeft      : pixelratio*10,
-        marginRight     : pixelratio*10,
-        marginBottom    : pixelratio*5
-    },
-
     title : {
         fontWeight      : 'bold',
         fontSize        : 16,
@@ -62,5 +51,5 @@ export const style = StyleSheet.create({
     loadingText : {
         fontSize        : 40,
         fontWeight      : 'bold',
-    }
+    },
 });
