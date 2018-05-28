@@ -31,7 +31,7 @@ platform :android do
     )
     end
     desc "Deploy a new beta test version to the Google Play Store"
-        lane :internal do
+        lane :beta do
         increment_version_code(
             gradle_file_path: "./app/build.gradle"
         )
