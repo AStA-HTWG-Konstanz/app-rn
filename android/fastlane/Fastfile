@@ -30,4 +30,18 @@ platform :android do
         apk: "./app/build/outputs/apk/app-release.apk"
     )
     end
+    desc "Deploy a new beta test version to the Google Play Store"
+        lane :internal do
+        increment_version_code(
+            gradle_file_path: "./app/build.gradle"
+        )
+        gradle(
+            task: "assemble",
+            build_type: "Release"
+        )
+        supply(
+            track: "alpha",
+            apk: "./app/build/outputs/apk/app-release.apk"
+        )
+    end
 end
