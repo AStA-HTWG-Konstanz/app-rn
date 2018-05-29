@@ -107,7 +107,13 @@ export default class DataStore {
                                     db.put({
                                         _id : 'session-cookie',
                                         data: cookie_val
-                                    }).then(() => resolve(true));
+                                    }).then(() => {
+                                        if(Platform.OS === 'android') {
+                                            setTimeout(()=>{resolve(true)}, 1500);
+                                        } else {
+                                            resolve(true);
+                                        }
+                                    });
                                 } else {
                                     if (__DEV__) {
                                         console.log(err);
