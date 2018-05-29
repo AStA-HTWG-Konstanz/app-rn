@@ -1,0 +1,9 @@
+git_url "git@gitlab.manuel-haug.de:asta-app/app.git"
+
+type "development" # The default type, can be: appstore, adhoc or development
+
+app_identifier ["org.htwg-konstanz.htwgCampus"]
+username "asta-it@htwg-konstanz.de" # Your Apple Developer Portal username
+
+# For all available options run `match --help`
+# Remove the # in the beginning of the line to enable the other options
