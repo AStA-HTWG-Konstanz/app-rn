@@ -1,3 +1,4 @@
+import SplashScreen from 'react-native-splash-screen';
 import * as types from 'src/actions/actionTypes';
 import connector from 'src/backend_connection/';
 import { fetchInitialData } from 'src/actions';
@@ -61,6 +62,7 @@ export function login(firstTry) {
                         dispatch(getSelectedWidgets());  // get widget selection from local storage
                     }
                     else{
+                        SplashScreen.hide();
                         if (firstTry) {
                             dispatch(changeAppRoot('login'));
                         } else {
