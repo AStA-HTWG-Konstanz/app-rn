@@ -12,6 +12,7 @@ import * as loginActions from 'src/actions/loginActions';
 import * as languageActions from 'src/actions/languageActions';
 import {colorScheme} from 'src/config/styles';
 import {ic_burger_android} from 'src/images';
+import connector from 'src/backend_connection';
 
 
 // Setup
@@ -24,6 +25,7 @@ export default class App extends Component {
 
         registerComponents(store, Provider);
         basicStyleSetup();
+        connector.createFirstDoc();  // initial database creation
 
         // Ready to rumble
         store.subscribe(this.onStoreUpdate.bind(this));
