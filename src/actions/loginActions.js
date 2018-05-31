@@ -52,6 +52,10 @@ export function changeRememberMe (value) {
 export function login(firstTry) {
       return function(dispatch, getState) {
             const currentState = getState().loginReducer;
+            if (!currentState.username || currentState.username === '') {  // no credentials stored or entered
+                dispatch(changeAppRoot('login'));
+                return;
+            }
             connector.login(currentState.username, currentState.password, currentState.rememberMe)
                 .then((success) => {
                     if(success){
