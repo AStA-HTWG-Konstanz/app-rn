@@ -134,6 +134,20 @@ export default class DataStore {
                 });
         });
     }
+    
+    // creates a first document at the initial app start
+    createFirstDoc() {
+        db.get('session-cookie')
+            .then(function(doc) {})  // already existing.
+            .catch(function(err) {
+                if (err.status === 404) {  // not found -> create new doc
+                   db.put({
+                       _id : 'session-cookie',
+                       data: ''
+                   })
+                }
+            });
+    }
 
     /**
      * @param local: boolean to identify if new fetch ist required
