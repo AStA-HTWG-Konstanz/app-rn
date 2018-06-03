@@ -6,8 +6,8 @@ export function getLectures() {
     return (dispatch) => {
         connector.getLectures()
             .then( function (lectures) {
-                    dispatch(receiveLectures(lectures));
                     SplashScreen.hide();
+                    dispatch(receiveLectures(lectures));
                 }
             ).catch((err) => {});
     }
