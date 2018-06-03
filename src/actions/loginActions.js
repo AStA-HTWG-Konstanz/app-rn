@@ -4,7 +4,7 @@ import connector from 'src/backend_connection/';
 import { fetchInitialData } from 'src/actions';
 import { getSelectedWidgets } from 'src/actions/dashboardActions';
 import { strings } from 'src/i18n';
-import Toast from "react-native-simple-toast";
+import Toast from 'react-native-simple-toast';
 
 export function appInitialized() {
     return async function(dispatch, getState) {
@@ -54,6 +54,10 @@ export function login(firstTry) {
             const currentState = getState().loginReducer;
             if (!currentState.username || currentState.username === '') {  // no credentials stored or entered
                 dispatch(changeAppRoot('login'));
+
+                setTimeout(() => {  // first app start, hold splashscreen a little bit longer
+                    SplashScreen.hide();
+                }, 1500);
                 return;
             }
             connector.login(currentState.username, currentState.password, currentState.rememberMe)
@@ -66,7 +70,7 @@ export function login(firstTry) {
                         dispatch(getSelectedWidgets());  // get widget selection from local storage
                     }
                     else{
-                        SplashScreen.hide();
+                        SplashScreen.hide();  // show login screen
                         if (firstTry) {
                             dispatch(changeAppRoot('login'));
                         } else {
