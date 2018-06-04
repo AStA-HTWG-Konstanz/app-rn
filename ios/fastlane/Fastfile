@@ -27,11 +27,7 @@ platform :ios do
     gym(
         scheme:"htwgCampus",
         export_method: "app-store",
-        export_options: {
-          provisioningProfiles: {
-                "org.htwg-konstanz.htwgCampus" => "match AppStore org.htwg-konstanz.htwgCampus"
-          }
-        }
+        xcargs: "PROVISIONING_PROFILE=f90e60ad-bff0-4d9c-af1f-571c99799b39"
     )
     pilot
   end
