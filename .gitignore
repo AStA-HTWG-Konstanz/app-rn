@@ -68,3 +68,7 @@ package-lock.json
 
 /coverage
 /third-party
+
+# Fastlane
+/ios/fastlane/report.xml
+/android/fastlane/report.xml

@@ -24,7 +24,15 @@ platform :ios do
       message: "Changed iOS build number"
     )
     match(type: "appstore")
-    gym(scheme:"htwgCampus")
+    gym(
+    scheme:"htwgCampus",
+    export_method: "app-store",
+    export_options: {
+      provisioningProfiles: {
+            "org.htwg-konstanz.htwgCampus": "match AppStore org.htwg-konstanz.htwgCampus"
+      }
+    }
+    )
     pilot
   end
 end
