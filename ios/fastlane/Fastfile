@@ -24,12 +24,7 @@ platform :ios do
       message: "Changed iOS build number"
     )
     match(type: "appstore")
-    gym(
-    scheme:"htwgCampus"
-    xcargs: {
-              :PROVISIONING_PROFILE_SPECIFIER => 'match AppStore org.htwg-konstanz.htwgCampus'
-          }
-    )
+    gym(scheme:"htwgCampus")
     pilot
   end
 end
