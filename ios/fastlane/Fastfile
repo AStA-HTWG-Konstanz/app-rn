@@ -24,11 +24,7 @@ platform :ios do
       message: "Changed iOS build number"
     )
     match(type: "appstore")
-    gym(
-        scheme:"htwgCampus",
-        export_method: "app-store",
-        xcargs: "PROVISIONING_PROFILE=f90e60ad-bff0-4d9c-af1f-571c99799b39"
-    )
+    gym(scheme:"htwgCampus")
     pilot
   end
 end
