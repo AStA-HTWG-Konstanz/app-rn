@@ -73,24 +73,25 @@ class Canteen extends Component{
             );
         };
 
-        const panelContent = (
-            <View>
+        const panelContent = [
                 <FlatList
                     data={dailyMenu.item['meals']}
                     renderItem={this._renderMeal}
                     listKey={'Menu_' + dailyMenu.index}
                     keyExtractor={(item, index) => 'meal_' + index}
                 />
-                <View style = {style.lineStyle}/>
-            </View>
-        );
+        ];
+
+        if (dailyMenu.index < this.props.menu.menu.length-1) {  // only if not last element
+            panelContent.push(<View style = {style.lineStyle}/>);
+        }
 
 
         return (
             <View style={style.menuPanelContainer}>
                 <Panel
                     header={header}
-                    content={panelContent}
+                    content={<View>{panelContent}</View>}
                     expanded={day.isSame(moment(), 'day')}
                 />
             </View>
