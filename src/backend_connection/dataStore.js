@@ -232,7 +232,7 @@ export default class DataStore {
                             {
                                 username    : '',
                                 password    : '',
-                                rememberMe  : false
+                                rememberMe  : true
                             }
                         );
                     }
@@ -242,7 +242,7 @@ export default class DataStore {
                         {
                             username    : '',
                             password    : '',
-                            rememberMe  : false
+                            rememberMe  : true
                         }
                     );
                 });

@@ -6,7 +6,7 @@ const {height, width} = Dimensions.get('window');
 export const iconStyle = {
     colorSelected   : '#BEBEBE',
     colorAvailable  : colorScheme.persian_green,
-    size            : Platform.OS === 'ios' ? pRatio * 20 : pRatio * 15
+    size            : Platform.OS === 'ios' ? pRatio * 15 : pRatio * 12
 };
 
 export const styles = StyleSheet.create({
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         marginBottom    : pRatio * 5
     },
     rowContainer: {
-        height          : pRatio * 22,
+        height          : pRatio * 17,
         flexDirection   : 'row',
         alignItems      : 'center',
         justifyContent  : 'space-between',
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         marginLeft      : '10%'
     },
     placeholder : {
-        height: 10
+        height: pRatio * 15
     },
     widgetGroupTitle: {
         fontWeight      : 'bold',
