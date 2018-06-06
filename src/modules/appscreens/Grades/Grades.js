@@ -19,11 +19,7 @@ class Grades extends Component {
     render() {
         let content;
         if (this.props.grades) {  // data already retrieved
-            //content = this._renderView();
-            content =
-                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={{fontSize: 24}}>{strings("grades.noData")}</Text>
-                </View>
+            content = this._renderView();
         } else {  // loading in progress
             content =
                 <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
