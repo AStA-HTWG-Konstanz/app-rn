@@ -25,30 +25,6 @@ export default class DataStore {
 
         /*** Create dummy data (will be deleted)***/
         storeLocally('number_news', 11);
-        /*storeLocally('grades', {
-            gradesReport: {
-                "Sommersemester 17": [
-                    {
-                        "lecture": "Datenbanken",
-                        "grade": "2,7",
-                        "ects": "8"
-                    },
-                    {
-                        "lecture": "SOTE1",
-                        "grade": "1,0",
-                        "ects": "6"
-                    }
-
-                ],
-                "Wintersemester 18/19": [
-                    {
-                        "lecture": "Rechnernetze und Kommunikationssysteme",
-                        "grade": "2,3",
-                        "ects": "5"
-                    }
-                ]
-            }
-        });*/
     }
 
     handleConnectionChange = (isConnected) => {
@@ -279,7 +255,8 @@ export default class DataStore {
                         storeLocally('gradesToken', token);
 
                         if (!this.isConnected) {
-                            // TODO: what to do when not connected? (empty data?)
+                            resolve(undefined);
+                            return;
                         }
 
                         db.get('session-cookie').then((cookie) => {
