@@ -31,11 +31,11 @@ export const lengthwiseThreshold = 3;
 export const squareThreshold = 3;
 
 
-export const widgetPreselection = [
+export const widgetPreselectionStudent = [
     widgetEnum.CANTEEN,
     widgetEnum.EVENT,
     widgetEnum.BALANCE,
     widgetEnum.GRADES,
-    widgetEnum.LECTURE,
-    widgetEnum.ENDLICHT
+    widgetEnum.ENDLICHT,
+    widgetEnum.LECTURE
 ];

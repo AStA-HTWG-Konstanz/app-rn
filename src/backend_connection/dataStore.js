@@ -3,7 +3,7 @@ import I18n from 'react-native-i18n';
 import { NetInfo, Platform } from 'react-native';
 
 import { api, endpoint } from 'src/config/api';
-import { constants, newsCategoriesPreselection, widgetPreselection } from 'src/config/settings';
+import { constants, newsCategoriesPreselection, widgetPreselectionStudent } from 'src/config/settings';
 
 const db = new PouchDB('campusDB');  // Create new if not already existing
 
@@ -343,9 +343,9 @@ export default class DataStore {
                     if (err.status === 404) {  // not found -> initial app start after installation
                         db.put({  // save preselection
                             _id : 'widgetSelection',
-                            data: widgetPreselection
+                            data: widgetPreselectionStudent
                         });
-                        resolve(widgetPreselection);
+                        resolve(widgetPreselectionStudent);
                     } else {
                         if (__DEV__) {
                             console.log('getSelectedWidgets: ', err);
