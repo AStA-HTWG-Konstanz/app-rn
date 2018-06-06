@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import * as types from 'src/actions/actionTypes';
 import connector from 'src/backend_connection/';
@@ -62,9 +63,11 @@ export function login(firstTry) {
             if (!currentState.username || currentState.username === '') {  // no credentials stored or entered
                 dispatch(changeAppRoot('login'));
 
-                setTimeout(() => {  // first app start, hold splashscreen a little bit longer
-                    SplashScreen.hide();
-                }, 1500);
+                if (Platform.OS === 'ios') {
+                    setTimeout(() => {  // first app start, hold splashscreen a little bit longer
+                        SplashScreen.hide();
+                    }, 1500);
+                }
                 return;
             }
             connector.login(currentState.username, currentState.password, currentState.rememberMe)
@@ -78,7 +81,9 @@ export function login(firstTry) {
                         dispatch(getSelectedWidgets());  // get widget selection from local storage
                     }
                     else{
-                        SplashScreen.hide();  // show login screen
+                        if (Platform.OS === 'ios') {
+                            SplashScreen.hide();  // show login screen
+                        }
                         if (firstTry) {
                             dispatch(changeAppRoot('login'));
                         } else {
