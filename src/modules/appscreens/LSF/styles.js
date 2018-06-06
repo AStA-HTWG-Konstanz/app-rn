@@ -21,7 +21,7 @@ export const style = StyleSheet.create({
     LSFheaderText: {
         fontSize        : 20,
         fontWeight      : 'bold',
-        marginTop       : pRatio*5,
+        marginTop       : pRatio*7,
         marginLeft      : pRatio*10
     },
     iconContainer: {

@@ -1,6 +1,7 @@
 import PouchDB from 'pouchdb-react-native';
 import I18n from 'react-native-i18n';
 import { NetInfo, Platform } from 'react-native';
+import randomToken from 'random-token';
 
 import { api, endpoint } from 'src/config/api';
 import { constants, newsCategoriesPreselection, widgetPreselection } from 'src/config/settings';
@@ -24,30 +25,6 @@ export default class DataStore {
 
         /*** Create dummy data (will be deleted)***/
         storeLocally('number_news', 11);
-        storeLocally('grades', {
-            gradesReport: {
-                "Sommersemester 17": [
-                    {
-                        "lecture": "Datenbanken",
-                        "grade": "2,7",
-                        "ects": "8"
-                    },
-                    {
-                        "lecture": "SOTE1",
-                        "grade": "1,0",
-                        "ects": "6"
-                    }
-
-                ],
-                "Wintersemester 18/19": [
-                    {
-                        "lecture": "Rechnernetze und Kommunikationssysteme",
-                        "grade": "2,3",
-                        "ects": "5"
-                    }
-                ]
-            }
-        });
     }
 
     handleConnectionChange = (isConnected) => {
@@ -265,9 +242,47 @@ export default class DataStore {
 
     getGrades() {
         const instance = this;
+
         return new Promise(function (resolve) {
-            instance.fireRequest(resolve, restTypes.GET, api.grades, 'grades')
-        })
+            db.get('gradesToken')
+                .then((doc) => {
+                    instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', {token: doc.data});
+                })
+                .catch((err) => {
+                    if (err.status === 404) {  //no token existing
+                        // generate token + manual fetch request
+                        const token = randomToken(12);
+                        storeLocally('gradesToken', token);
+
+                        if (!this.isConnected) {
+                            resolve(undefined);
+                            return;
+                        }
+
+                        db.get('session-cookie').then((cookie) => {
+                            instance.getCredentials().then((credentials) => {
+                                const headers = Object.assign({}, genericHeader, {
+                                    'Set-Cookie': cookie.data.name + '=' + cookie.data.value
+                                });
+                                const body = Object.assign({'token': token}, credentials);
+                                const request = {
+                                    method  : 'POST',
+                                    headers : headers,
+                                    body    : JSON.stringify(body)
+                                };
+
+                                fetch(api.gradesCreate, request)
+                                    .then((response) => {
+                                        if (response.ok) {
+                                            instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                                        }
+                                    })
+                                    .catch();
+                            });
+                        });
+                    }
+            });
+        });
     }
 
     getLanguage() {
