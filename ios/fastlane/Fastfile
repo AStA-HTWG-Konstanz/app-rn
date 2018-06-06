@@ -16,12 +16,23 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Submit a new internal test to Apple Testflight"
-  lane :beta do
+
+  before_all do
+    ensure_git_status_clean
     increment_build_number
     commit_version_bump(
-      message: "Changed iOS build number"
+        message: "🤖 Changed build number for 🍎 [skip ci]"
     )
+    push_to_git_remote(
+        remote: "origin",
+        local_branch: "development",
+        remote_branch: "development",
+        tags: false
+    )
+  end
+
+  desc "Submit a new build to iTunes Connect"
+  lane :build do
     match(type: "appstore")
     gym(
         project: "htwgCampus.xcodeproj",
