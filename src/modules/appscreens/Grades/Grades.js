@@ -121,7 +121,7 @@ class Grades extends Component {
                 <View style={style.rowContent}>
                     <View style={style.leftContent}>
                         <Text style={style.contentText}>
-                            {lecture.lecture.length > 24 ? lecture.lecture.substring(0, 24) + '...' : lecture.lecture}
+                            {lecture.name.length > 24 ? lecture.name.substring(0, 24) + '...' : lecture.name}
                         </Text>
                     </View>
                     <View style={style.rightContent}>
