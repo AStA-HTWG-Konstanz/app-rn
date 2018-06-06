@@ -30,7 +30,7 @@ class EndlichtWidget extends Component {
                         <Text style={style.contentText}>
                             {open}
                         </Text>
-                        <MaterialIcon style={{fontWeight: 800}}
+                        <MaterialIcon
                             name='remove'
                             color='white'
                             size={Platform.OS === 'ios' ? pRatio * 10 : pRatio * 10}
