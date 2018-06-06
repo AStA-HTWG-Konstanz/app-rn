@@ -72,3 +72,4 @@ package-lock.json
 # Fastlane
 /ios/fastlane/report.xml
 /android/fastlane/report.xml
+/ios/.bundle
