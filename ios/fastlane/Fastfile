@@ -33,7 +33,6 @@ platform :ios do
 
   desc "Submit a new build to iTunes Connect"
   lane :build do
-    match(type: "appstore")
     gym(
         project: "htwgCampus.xcodeproj",
         export_options: {
