@@ -36,7 +36,7 @@ export const style = StyleSheet.create({
         backgroundColor : 'white',
         paddingLeft     : '5%',
         paddingRight    : '5%',
-        paddingBottom   : '5%',
+        paddingBottom   : '2%',
     },
     rowContent: {
         flexDirection   : 'row',
