@@ -39,3 +39,10 @@ export const widgetPreselectionStudent = [
     widgetEnum.ENDLICHT,
     widgetEnum.LECTURE
 ];
+
+export const widgetPreselectionEmployee = [
+    widgetEnum.CANTEEN,
+    widgetEnum.EVENT,
+    widgetEnum.ENDLICHT,
+    widgetEnum.LECTURE
+];

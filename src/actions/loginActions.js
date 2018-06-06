@@ -48,6 +48,13 @@ export function changeRememberMe (value) {
     }
 }
 
+export function setIsStudent(isStudent) {
+    return {
+        type: types.SET_IS_STUDENT,
+        isStudent: isStudent
+    }
+}
+
 // first try -> after initializing the app, we try to login with stored credentials
 export function login(firstTry) {
       return function(dispatch, getState) {
@@ -61,8 +68,9 @@ export function login(firstTry) {
                 return;
             }
             connector.login(currentState.username, currentState.password, currentState.rememberMe)
-                .then((success) => {
-                    if(success){
+                .then((result) => {
+                    if(result.success){
+                        dispatch(setIsStudent(result.isStudent));
                         dispatch(changeAppRoot('after-login'));
 
                         // Start fetching data
