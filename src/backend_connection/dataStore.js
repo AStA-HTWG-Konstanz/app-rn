@@ -254,7 +254,7 @@ export default class DataStore {
                         const token = randomToken(12);
                         storeLocally('gradesToken', token);
 
-                        if (!this.isConnected) {
+                        if (!instance.isConnected) {
                             resolve(undefined);
                             return;
                         }
