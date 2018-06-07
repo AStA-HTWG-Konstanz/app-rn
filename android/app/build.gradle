@@ -93,8 +93,21 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-def releasekeypass = "$System.env.ANDROID_PW"
-def releasekeyalias = "$System.env.ANDROID_PW"
+def getPassword() {
+    def stdout = new ByteArrayOutputStream()
+    def stderr = new ByteArrayOutputStream()
+    exec {
+        commandLine 'echo $ANDROID_PW'
+        standardOutput = stdout
+        errorOutput = stderr
+        ignoreExitValue true
+    }
+    //noinspection GroovyAssignabilityCheck
+    stdout.toString().trim()
+}
+
+def releasekeypass = getPassword()
+def releasekeyalias = getPassword()
 
 android {
     compileSdkVersion 27
