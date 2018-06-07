@@ -47,7 +47,8 @@ class LSF extends Component {
     _renderItem = (listLectures) => {
 
         const  panelHeader = ({isOpen}) => {
-            return (
+
+            let headerContent = [
                 <View style={style.headerView}>
                     <View style={style.LSFpanelHeader}>
                         <Text style={style.LSFheaderText}>
@@ -61,29 +62,43 @@ class LSF extends Component {
                             />
                         </View>
                     </View>
-                    <View style = {style.lineStyle}/>
+                </View>
+            ];
+
+            if ( listLectures.item < this.props.lectures.length ) {
+                headerContent.push(<View style = {style.lineStyle}/>);
+            } else {  // last element in list
+                if (isOpen) {
+                    headerContent.push(<View style = {style.lineStyle}/>);
+                }
+            }
+
+            return (
+                <View style={style.headerView}>
+                    {headerContent}
                 </View>
             );
         };
 
-        const panelContent = (
-            <View>
-                <FlatList
-                    data={listLectures.item['lectures']}
-                    renderItem={this._renderLectures}
-                    listKey={'Lecture_' + listLectures.index}
-                    keyExtractor={(item, index) => 'lecture_' + index}
-                />
-                <View style={style.lineStyle}/>
-            </View>
-        );
+        const panelContent = [
+            <FlatList
+                data={listLectures.item['lectures']}
+                renderItem={this._renderLectures}
+                listKey={'Lecture_' + listLectures.index}
+                keyExtractor={(item, index) => 'lecture_' + index}
+            />
+        ];
+
+        if (listLectures.item < this.props.lectures.length-1) {  // only if not last element
+            panelContent.push(<View style = {style.lineStyle}/>);
+        }
 
         return (
                 <View style={style.lectureContent}>
                     <Panel
                         expanded={false}
                         header={panelHeader}
-                        content={panelContent}
+                        content={<View>{panelContent}</View>}
                     />
                 </View>
 

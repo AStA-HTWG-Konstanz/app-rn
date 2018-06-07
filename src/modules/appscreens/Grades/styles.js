@@ -8,29 +8,26 @@ export const style = StyleSheet.create({
         marginTop       : pRatio * 10,
         marginLeft      : pRatio * 10,
         marginRight     : pRatio * 10,
-        marginBottom    : pRatio * 5,
+        marginBottom    : pRatio * 10,
     },
     gradesPanelHeader: {
-        height          : (height / 100) * 7,
+        height          : (height / 100) * 8,
         flexDirection   : 'row',
         justifyContent  : 'space-between'
-    },
-    headerView: {
-        backgroundColor : 'white',
     },
     gradesPanelHeaderText: {
         fontSize        : 20,
         fontWeight      : 'bold',
-        marginTop       : '5%',
-        marginLeft      : '5%'
+        marginTop       : pRatio*5,
+        marginLeft      : pRatio*10
     },
-    iconContainer: {
-        marginTop       : '4%',
-        marginRight     : '5%'
+    gradesPanelContainer : {
+        backgroundColor : 'white'
     },
-    shortDesc: {
-        paddingLeft     : '10%',
-        paddingBottom   : '5%'
+    iconContainer : {
+        marginTop       : pRatio*5,
+        marginRight     : pRatio*10,
+        backgroundColor : 'white',
     },
     contentView: {
         backgroundColor : 'white',
@@ -39,6 +36,15 @@ export const style = StyleSheet.create({
         paddingRight    : '5%',
         paddingBottom   : pRatio * 2,
     },
+    contentHeaderText: {
+        fontSize        : 14,
+        fontWeight      : 'bold'
+    },
+    shortDesc: {
+        paddingLeft     : '10%',
+        paddingBottom   : '5%'
+    },
+
     rowContent: {
         flexDirection   : 'row',
         justifyContent  : 'space-between'
@@ -50,10 +56,6 @@ export const style = StyleSheet.create({
     },
     leftContent: {
         width           : '70%'
-    },
-    contentHeaderText: {
-        fontSize        : 14,
-        fontWeight      : 'bold'
     },
     loadingView : {
         height          : (height / 100) * 8,

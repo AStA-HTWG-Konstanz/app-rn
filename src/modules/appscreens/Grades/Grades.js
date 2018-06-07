@@ -45,14 +45,12 @@ class Grades extends Component {
     }
 
     _renderSemester = (element) => {
-
         const currentSemester = this.props.grades.gradesReport[element.item];
         const grades = currentSemester.map((lecture) => {
             return this._renderLecture(lecture);
         });
         const panelHeader = ({isOpen}) => {
-            return (
-                <View style={style.headerView}>
+            let panelHeaderContent = [
                     <View style={style.gradesPanelHeader}>
                         <Text style={style.gradesPanelHeaderText}>
                             {element.item}
@@ -65,7 +63,18 @@ class Grades extends Component {
                             />
                         </View>
                     </View>
-                    <View style={style.lineStyle}/>
+            ];
+
+                if (element.index < Object.keys(this.props.grades.gradesReport).length-1) {
+                    panelHeaderContent.push(<View style = {style.lineStyle}/>);
+                } else {  // last element in list
+                    if (isOpen) {
+                        panelHeaderContent.push(<View style = {style.lineStyle}/>);
+                    }
+                }
+            return (
+                <View style={style.headerView}>
+                    {panelHeaderContent}
                 </View>
             );
         };
@@ -88,14 +97,18 @@ class Grades extends Component {
                     </View>
                 </View>
             </View>
-        )
+        );
 
-        const panelContent = (
+        const panelContent = [
             <View>
                 {contentHeader}
                 {grades}
             </View>
-        )
+        ];
+
+        if (element.index < Object.keys(this.props.grades.gradesReport).length-1) {
+            panelContent.push(<View style = {style.lineStyle}/>);
+        }
 
         const lectureContent = (
             <Panel expanded={false}
@@ -105,7 +118,7 @@ class Grades extends Component {
         )
 
         return (
-            <View style={style.page}>
+            <View style={style.gradesPanelContainer}>
                 <View style={{overflow: 'scroll'}}>
                     {lectureContent}
                 </View>
