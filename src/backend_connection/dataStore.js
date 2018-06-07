@@ -1,9 +1,10 @@
 import PouchDB from 'pouchdb-react-native';
 import I18n from 'react-native-i18n';
 import { NetInfo, Platform } from 'react-native';
+import randomToken from 'random-token';
 
 import { api, endpoint } from 'src/config/api';
-import { constants, newsCategoriesPreselection, widgetPreselection } from 'src/config/settings';
+import { constants, newsCategoriesPreselection, widgetPreselectionEmployee, widgetPreselectionStudent } from 'src/config/settings';
 
 const db = new PouchDB('campusDB');  // Create new if not already existing
 
@@ -24,30 +25,6 @@ export default class DataStore {
 
         /*** Create dummy data (will be deleted)***/
         storeLocally('number_news', 11);
-        storeLocally('grades', {
-            gradesReport: {
-                "Sommersemester 17": [
-                    {
-                        "lecture": "Datenbanken",
-                        "grade": "2,7",
-                        "ects": "8"
-                    },
-                    {
-                        "lecture": "SOTE1",
-                        "grade": "1,0",
-                        "ects": "6"
-                    }
-
-                ],
-                "Wintersemester 18/19": [
-                    {
-                        "lecture": "Rechnernetze und Kommunikationssysteme",
-                        "grade": "2,3",
-                        "ects": "5"
-                    }
-                ]
-            }
-        });
     }
 
     handleConnectionChange = (isConnected) => {
@@ -60,7 +37,7 @@ export default class DataStore {
      * @param username: Credentials
      * @param password: ""
      * @return Promise
-     * @resolve true if successful login
+     * @resolve {success: boolean, isStudent: boolean}
      */
     login(username, password, rememberMe) {
         const instance = this;
@@ -77,7 +54,11 @@ export default class DataStore {
 
         return new Promise( function(resolve) {
             if (Platform.OS === 'ios' && !instance.isConnected) {  // could also be undefined
-                resolve(true);  // display cached data within the app
+                getLocally('isStudent').then((isStudent) => {
+                    resolve({success: true, isStudent: isStudent});  // display cached data within the app
+                }).catch( () => {
+                    resolve({success: true, isStudent: true});
+                });
                 return;  // abort
             }
             fetch(api.authorize, {
@@ -90,47 +71,50 @@ export default class DataStore {
             })
                 .then((response) => {
                     if (response.status === 200) {
-                        const cookies = response.headers.map["set-cookie"];
-                        if (cookies) {
-                            const cookie_val = parseCookie(cookies[0]);
-
-                            // resolve promise after storing cookie is finished -> requests after successful login will use the cookie
-                            db.get('session-cookie')
-                                .then(function(doc) {
-                                    db.put({
-                                        _id : 'session-cookie',
-                                        _rev: doc._rev,
-                                        data: cookie_val
-                                    }).then(() => resolve(true));
-                                }).catch(function(err) {
-                                if (err.status === 404) {  // not found -> create new doc
-                                    db.put({
-                                        _id : 'session-cookie',
-                                        data: cookie_val
-                                    }).then(() => {
-                                        if(Platform.OS === 'android') {
-                                            setTimeout(()=>{resolve(true)}, 1500);
+                        response.json()
+                            .then((responseJson) => {
+                                const isStudent = responseJson['student'] === 'true';
+                                storeLocally('isStudent', isStudent);  // cache for next time
+                                const cookies = response.headers.map["set-cookie"];
+                                if (cookies) {
+                                    const cookie_val = parseCookie(cookies[0]);
+                                    // resolve promise after storing cookie is finished -> requests after successful login will use the cookie
+                                    db.get('session-cookie')
+                                        .then(function (doc) {
+                                            db.put({
+                                                _id: 'session-cookie',
+                                                _rev: doc._rev,
+                                                data: cookie_val
+                                            }).then(() => resolve({success: true, isStudent: isStudent}));
+                                        }).catch(function (err) {
+                                        if (err.status === 404) {  // not found -> create new doc
+                                            db.put({
+                                                _id: 'session-cookie',
+                                                data: cookie_val
+                                            }).then(() => {
+                                                resolve({success: true, isStudent: isStudent});
+                                            });
                                         } else {
-                                            resolve(true);
+                                            if (__DEV__) {
+                                                console.log(err);
+                                            }
                                         }
                                     });
                                 } else {
-                                    if (__DEV__) {
-                                        console.log(err);
-                                    }
+                                    resolve({success: true, isStudent: isStudent});  // active cookie already stored
                                 }
-                            });
-                        } else {
-                            resolve(true);  // active cookie already stored
-                        }
+                            })
+                            .catch((err) => {
+
+                            })
 
                     } else {
-                        resolve(false);
+                        resolve({success: false, isStudent: undefined});
                     }
                 })
                 .catch((error) => {
                     console.error(error);
-                    resolve(false);
+                    resolve({success: false, isStudent: undefined});
                 });
         });
     }
@@ -265,9 +249,63 @@ export default class DataStore {
 
     getGrades() {
         const instance = this;
+
         return new Promise(function (resolve) {
-            instance.fireRequest(resolve, restTypes.GET, api.grades, 'grades')
-        })
+            db.get('gradesToken')
+                .then((doc) => {
+                    instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', {token: doc.data});
+                })
+                .catch((err) => {
+                    if (err.status === 404) {  //no token existing
+                        // generate token + manual fetch request
+                        const token = randomToken(12);
+
+                        if (!instance.isConnected) {
+                            resolve(undefined);
+                            return;
+                        }
+                        storeLocally('gradesToken', token);
+
+                        db.get('session-cookie').then((cookie) => {
+                            /*if (cookie === '') {  // no cookie available
+                                resolve(undefined);
+                                removeDocument('gradesToken');  // try to register at the next app launch
+                            }
+                            */
+
+                            instance.getCredentials().then((credentials) => {
+                                const headers = Object.assign({}, genericHeader, {
+                                    'Set-Cookie': cookie.data.name + '=' + cookie.data.value
+                                });
+                                const body = Object.assign({'token': token}, credentials);
+                                const request = {
+                                    method  : 'POST',
+                                    headers : headers,
+                                    body    : JSON.stringify(body)
+                                };
+
+                                fetch(api.gradesCreate, request)
+                                    .then((response) => {
+                                        if (response.ok) {
+                                            instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                                        }
+                                    })
+                                    .catch((err) => {
+                                        if (__DEV__) {
+                                            console.log('Failed to create grades token', err);
+                                        }
+                                        removeDocument('gradesToken');  // try to register at the next app launch
+                                    });
+                            });
+                        }).catch((err) => {
+                            if (__DEV__) {
+                                console.log('No cookie available when creating grades token', err);
+                            }
+                            removeDocument('gradesToken');  // try to register at the next app launch
+                        });
+                    }
+            });
+        });
     }
 
     getLanguage() {
@@ -341,11 +379,21 @@ export default class DataStore {
                 })
                 .catch(function(err) {
                     if (err.status === 404) {  // not found -> initial app start after installation
-                        db.put({  // save preselection
-                            _id : 'widgetSelection',
-                            data: widgetPreselection
+                        getLocally('isStudent').then((isStudent) => {
+                            if (isStudent) {
+                                db.put({  // save preselection
+                                    _id : 'widgetSelection',
+                                    data: widgetPreselectionStudent
+                                });
+                                resolve(widgetPreselectionStudent);
+                            } else {
+                                db.put({  // save preselection
+                                    _id : 'widgetSelection',
+                                    data: widgetPreselectionEmployee
+                                });
+                                resolve(widgetPreselectionEmployee);
+                            }
                         });
-                        resolve(widgetPreselection);
                     } else {
                         if (__DEV__) {
                             console.log('getSelectedWidgets: ', err);
@@ -514,6 +562,16 @@ const removeDocument = function(id) {
     }).catch(function (err) {
         console.log(err);
     });
+};
+
+const getLocally = function (id) {
+    return new Promise(function(resolve, reject) {
+        db.get(id).then(function(doc) {
+            resolve(doc.data);
+        }).catch(function(err) {
+            reject(err);
+        });
+    })
 };
 
 /**

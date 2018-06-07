@@ -43,7 +43,8 @@
     "screenTitle"   : "Termine"
   },
   "grades"    : {
-    "title"         : "Noten"
+    "title"         : "Noten",
+    "noData"        : "Momentan keine Daten verfügbar"
   },
   "news"      : {
     "screenTitle"   : "News"

@@ -67,12 +67,15 @@ class LSF extends Component {
         };
 
         const panelContent = (
-            <FlatList
-                data={listLectures.item['lectures']}
-                renderItem={this._renderLectures}
-                listKey={'Lecture_' + listLectures.index}
-                keyExtractor={(item, index) => 'lecture_' + index}
-            />
+            <View>
+                <FlatList
+                    data={listLectures.item['lectures']}
+                    renderItem={this._renderLectures}
+                    listKey={'Lecture_' + listLectures.index}
+                    keyExtractor={(item, index) => 'lecture_' + index}
+                />
+                <View style={style.lineStyle}/>
+            </View>
         );
 
         return (

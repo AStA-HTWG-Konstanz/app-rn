@@ -16,15 +16,32 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Submit a new internal test to Apple Testflight"
-  lane :beta do
-    unlock_keychain
+
+  before_all do
+    ensure_git_status_clean
     increment_build_number
     commit_version_bump(
-      message: "Changed iOS build number"
+        message: "🤖 Changed build number for 🍎 [skip ci]"
     )
-    match(type: "appstore")
-    gym(scheme:"htwgCampus")
+    push_to_git_remote(
+        remote: "origin",
+        local_branch: "development",
+        remote_branch: "development",
+        tags: false
+    )
+  end
+
+  desc "Submit a new build to iTunes Connect"
+  lane :build do
+    gym(
+        project: "htwgCampus.xcodeproj",
+        export_options: {
+            method: "app-store",
+            provisioningProfiles: {
+              "org.htwg-konstanz.htwgCampus" => "match AppStore org.htwg-konstanz.htwgCampus"
+            }
+          }
+    )
     pilot
   end
 end
