@@ -97,7 +97,7 @@ def getPassword() {
     def stdout = new ByteArrayOutputStream()
     def stderr = new ByteArrayOutputStream()
     exec {
-        commandLine './Users/vagrant/export_password.sh'
+        commandLine 'bash', "/Users/vagrant/export_password.sh"
         standardOutput = stdout
         errorOutput = stderr
         ignoreExitValue true
