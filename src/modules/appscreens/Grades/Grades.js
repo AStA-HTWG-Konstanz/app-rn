@@ -19,16 +19,14 @@ class Grades extends Component {
     render() {
         let content;
         if (this.props.grades) {  // data already retrieved
-            console.log(this.props.grades);
             content = this._renderView();
         } else {  // loading in progress
-            content =   <View style={style.gradeFrame}>
-                <View style={style.loadingView}>
-                    <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
+            content =
+                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{fontSize: 24}}>{strings("grades.noData")}</Text>
                 </View>
-            </View>
         }
-        return getBackgroundView(content, 1);
+        return getBackgroundView(content, 3);
     }
 
     _renderView() {
@@ -121,7 +119,7 @@ class Grades extends Component {
                 <View style={style.rowContent}>
                     <View style={style.leftContent}>
                         <Text style={style.contentText}>
-                            {lecture.lecture.length > 24 ? lecture.lecture.substring(0, 24) + '...' : lecture.lecture}
+                            {lecture.name.length > 24 ? lecture.name.substring(0, 24) + '...' : lecture.name}
                         </Text>
                     </View>
                     <View style={style.rightContent}>

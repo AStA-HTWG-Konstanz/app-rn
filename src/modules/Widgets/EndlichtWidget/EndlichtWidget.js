@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Platform, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { style } from './styles';
 import { pRatio } from 'src/config/styles';
 import { strings } from 'src/i18n';
@@ -29,6 +30,11 @@ class EndlichtWidget extends Component {
                         <Text style={style.contentText}>
                             {open}
                         </Text>
+                        <MaterialIcon
+                            name='remove'
+                            color='white'
+                            size={Platform.OS === 'ios' ? pRatio * 10 : pRatio * 10}
+                        />
                         <Text style={style.contentText}>
                             {close}
                         </Text>
