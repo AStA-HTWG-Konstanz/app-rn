@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
         color               : 'grey'
     },
     panelContentContainer: {
-        marginBottom        : '2%',
+        marginBottom        : pRatio * 3,
         ...Platform.select({
             ios: {
                 maxWidth            : '82%',

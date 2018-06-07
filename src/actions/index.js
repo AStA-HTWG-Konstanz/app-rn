@@ -29,15 +29,20 @@ export const ActionCreators = Object.assign({},
 
 export function fetchInitialData() {
     return function (dispatch, getState) {
+        const state = getState();
+
         dispatch(newsActions.getAvailableNewsCategories());
         dispatch(newsActions.getAvailableNumberOfNews());
-        dispatch(balanceActions.getBalance());
-        dispatch(openingHoursActions.getBibOpeningHours());
+        //dispatch(openingHoursActions.getBibOpeningHours());
         dispatch(endlichtActions.getEndlichtData());
         dispatch(eventActions.getEvents());
-        dispatch(gradesActions.getGrades());
         dispatch(lectureActions.getLectures());
         dispatch(canteenActions.getMenu());
         dispatch(newsActions.getNews(0));  // 0 -> get first page of news
+
+        if (state.loginReducer.isStudent) {  // employees don't need the following information
+            dispatch(gradesActions.getGrades());
+            dispatch(balanceActions.getBalance());
+        }
     };
 }

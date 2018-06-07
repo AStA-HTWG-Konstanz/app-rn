@@ -81,7 +81,7 @@ class Settings extends Component {
         const widgetSelection = (
             <Panel
                 header={widgetHeader}
-                expanded={true}
+                expanded={false}
                 content={widgetContent}
             />
         );

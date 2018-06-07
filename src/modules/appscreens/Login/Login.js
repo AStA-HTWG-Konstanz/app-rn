@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Platform, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
+import {KeyboardAvoidingView, Platform, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CheckBox from 'react-native-checkbox';
@@ -29,47 +29,51 @@ class Login extends Component{
                     source={login_logo_white}
                 />
 
-                <TextInput
-                    style={styles.input}
-                       value={this.props.username ? this.props.username : ''}
-                       placeholder={strings('login.username')}
-                       underlineColorAndroid='transparent'
-                       placeholderTextColor='#999595'
-                       onChangeText={(text) => {this.props.actions.changeUsername(text)}}
-                />
-                <TextInput
-                    secureTextEntry={true}
-                       style={styles.input}
-                       value={this.props.password ? this.props.password : ''}
-                       placeholder={strings('login.password')}
-                       placeholderTextColor='#999595'
-                       onChangeText={(text) => {this.props.actions.changePassword(text)}}
-                />
-
-                <View style={styles.placeholderLogin}/>
-
-                <View style={styles.switcher}>
-                    <CheckBox
-                        onChange={(value) => this.props.actions.changeRememberMe(!value)}
-                        checked = { this.props.rememberMe }
-                        label={strings("login.remember")}
-                        labelStyle = { {
-                                color: 'white',
-                                fontSize: 18,
-                                fontFamily: 'Swiss721',
-                                fontWeight: '100'
-                            }
-                        }
+                <KeyboardAvoidingView
+                    behavior="padding"
+                >
+                    <TextInput
+                        style={styles.input}
+                           value={this.props.username ? this.props.username : ''}
+                           placeholder={strings('login.username')}
+                           underlineColorAndroid='transparent'
+                           placeholderTextColor='#999595'
+                           onChangeText={(text) => {this.props.actions.changeUsername(text)}}
                     />
-                </View>
+                    <TextInput
+                        secureTextEntry={true}
+                           style={styles.input}
+                           value={this.props.password ? this.props.password : ''}
+                           placeholder={strings('login.password')}
+                           placeholderTextColor='#999595'
+                           onChangeText={(text) => {this.props.actions.changePassword(text)}}
+                    />
 
-                <TouchableOpacity
-                    onPress={() => {
-                        this.props.actions.login();
-                    }}
-                    style={styles.submitBtn}>
-                   <Text style={styles.submitText}>{strings('login.signin')}</Text>
-                </TouchableOpacity>
+                    <View style={styles.placeholderLogin}/>
+
+                    <View style={styles.switcher}>
+                        <CheckBox
+                            onChange={(value) => this.props.actions.changeRememberMe(!value)}
+                            checked = { this.props.rememberMe }
+                            label={strings("login.remember")}
+                            labelStyle = { {
+                                    color: 'white',
+                                    fontSize: 18,
+                                    fontFamily: 'Swiss721',
+                                    fontWeight: '100'
+                                }
+                            }
+                        />
+                    </View>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.props.actions.login();
+                        }}
+                        style={styles.submitBtn}>
+                       <Text style={styles.submitText}>{strings('login.signin')}</Text>
+                    </TouchableOpacity>
+                </KeyboardAvoidingView>
 
             </View>
         )

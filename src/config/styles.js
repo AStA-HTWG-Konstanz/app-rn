@@ -28,8 +28,8 @@ export const panelIcon = {
 };
 
 export const navBarButton = {
-    width: 40,
-    height: 40
+    width: 37,
+    height: 37
 };
 
 // Supposed to be invoked by the entry point to the app -> App.js
