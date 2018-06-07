@@ -27,7 +27,7 @@ platform :android do
     )
     supply(
         track: "internal",
-        apk: "./app/build/outputs/apk/app-release.apk"
+        apk: "/Users/vagrant/git/android/app/build/outputs/apk/release/app-release.apk"
     )
     end
     desc "Deploy a new beta test version to the Google Play Store"
@@ -41,7 +41,7 @@ platform :android do
         )
         supply(
             track: "alpha",
-            apk: "./app/build/outputs/apk/app-release.apk"
+            apk: "/Users/vagrant/git/android/app/build/outputs/apk/release/app-release.apk"
         )
     end
 end
