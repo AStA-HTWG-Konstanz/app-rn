@@ -37,7 +37,7 @@ export const navBarButton = {
 export const basicStyleSetup = function() {
     // Text
     Text.defaultProps.style = {
-        color       : 'black',  // colorScheme.botticelli
+        color       : 'black',
         fontFamily  : 'Swiss721'
     };
 
