@@ -97,7 +97,7 @@ def getPassword() {
     def stdout = new ByteArrayOutputStream()
     def stderr = new ByteArrayOutputStream()
     exec {
-        commandLine 'echo $ANDROID_PW'
+        commandLine "echo", "$ANDROID_PW"
         standardOutput = stdout
         errorOutput = stderr
         ignoreExitValue true
