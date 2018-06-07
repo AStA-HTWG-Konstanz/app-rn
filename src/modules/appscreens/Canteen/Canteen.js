@@ -54,21 +54,31 @@ class Canteen extends Component{
             return <View/>
         }
         const header = ({isOpen}) => {
+            let headerContent = [
+                <View style={style.menuPanelHeader}>
+                    <Text style={style.menuPanelHeaderText}>
+                        {day.format('dddd, DD.MM')}
+                    </Text>
+                    <View style={style.iconContainer}>
+                        <Icon
+                            name={isOpen ? 'remove' : 'add'}
+                            size={panelIcon.size}
+                            color={panelIcon.color}
+                        />
+                    </View>
+                </View>
+            ];
+
+            if ( dailyMenu.index < this.props.menu.menu.length-1 ) {
+                headerContent.push(<View style = {style.lineStyle}/>);
+            } else {  // last element in list
+                if (isOpen) {
+                    headerContent.push(<View style = {style.lineStyle}/>);
+                }
+            }
             return (
                 <View style={style.headerView}>
-                    <View style={style.menuPanelHeader}>
-                        <Text style={style.menuPanelHeaderText}>
-                            {day.format('dddd, DD.MM')}
-                         </Text>
-                        <View style={style.iconContainer}>
-                            <Icon
-                                name={isOpen ? 'remove' : 'add'}
-                                size={panelIcon.size}
-                                color={panelIcon.color}
-                            />
-                        </View>
-                    </View>
-                    <View style={style.lineStyle}/>
+                    {headerContent}
                 </View>
             );
         };

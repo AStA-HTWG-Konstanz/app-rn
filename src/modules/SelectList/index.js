@@ -141,11 +141,10 @@ export default class SelectList extends Component {
     _onChangeMode(index, currentMode) {
         if (currentMode === listMode.ADD) {
             this.selectedKeys.push(this.available[index]);
-            this.props.onChangeOrder(this.selectedKeys);
         } else {
             this.selectedKeys.splice(index, 1);  // 1 -> remove one element
-            this.props.onChangeOrder(this.selectedKeys);
         }
+        this.props.onChangeOrder(this.selectedKeys);
     }
 
     _getArrowIcon(name, index, movementDirection) {
