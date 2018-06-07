@@ -46,7 +46,8 @@
     "screenTitle"   : "News"
   },
   "grades"    : {
-    "title": "Grades"
+    "title": "Grades",
+    "noData"        : "No Data yet"
   },
   "LSF"       : {
     "screenTitle"   : "Timetable",

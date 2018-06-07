@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Platform, Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { pRatio } from 'src/config/styles';
 import { style } from './styles';
 import { strings } from 'src/i18n';
 import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
@@ -27,15 +29,12 @@ class GradesWidget extends Component {
                             {strings('grades.title')}
                         </Text>
                     </View>
-                    <View style={style.contentView}>
-                        <Text style={style.contentText}>
-                            2,3
-                        </Text>
-                    </View>
-                    <View style={style.contentView}>
-                        <Text style={style.titleText}>
-                            SoSe 18
-                        </Text>
+                    <View style={style.graduationIcon}>
+                        <Icon
+                            name='graduation-cap'
+                            color='white'
+                            size={Platform.OS === 'ios' ? pRatio * 30 : pRatio * 25}
+                        />
                     </View>
                 </TouchableOpacity>
             </View>

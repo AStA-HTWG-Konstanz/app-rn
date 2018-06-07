@@ -98,7 +98,6 @@ export default class App extends Component {
             default:
                 console.log('Unknown app root');
                 break;
-
         }
 
     }
