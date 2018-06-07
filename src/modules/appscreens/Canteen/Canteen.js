@@ -30,7 +30,7 @@ class Canteen extends Component{
                         </View>
                     </View>
         }
-        return content;
+        return getBackgroundView(content, 5);
     }
 
     _renderView() {

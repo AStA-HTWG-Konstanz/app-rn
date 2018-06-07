@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import * as types from 'src/actions/actionTypes';
 import connector from 'src/backend_connection/';
@@ -48,6 +49,13 @@ export function changeRememberMe (value) {
     }
 }
 
+export function setIsStudent(isStudent) {
+    return {
+        type: types.SET_IS_STUDENT,
+        isStudent: isStudent
+    }
+}
+
 // first try -> after initializing the app, we try to login with stored credentials
 export function login(firstTry) {
       return function(dispatch, getState) {
@@ -55,14 +63,17 @@ export function login(firstTry) {
             if (!currentState.username || currentState.username === '') {  // no credentials stored or entered
                 dispatch(changeAppRoot('login'));
 
-                setTimeout(() => {  // first app start, hold splashscreen a little bit longer
-                    SplashScreen.hide();
-                }, 1500);
+                if (Platform.OS === 'ios') {
+                    setTimeout(() => {  // first app start, hold splashscreen a little bit longer
+                        SplashScreen.hide();
+                    }, 1500);
+                }
                 return;
             }
             connector.login(currentState.username, currentState.password, currentState.rememberMe)
-                .then((success) => {
-                    if(success){
+                .then((result) => {
+                    if(result.success){
+                        dispatch(setIsStudent(result.isStudent));
                         dispatch(changeAppRoot('after-login'));
 
                         // Start fetching data
@@ -70,7 +81,9 @@ export function login(firstTry) {
                         dispatch(getSelectedWidgets());  // get widget selection from local storage
                     }
                     else{
-                        SplashScreen.hide();  // show login screen
+                        if (Platform.OS === 'ios') {
+                            SplashScreen.hide();  // show login screen
+                        }
                         if (firstTry) {
                             dispatch(changeAppRoot('login'));
                         } else {

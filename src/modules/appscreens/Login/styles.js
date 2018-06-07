@@ -1,5 +1,5 @@
 import { Dimensions, Platform, StyleSheet } from 'react-native';
-import { colorScheme } from 'src/config/styles';
+import { colorScheme, pRatio } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
 
@@ -57,14 +57,10 @@ export const styles = StyleSheet.create({
     submitBtn: {
         backgroundColor     : colorScheme.persian_green,
         borderRadius        : 10,
-        height              : '11%',
-        marginLeft          : '20%',
-        marginRight         : '20%',
+        height              : pRatio * 20,
+        marginHorizontal    : '23%',
         marginTop           : 30,
         justifyContent      : 'center'
-
-
-
     },
 
     submitText: {

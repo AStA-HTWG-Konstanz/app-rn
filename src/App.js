@@ -2,11 +2,12 @@ import React, {Component} from 'react'; // eslint-disable-line
 import { Provider } from 'react-redux';
 import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import SplashScreen from 'react-native-splash-screen';
+
 import { registerComponents } from 'src/NavigationRegistry';
 import configureStore from 'src/store/configureStore';
 import { basicStyleSetup } from 'src/config/styles';
 import { genericNavBarStyle } from 'src/config/navigation';
-
 import * as canteenActions from 'src/actions/canteenActions';
 import * as loginActions from 'src/actions/loginActions';
 import * as languageActions from 'src/actions/languageActions';
@@ -30,6 +31,10 @@ export default class App extends Component {
         // Ready to rumble
         store.subscribe(this.onStoreUpdate.bind(this));
         store.dispatch(loginActions.appInitialized());
+
+        if (Platform.OS === 'android') {
+            SplashScreen.hide();
+        }
     }
 
     onStoreUpdate() {
