@@ -93,12 +93,8 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-def getPassword() {
-    System.getenv('ANDROID_PW')
-}
-
-def releasekeypass = getPassword()
-def releasekeyalias = getPassword()
+def releasekeypass = "$System.env.ANDROID_PW"
+def releasekeyalias = "$System.env.ANDROID_PW"
 
 android {
     compileSdkVersion 27
