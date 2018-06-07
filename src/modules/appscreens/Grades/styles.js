@@ -34,9 +34,10 @@ export const style = StyleSheet.create({
     },
     contentView: {
         backgroundColor : 'white',
+        height          : pRatio * 15,
         paddingLeft     : '5%',
         paddingRight    : '5%',
-        paddingBottom   : '2%',
+        paddingBottom   : pRatio * 2,
     },
     rowContent: {
         flexDirection   : 'row',

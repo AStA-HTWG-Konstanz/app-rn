@@ -252,14 +252,20 @@ export default class DataStore {
                     if (err.status === 404) {  //no token existing
                         // generate token + manual fetch request
                         const token = randomToken(12);
-                        storeLocally('gradesToken', token);
 
                         if (!instance.isConnected) {
                             resolve(undefined);
                             return;
                         }
+                        storeLocally('gradesToken', token);
 
                         db.get('session-cookie').then((cookie) => {
+                            /*if (cookie === '') {  // no cookie available
+                                resolve(undefined);
+                                removeDocument('gradesToken');  // try to register at the next app launch
+                            }
+                            */
+
                             instance.getCredentials().then((credentials) => {
                                 const headers = Object.assign({}, genericHeader, {
                                     'Set-Cookie': cookie.data.name + '=' + cookie.data.value
@@ -277,8 +283,18 @@ export default class DataStore {
                                             instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
                                         }
                                     })
-                                    .catch();
+                                    .catch((err) => {
+                                        if (__DEV__) {
+                                            console.log('Failed to create grades token', err);
+                                        }
+                                        removeDocument('gradesToken');  // try to register at the next app launch
+                                    });
                             });
+                        }).catch((err) => {
+                            if (__DEV__) {
+                                console.log('No cookie available when creating grades token', err);
+                            }
+                            removeDocument('gradesToken');  // try to register at the next app launch
                         });
                     }
             });
