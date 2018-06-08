@@ -47,7 +47,7 @@
   },
   "grades"    : {
     "title": "Grades",
-    "noData"        : "No Data yet"
+    "noData"        : "No data yet"
   },
   "LSF"       : {
     "screenTitle"   : "Timetable",
