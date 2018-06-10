@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { style } from './styles';
 import { strings } from 'src/i18n';
-import { colorScheme } from 'src/config/styles';
+import { colorScheme, pRatio, widgetContentIcon } from 'src/config/styles';
 import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
+import { calendar } from 'src/images';
 
 class EventWidget extends Component {
     constructor(props) {
@@ -29,18 +30,17 @@ class EventWidget extends Component {
                 }}>
                 <View style={style.titleView}>
                     <Text style={style.titleText}>
-                        HTWG
+                        {strings('events.screenTitle')}
                     </Text>
                 </View>
-                <View style={style.contentView}>
-                    <Text style={style.contentText}>
-                        {strings('dashboard.contentEvent')}
-                    </Text>
-                </View>
-                <View style={style.contentView}>
-                    <Text style={style.titleText}>
-                        SoSe18
-                    </Text>
+                <View style={widgetContentIcon}>
+                    <Image
+                        source={calendar}
+                        style={{
+                            width: pRatio*40,
+                            height: pRatio*30
+                        }}
+                    />
                 </View>
                 </TouchableOpacity>
             </View>

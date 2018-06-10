@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Platform, Text, View, TouchableOpacity } from 'react-native';
+import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { colorScheme, pRatio } from 'src/config/styles';
+import { colorScheme, pRatio, widgetContentIcon } from 'src/config/styles';
 import { style } from './styles';
 import { strings } from 'src/i18n';
 import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
+import { student_hat } from 'src/images';
 
 class GradesWidget extends Component {
     constructor(props) {
@@ -33,11 +33,13 @@ class GradesWidget extends Component {
                             {strings('grades.title')}
                         </Text>
                     </View>
-                    <View style={style.graduationIcon}>
-                        <Icon
-                            name='graduation-cap'
-                            color='white'
-                            size={Platform.OS === 'ios' ? pRatio * 30 : pRatio * 25}
+                    <View style={widgetContentIcon}>
+                        <Image
+                            source={student_hat}
+                            style={{
+                                width: pRatio*50,
+                                height: pRatio*30
+                            }}
                         />
                     </View>
                 </TouchableOpacity>

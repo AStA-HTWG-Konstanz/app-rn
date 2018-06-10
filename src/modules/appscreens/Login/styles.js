@@ -13,9 +13,10 @@ export const styles = StyleSheet.create({
     },
 
     image: {
-        width               : (width/100) * 50,
-        height              : (height/100) * 30,
-        marginLeft          : (width/100) * 20,
+        width               : (width/100) * 60,
+        height              : pRatio > 2 && Platform.OS === 'ios' ? (height/100)*30 : (height/100) * 35,  // iPhone X
+        marginTop           : pRatio * 20,
+        marginLeft          : (width/100) * 10,
         marginBottom        : (height/100) *5
     },
 
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
     },
 
     placeholderLogin: {
-        height              : '5%'
+        height              : pRatio * 2
     },
 
     switcher: {

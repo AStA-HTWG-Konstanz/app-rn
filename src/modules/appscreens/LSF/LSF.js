@@ -65,7 +65,7 @@ class LSF extends Component {
                 </View>
             ];
 
-            if ( listLectures.item < this.props.lectures.length ) {
+            if ( listLectures.index < this.props.lectures.length-1 ) {
                 headerContent.push(<View style = {style.lineStyle}/>);
             } else {  // last element in list
                 if (isOpen) {
@@ -89,7 +89,7 @@ class LSF extends Component {
             />
         ];
 
-        if (listLectures.item < this.props.lectures.length-1) {  // only if not last element
+        if (listLectures.index < this.props.lectures.length-1) {  // only if not last element
             panelContent.push(<View style = {style.lineStyle}/>);
         }
 

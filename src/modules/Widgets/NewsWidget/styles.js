@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { colorScheme, wideRectangleWidget, widgetShadow } from 'src/config/styles';
+import { colorScheme, wideRectangleWidget, widgetShadow, widgetTitleText } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
 
@@ -14,11 +14,7 @@ export const style = StyleSheet.create({
         justifyContent  : 'center',
         backgroundColor : 'transparent',
     },
-    titleText       : {
-        color           : 'white',
-        fontSize        : (width/100) * 6,
-        fontWeight      : 'normal'
-    },
+    titleText       : widgetTitleText,
     contentView     : {
         height          : (width/100) * 15,
         alignItems      : 'center',

@@ -30,7 +30,7 @@ class BalanceWidget extends Component {
                 </View>
                 <View style={style.contentView}>
                     <Text style={style.contentText}>
-                        {printValue}
+                        {printValue}€
                     </Text>
                 </View>
                 <View style={style.titleView}>

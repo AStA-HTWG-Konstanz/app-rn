@@ -1,7 +1,8 @@
 // Basic style definitions that are used by multiple components/containers
 import React from 'react';
-import { Dimensions, Image, Platform, PixelRatio, Text, TextInput, View } from 'react-native';
+import { Dimensions, Image, Platform, PixelRatio, View } from 'react-native';
 import CheckBox from 'react-native-checkbox';
+import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 import {checkbox_checked, checkbox_unchecked} from 'src/images';
 import { option1, option2, option3, option4, option5, option6 } from 'src/images';
 
@@ -36,20 +37,30 @@ export const navBarButton = {
 // Swiss721 or Blogger Sans are available fonts from our corporate design
 export const basicStyleSetup = function() {
     // Text
-    Text.defaultProps.style = {
-        color       : 'black',
-        fontFamily  : 'Swiss721'
-    };
+    setCustomText({
+        style: {
+            color       : 'black',
+            fontFamily  : 'Swiss721',
+        }
+    });
 
     // TextInput
-    TextInput.defaultProps.style = {
-        fontFamily  : 'Swiss721'
-    };
+    setCustomTextInput({
+        style: {
+            fontFamily  : 'Swiss721',
+        }
+    });
 
     // Checkbox
     CheckBox.defaultProps.checkedImage = checkbox_checked;
     CheckBox.defaultProps.uncheckedImage = checkbox_unchecked;
     CheckBox.defaultProps.label = '';
+};
+
+export const widgetContentIcon = {
+    alignItems      : 'center',
+    justifyContent  : 'center',
+    marginTop       : pRatio*5
 };
 
 export const widgetShadow = {
@@ -77,6 +88,13 @@ export const wideRectangleWidget = {
     width           : (width/100) * 90,
     marginTop       : (width/100) * 5,
 };
+
+export const widgetTitleText = {
+    color           : 'white',
+    fontSize        : (width/100) * 5,
+    fontWeight      : 'normal'
+};
+
 export const highRectangleWidget = {
     height          : (width/100) * 90,
     width           : (width/100) * 42.5,

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { style } from './styles';
-import { colorScheme, pRatio } from 'src/config/styles';
+import { colorScheme, pRatio, widgetContentIcon } from 'src/config/styles';
 import { strings } from 'src/i18n';
 import { genericNavBarStyle, getBackButton }  from 'src/config/navigation';
+import { coffee } from 'src/images';
 import moment from 'moment';
 
 class EndlichtWidget extends Component {
@@ -15,7 +15,7 @@ class EndlichtWidget extends Component {
     }
 
     render() {
-
+        /*
         let open, close;
         let content;
         if (this.props.endlichtData) {
@@ -69,7 +69,7 @@ class EndlichtWidget extends Component {
                 </View>
             )
         }
-
+        */
         const {navigator} = this.props;
         return  (
             <View style={style.widgetContainer}>
@@ -90,7 +90,16 @@ class EndlichtWidget extends Component {
                             Endlicht
                         </Text>
                     </View>
-                    {content}
+                    <View style={widgetContentIcon}>
+                        <Image
+                            source={coffee}
+                            style={{
+                                marginTop: -pRatio*3,
+                                width: pRatio*32,
+                                height: pRatio*32
+                            }}
+                        />
+                    </View>
                 </TouchableOpacity>
             </View>
         )

@@ -18,7 +18,7 @@ export const style = StyleSheet.create({
     },
     titleText       : {
         color           : 'black',
-        fontSize        : (width/100) * 6,
+        fontSize        : (width/100) * 5,
     },
     contentView     : {
         height          : (width/100) * 15,
