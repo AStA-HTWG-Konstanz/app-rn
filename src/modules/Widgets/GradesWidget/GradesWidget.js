@@ -15,35 +15,35 @@ class GradesWidget extends Component {
     render() {
         const {navigator} = this.props;
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity onPress={() => {
-                    navigator.push({
-                        screen: 'app.Grades',
-                        title: strings('grades.title'),
-                        backButtonTitle: '',
-                        navigatorButtons: getBackButton(navigator),
-                        navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                            navBarBackgroundColor: colorScheme.botticelli,
-                            navBarTextColor: 'black'
-                        })
+            <TouchableOpacity onPress={() => {
+                navigator.push({
+                    screen: 'app.Grades',
+                    title: strings('grades.title'),
+                    backButtonTitle: '',
+                    navigatorButtons: getBackButton(navigator),
+                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
+                        navBarBackgroundColor: colorScheme.botticelli,
+                        navBarTextColor: 'black'
                     })
-                }}>
-                    <View style={style.titleView}>
-                        <Text style={style.titleText}>
-                            {strings('grades.title')}
-                        </Text>
-                    </View>
-                    <View style={widgetContentIcon}>
-                        <Image
-                            source={student_hat}
-                            style={{
-                                width: pRatio*50,
-                                height: pRatio*30
-                            }}
-                        />
-                    </View>
-                </TouchableOpacity>
-            </View>
+                })
+            }}>
+                <View style={style.widgetContainer}>
+                        <View style={style.titleView}>
+                            <Text style={style.titleText}>
+                                {strings('grades.title')}
+                            </Text>
+                        </View>
+                        <View style={widgetContentIcon}>
+                            <Image
+                                source={student_hat}
+                                style={{
+                                    width: pRatio*50,
+                                    height: pRatio*30
+                                }}
+                            />
+                        </View>
+                </View>
+            </TouchableOpacity>
         )
     }
 }

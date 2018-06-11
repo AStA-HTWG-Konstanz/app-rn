@@ -56,36 +56,36 @@ class LectureWidget extends Component {
 
         const {navigator} = this.props;
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity onPress={() => {
-                    navigator.push({
-                        screen: 'app.LSF',
-                        title: strings('LSF.screenTitle'),
-                        backButtonTitle: '',
-                        navigatorButtons: getBackButton(navigator),
-                        navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                            navBarBackgroundColor: colorScheme.botticelli,
-                            navBarTextColor: 'black'
-                        })
+            <TouchableOpacity onPress={() => {
+                navigator.push({
+                    screen: 'app.LSF',
+                    title: strings('LSF.screenTitle'),
+                    backButtonTitle: '',
+                    navigatorButtons: getBackButton(navigator),
+                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
+                        navBarBackgroundColor: colorScheme.botticelli,
+                        navBarTextColor: 'black'
                     })
-                }}>
-                    <View style={style.titleView}>
-                        <Text style={style.titleText}>
-                            {title}
-                        </Text>
-                    </View>
-                    <View style={style.contentView}>
-                        <Text style={style.contentText}>
-                            {time}
-                        </Text>
-                    </View>
-                    <View style={style.contentView}>
-                        <Text style={style.titleText}>
-                            {room}
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                })
+            }}>
+                <View style={style.widgetContainer}>
+                        <View style={style.titleView}>
+                            <Text style={style.titleText}>
+                                {title}
+                            </Text>
+                        </View>
+                        <View style={style.contentView}>
+                            <Text style={style.contentText}>
+                                {time}
+                            </Text>
+                        </View>
+                        <View style={style.contentView}>
+                            <Text style={style.titleText}>
+                                {room}
+                            </Text>
+                        </View>
+                </View>
+            </TouchableOpacity>
         )
     }
 }

@@ -72,36 +72,36 @@ class EndlichtWidget extends Component {
         */
         const {navigator} = this.props;
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity onPress={() => {
-                    navigator.push({
-                        screen: 'app.Endlicht',
-                        title: 'Endlicht',
-                        backButtonTitle: '',
-                        navigatorButtons: getBackButton(navigator),
-                        navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                            navBarBackgroundColor: colorScheme.botticelli,
-                            navBarTextColor: 'black'
-                        })
+            <TouchableOpacity onPress={() => {
+                navigator.push({
+                    screen: 'app.Endlicht',
+                    title: 'Endlicht',
+                    backButtonTitle: '',
+                    navigatorButtons: getBackButton(navigator),
+                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
+                        navBarBackgroundColor: colorScheme.botticelli,
+                        navBarTextColor: 'black'
                     })
-                }}>
-                    <View style={style.titleView}>
-                        <Text style={style.titleText}>
-                            Endlicht
-                        </Text>
-                    </View>
-                    <View style={widgetContentIcon}>
-                        <Image
-                            source={coffee}
-                            style={{
-                                marginTop: -pRatio*3,
-                                width: pRatio*32,
-                                height: pRatio*32
-                            }}
-                        />
-                    </View>
-                </TouchableOpacity>
-            </View>
+                })
+            }}>
+                <View style={style.widgetContainer}>
+                        <View style={style.titleView}>
+                            <Text style={style.titleText}>
+                                Endlicht
+                            </Text>
+                        </View>
+                        <View style={widgetContentIcon}>
+                            <Image
+                                source={coffee}
+                                style={{
+                                    marginTop: -pRatio*3,
+                                    width: pRatio*32,
+                                    height: pRatio*32
+                                }}
+                            />
+                        </View>
+                </View>
+            </TouchableOpacity>
         )
     }
 }

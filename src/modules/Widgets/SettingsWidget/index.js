@@ -12,23 +12,23 @@ export class SettingsWidget extends Component {
     render() {
         const {navigator} = this.props;
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity
-                    onPress={() => {
-                        navigator.toggleDrawer({
-                            side: 'left',
-                            animated: true,
-                            to: 'open'
-                        })
-                    }}
-                >
-                    <Icon
-                        name={'add'}
-                        color={'white'}
-                        size={pRatio * 60}
-                    />
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+                onPress={() => {
+                    navigator.toggleDrawer({
+                        side: 'left',
+                        animated: true,
+                        to: 'open'
+                    })
+                }}
+            >
+                <View style={style.widgetContainer}>
+                        <Icon
+                            name={'add'}
+                            color={'white'}
+                            size={pRatio * 60}
+                        />
+                </View>
+            </TouchableOpacity>
         )
     }
 }

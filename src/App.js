@@ -90,13 +90,13 @@ export default class App extends Component {
                     screen: dashboardScreen,
                     drawer: {
                         left: {
-                            screen: 'app.Settings',
-                            disableOpenGesture: true
+                            screen: 'app.Settings'
                         },
                         style: {
                             leftDrawerWidth: 100,  // % of the screen width
                             contentOverlayColor: 'rgba(0,0,0,0.35)'
-                        }
+                        },
+                        disableOpenGesture: true
                     }
                 });
                 break;

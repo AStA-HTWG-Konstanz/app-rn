@@ -70,27 +70,27 @@ class CanteenWidget extends Component {
         }
 
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity onPress={() => {
-                    navigator.push({
-                        screen: 'app.Canteen',
-                        title: strings('canteen.screenTitle'),
-                        backButtonTitle: '',
-                        navigatorButtons: getBackButton(navigator),
-                        navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                            navBarBackgroundColor: colorScheme.botticelli,
-                            navBarTextColor: 'black'
-                        })
-                    });
-                }}>
-                    <View style={style.titleView}>
-                        <Text style={style.titleText}>
-                            {strings('dashboard.titleCanteen')} {'|'} {strings('dashboard.menu')}
-                        </Text>
-                    </View>
-                    {widgetContent}
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={() => {
+                navigator.push({
+                    screen: 'app.Canteen',
+                    title: strings('canteen.screenTitle'),
+                    backButtonTitle: '',
+                    navigatorButtons: getBackButton(navigator),
+                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
+                        navBarBackgroundColor: colorScheme.botticelli,
+                        navBarTextColor: 'black'
+                    })
+                });
+            }}>
+                <View style={style.widgetContainer}>
+                        <View style={style.titleView}>
+                            <Text style={style.titleText}>
+                                {strings('dashboard.titleCanteen')} {'|'} {strings('dashboard.menu')}
+                            </Text>
+                        </View>
+                        {widgetContent}
+                </View>
+            </TouchableOpacity>
         )
     }
 }
