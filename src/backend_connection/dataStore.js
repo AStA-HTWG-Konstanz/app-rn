@@ -253,56 +253,11 @@ export default class DataStore {
         return new Promise(function (resolve) {
             db.get('gradesToken')
                 .then((doc) => {
-                    instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', {token: doc.data});
+                    instance.refreshGrades(resolve, doc.data);
                 })
                 .catch((err) => {
                     if (err.status === 404) {  //no token existing
-                        // generate token + manual fetch request
-                        const token = randomToken(12);
-
-                        if (!instance.isConnected) {
-                            resolve(undefined);
-                            return;
-                        }
-                        storeLocally('gradesToken', token);
-
-                        db.get('session-cookie').then((cookie) => {
-                            /*if (cookie === '') {  // no cookie available
-                                resolve(undefined);
-                                removeDocument('gradesToken');  // try to register at the next app launch
-                            }
-                            */
-
-                            instance.getCredentials().then((credentials) => {
-                                const headers = Object.assign({}, genericHeader, {
-                                    'Set-Cookie': cookie.data.name + '=' + cookie.data.value
-                                });
-                                const body = Object.assign({'token': token}, credentials);
-                                const request = {
-                                    method  : 'POST',
-                                    headers : headers,
-                                    body    : JSON.stringify(body)
-                                };
-
-                                fetch(api.gradesCreate, request)
-                                    .then((response) => {
-                                        if (response.ok) {
-                                            instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
-                                        }
-                                    })
-                                    .catch((err) => {
-                                        if (__DEV__) {
-                                            console.log('Failed to create grades token', err);
-                                        }
-                                        removeDocument('gradesToken');  // try to register at the next app launch
-                                    });
-                            });
-                        }).catch((err) => {
-                            if (__DEV__) {
-                                console.log('No cookie available when creating grades token', err);
-                            }
-                            removeDocument('gradesToken');  // try to register at the next app launch
-                        });
+                        instance.refreshGrades(resolve);  // invoke without token to generate a new one
                     }
             });
         });
@@ -404,6 +359,70 @@ export default class DataStore {
         });
     }
 
+    refreshGrades = (resolve, token) => {
+        const tokenPassed = token === undefined;
+        if (!this.isConnected) {
+            resolve(undefined);
+            return;
+        }
+
+        if (!tokenPassed) {  // initial app start; no token stored
+            // generate token + manual fetch request
+            token = randomToken(12);
+            storeLocally('gradesToken', token);
+        }
+
+        db.get('session-cookie').then((cookie) => {
+            /*  Uncomment when backend fixed the issue with undefined=undefined as a valid cookie
+            if (cookie === '') {  // no cookie available
+                resolve(undefined);
+                removeDocument('gradesToken');  // try to register at the next app launch
+            }
+            */
+
+            this.getCredentials().then((credentials) => {
+                const headers = Object.assign({}, genericHeader, {
+                    'Set-Cookie': cookie.data.name + '=' + cookie.data.value
+                });
+                const body = Object.assign({'token': token}, credentials);
+                const request = {
+                    method  : 'POST',
+                    headers : headers,
+                    body    : JSON.stringify(body)
+                };
+
+                fetch(api.gradesRefresh, request)
+                    .then((response) => {
+                        if (response.ok) {
+                            this.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                        } else {
+                            if (tokenPassed) {  // could  also be that qisserver is down -> don't refresh but get cached data from backend
+                                this.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                            } else {
+                                resolve(undefined);
+                            }
+                        }
+                    }, () => {  // promise rejected -> request timeout
+                        if (__DEV__) {
+                            console.log('Promise of grades token request rejected');
+                        }
+                        resolve(undefined);
+                    })
+                    .catch((err) => {
+                        if (__DEV__) {
+                            console.log('Failed to create grades token', err);
+                        }
+                        resolve(undefined);
+                    });
+            });
+        }).catch((err) => {
+            if (__DEV__) {
+                console.log('No cookie available when creating grades token', err);
+                resolve(undefined);
+            }
+        });
+    };
+
     setLanguage(language) {
         storeLocally('language', language);
     }
@@ -479,7 +498,7 @@ export default class DataStore {
         let headers;
 
         // Prepare headers
-        db.get('session-cookie').then((cookie) => {
+        db.get('sessionprom-cookie').then((cookie) => {
             headers = Object.assign({}, genericHeader, {
                 'Set-Cookie'    : cookie.data.name + '=' + cookie.data.value
             });
@@ -514,6 +533,8 @@ export default class DataStore {
                         console.log(url, response.status);
                         getLocal();
                     }
+                }, () => {  // promise rejected -> request timeout
+                    getLocal();
                 })
                 .catch((error) => {
                     // Fetching didn't work. Getting local data

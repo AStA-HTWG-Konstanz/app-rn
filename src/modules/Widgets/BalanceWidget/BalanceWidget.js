@@ -18,7 +18,7 @@ class BalanceWidget extends Component {
             printValue = this.props.balance["print"];
             zackValue = this.props.balance["zack"] ? this.props.balance["zack"] : 'n/a';
         } else {  // fetching in progress
-            printValue = 'Loading'
+            printValue = 'n/a'
         }
 
         return  (
