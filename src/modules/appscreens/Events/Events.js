@@ -1,15 +1,15 @@
-
 import React, { Component } from 'react';
 import {Image, FlatList, ScrollView, Text, View} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import moment from 'moment';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as eventActions from 'src/actions/eventActions';
 import { strings } from 'src/i18n';
 import { ic_add, ic_remove } from 'src/images';
 import Panel from 'src/modules/Panel';
 import { style } from './styles';
+import { getBackgroundView } from 'src/config/styles';
 
 class Events extends Component{
     constructor(props) {
@@ -24,79 +24,45 @@ class Events extends Component{
             console.log(this.props.events);
             content = this._renderView();
         } else {  // loading in progress
-            // TODO: Busy indicator or just a prettier screen that says no data yet?
-            content = <View/>
+            content =   <View style={style.eventFrame}>
+                            <View style={style.loadingView}>
+                                <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
+                            </View>
+                        </View>
         }
-
-        return content;
-
+        return getBackgroundView(content, 4);
     }
 
     _renderView() {
-        return (
-            <View style={style.contentContainer}>
-                <ScrollView>
-                    <View style={style.EventFrame}>
-                        <FlatList
-                            data={this.props.events.events}
-                            renderItem={this._renderItem}
-                            keyExtractor={(item, index) => 'event' + index}
-                        />
-                    </View>
-                </ScrollView>
-            </View>
-        );
-    }
-
-    _renderItem = (event) => {
-        const header = ({isOpen}) => {
-            return (
-                <View>
-                    <View style={style.eventPanelHeader}>
-                        <Text style={style.eventPanelHeaderText}>{event.item['header']}</Text>
-                        <View style={style.iconContainer}>
-                            <Image style={style.accordionIcon} source={isOpen ? ic_remove : ic_add}/>
+        const content = (
+            <ScrollView>
+                <View style={style.eventFrame}>
+                    <View style={style.eventPanelContainer}>
+                        <View style={style.headerView}>
+                            <Text style={style.headerText}>SoSe18</Text>
+                        </View>
+                        <View style = {style.lineStyle}/>
+                        <View style={style.eventContent}>
+                            {
+                                this.props.events.events.map((item, index) => (
+                                        <View>
+                                            <Text style={style.title}>
+                                                {item.title}
+                                            </Text>
+                                            <Text style={style.content}>
+                                                {item.eventDate}{'\n'}
+                                            </Text>
+                                        </View>
+                                    )
+                                )
+                            }
                         </View>
                     </View>
-                    <View style = {style.lineStyle}/>
                 </View>
-            );
-        };
-
-        const panelContent = (
-            <View>
-                <FlatList
-                    data={this.props.events.events}
-                    renderItem={this._renderEvent}
-                    listKey={'Event_' + event.index}
-                    keyExtractor={(item, index) => 'event_' + index}
-                />
-                <View style = {style.lineStyle}/>
-            </View>
+            </ScrollView>
         );
-
-        return (
-            <View
-                style={style.eventPanelContainer}
-            >
-                <Panel
-                    header={header}
-                    content={panelContent}
-                />
-            </View>
-        )
-    };
-
-    _renderEvent = (event) => {
-        return (
-            <View style={style.eventContent}>
-                <Text style={style.title}>{event.item['title1']}</Text>
-                <Text style={style.content}>{event.item['content1']}</Text>
-                <Text style={style.title}>{event.item['title2']}</Text>
-                <Text style={style.content}>{event.item['content2']}</Text>
-            </View>
-        );
-    };
+        return getBackgroundView(content, 4);
+    }
 }
 
 

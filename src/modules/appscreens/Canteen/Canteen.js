@@ -10,6 +10,7 @@ import { strings } from 'src/i18n';
 import Panel from 'src/modules/Panel';
 import { style } from './styles';
 import { panelIcon } from 'src/config/styles';
+import { getBackgroundView } from 'src/config/styles';
 
 class Canteen extends Component{
     constructor(props) {
@@ -23,27 +24,28 @@ class Canteen extends Component{
         if (this.props.menu) {  // data already retrieved
             content = this._renderView();
         } else {  // loading in progress
-            content = <View>
-                        <Text>{strings('general.noDataTxt')}</Text>
-                      </View>
+            content = <View style={style.NewsFrame}>
+                        <View style={style.loadingView}>
+                            <Text style={style.loadingText}>{strings('general.noDataTxt')}</Text>
+                        </View>
+                    </View>
         }
-        return content;
+        return getBackgroundView(content, 5);
     }
 
     _renderView() {
-        return (
-            <View style={style.contentContainer}>
-                <ScrollView>
-                    <View style={style.CanteenFrame}>
-                        <FlatList
-                            data={this.props.menu.menu}
-                            renderItem={this._renderItem}
-                            keyExtractor={(item, index) => 'accordion' + index}
-                        />
-                    </View>
-                </ScrollView>
-            </View>
+        const content = (
+            <ScrollView>
+                <View style={style.canteenFrame}>
+                    <FlatList
+                        data={this.props.menu.menu}
+                        renderItem={this._renderItem}
+                        keyExtractor={(item, index) => 'accordion' + index}
+                    />
+                </View>
+            </ScrollView>
         );
+        return getBackgroundView(content, 5);
     }
 
     _renderItem = (dailyMenu) => {
@@ -52,43 +54,54 @@ class Canteen extends Component{
             return <View/>
         }
         const header = ({isOpen}) => {
+            let headerContent = [
+                <View style={style.menuPanelHeader}>
+                    <Text style={style.menuPanelHeaderText}>
+                        {day.format('dddd, DD.MM')}
+                    </Text>
+                    <View style={style.iconContainer}>
+                        <Icon
+                            name={isOpen ? 'remove' : 'add'}
+                            size={panelIcon.size}
+                            color={panelIcon.color}
+                        />
+                    </View>
+                </View>
+            ];
+
+            if ( dailyMenu.index < this.props.menu.menu.length-1 ) {
+                headerContent.push(<View style = {style.lineStyle}/>);
+            } else {  // last element in list
+                if (isOpen) {
+                    headerContent.push(<View style = {style.lineStyle}/>);
+                }
+            }
             return (
                 <View style={style.headerView}>
-                    <View style={style.menuPanelHeader}>
-                        <Text style={style.menuPanelHeaderText}>
-                            {day.format('dddd, DD.MM')}
-                         </Text>
-                        <View style={style.iconContainer}>
-                            <Icon
-                                name={isOpen ? 'remove' : 'add'}
-                                size={panelIcon.size}
-                                color={panelIcon.color}
-                            />
-                        </View>
-                    </View>
-                    <View style={style.lineStyle}/>
+                    {headerContent}
                 </View>
             );
         };
 
-        const panelContent = (
-            <View>
-            <FlatList
-                data={dailyMenu.item['meals']}
-                renderItem={this._renderMeal}
-                listKey={'Menu_' + dailyMenu.index}
-                keyExtractor={(item, index) => 'meal_' + index}
-            />
-            <View style = {style.lineStyle}/>
-            </View>
-        );
+        const panelContent = [
+                <FlatList
+                    data={dailyMenu.item['meals']}
+                    renderItem={this._renderMeal}
+                    listKey={'Menu_' + dailyMenu.index}
+                    keyExtractor={(item, index) => 'meal_' + index}
+                />
+        ];
+
+        if (dailyMenu.index < this.props.menu.menu.length-1) {  // only if not last element
+            panelContent.push(<View style = {style.lineStyle}/>);
+        }
 
 
         return (
             <View style={style.menuPanelContainer}>
                 <Panel
                     header={header}
-                    content={panelContent}
+                    content={<View>{panelContent}</View>}
                     expanded={day.isSame(moment(), 'day')}
                 />
             </View>

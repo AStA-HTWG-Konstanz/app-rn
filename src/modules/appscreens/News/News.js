@@ -9,30 +9,43 @@ import { strings } from 'src/i18n';
 import { style } from './styles';
 import { panelIcon } from 'src/config/styles';
 import Panel from 'src/modules/Panel';
+import { getBackgroundView } from 'src/config/styles';
 
 
 class News extends Component {
+
+    constructor(props) {
+        super(props)  ;
+        this.page = 0;
+    }
 
     componentDidMount() { }
 
     _onRefresh = () => {
         this.props.actions.setRefreshing(true);  // start fetching new data
-        this.props.actions.getNews(0);
+        this.page = 0;
+        this.props.actions.getNews(this.page);
     };
+
+    _loadMore = () => {
+        this.props.actions.getNews(++this.page)
+    }
 
     render() {
         let content;
         if (this.props.news) {
             content = this._renderView();
         } else {
-            content =   <View>
-                            <Text>no Data</Text>
-                        </View>
+            content = <View>
+                        <Text>{strings('general.noDataTxt')}</Text>
+                      </View>
         }
+        return content;
+    }
 
-        return (
+    _renderView() {
+        const content = (
             <ScrollView
-                style={style.allAround}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.props.isRefreshing}
@@ -40,23 +53,21 @@ class News extends Component {
                     />
                 }
             >
-                {content}
+                <View style={style.NewsFrame}>
+                    <FlatList style={style.listView}
+                        data={this.props.news.news}
+                        renderItem={this._renderItem}
+                        keyExtractor={(item, index) => 'accordion' + index}
+                        onThresholdEnd={0}
+                        onEndReached={this._loadMore}
+                    />
+                </View>
             </ScrollView>
-        )
-    }
-
-    _renderView() {
-        return (
-            <FlatList style={style.listView}
-                data={this.props.news.news}
-                renderItem={this._renderItem}
-                keyExtractor={(item, index) => 'accordion' + index}
-            />
         );
+        return getBackgroundView(content, 2);
     }
 
     _renderItem = (singleNews) => {
-
         const panelHeader = ({isOpen}) => {
             return (
                 <View style={style.headerView}>
@@ -77,6 +88,7 @@ class News extends Component {
                             {singleNews.item['short_desc']}
                         </Text>
                     </View>
+                    <View style={style.lineStyle}/>
                 </View>
             );
         };
@@ -98,12 +110,9 @@ class News extends Component {
         );
 
         return (
-            <View style={style.page}>
                 <View style={{overflow: 'scroll'}}>
                     {newsContent}
-                    <View style={style.separator}/>
                 </View>
-            </View>
         )
     };
 }

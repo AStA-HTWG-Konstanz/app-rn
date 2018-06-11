@@ -20,36 +20,36 @@ class NewsWidget extends Component {
 
         const {navigator} = this.props;
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity onPress={() => {
-                    navigator.push({
-                        screen: 'app.News',
-                        title: strings('news.screenTitle'),
-                        backButtonTitle: '',
-                        navigatorButtons: getBackButton(navigator),
-                        navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                            navBarBackgroundColor: colorScheme.botticelli,
-                            navBarTextColor: 'black'
-                        })
+            <TouchableOpacity onPress={() => {
+                navigator.push({
+                    screen: 'app.News',
+                    title: strings('news.screenTitle'),
+                    backButtonTitle: '',
+                    navigatorButtons: getBackButton(navigator),
+                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
+                        navBarBackgroundColor: colorScheme.botticelli,
+                        navBarTextColor: 'black'
                     })
-                }}>
-                    <View style={style.titleView}>
-                        <Text style={style.titleText}>
-                            News&nbsp;({numberNews})
-                        </Text>
-                    </View>
-                    <View style={style.contentView}>
-                        <Text style={style.contentText}>
-                            Sci-Feierei
-                        </Text>
-                    </View>
-                    <View style={style.contentView}>
-                        <Text style={style.titleText}>
-                            Party
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                })
+            }}>
+                <View style={style.widgetContainer}>
+                        <View style={style.titleView}>
+                            <Text style={style.titleText}>
+                                News&nbsp;({numberNews})
+                            </Text>
+                        </View>
+                        <View style={style.contentView}>
+                            <Text style={style.contentText}>
+                                Sci-Feierei
+                            </Text>
+                        </View>
+                        <View style={style.contentView}>
+                            <Text style={style.titleText}>
+                                Party
+                            </Text>
+                        </View>
+                </View>
+            </TouchableOpacity>
         )
     }
 }

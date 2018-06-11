@@ -30,24 +30,12 @@ class BalanceWidget extends Component {
                 </View>
                 <View style={style.contentView}>
                     <Text style={style.contentText}>
-                        {printValue}
+                        {printValue}€
                     </Text>
                 </View>
-                <View style={style.specifierView}>
-                    <Text style={style.specifierText}>
+                <View style={style.titleView}>
+                    <Text style={style.titleText}>
                         {strings('dashboard.titlePrinter')}
-                    </Text>
-                </View>
-
-
-                <View style={style.contentView}>
-                    <Text style={style.contentText}>
-                        {zackValue}
-                    </Text>
-                </View>
-                <View style={style.specifierView}>
-                    <Text style={style.specifierText}>
-                        {strings('dashboard.titleCanteen')}
                     </Text>
                 </View>
             </View>
@@ -61,3 +49,14 @@ const mapStateToProps = (state) => ({
 
 
 export default connect(mapStateToProps)(BalanceWidget);
+
+/*<View style={style.contentView}>
+                    <Text style={style.contentText}>
+                        {zackValue}
+                    </Text>
+                </View>
+                <View style={style.specifierView}>
+                    <Text style={style.specifierText}>
+                        {strings('dashboard.titleCanteen')}
+                    </Text>
+                </View>*/

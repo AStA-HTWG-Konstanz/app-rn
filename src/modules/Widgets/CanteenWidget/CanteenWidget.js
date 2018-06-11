@@ -25,18 +25,22 @@ class CanteenWidget extends Component {
 
     render() {
         const {navigator} = this.props;
+        let widgetContent;
+        const currentDay = moment().format('d');
 
-        if (moment().format('d') > 5) {  // weekend -> canteen closed
-            {strings('dashboard.weekend')}
-        }
-
-        if (this.props.menu) {  // data retrieved
+        if (currentDay > 5 || currentDay < 1) {  // weekend -> canteen closed
+            widgetContent = (
+                <View style={style.contentView}>
+                    <Text style={style.contentText}>{strings('dashboard.weekend')}</Text>
+                </View>
+            )
+        } else if (this.props.menu) {  // data retrieved
             const mealIndex = this.getTodaysMeal();
             const {title, ctgry, priceStud} = this.props.menu.menu[mealIndex]['meals'][0];
             let student = strings('canteen.student');
             let androidStudent = student.length > 8 ? student.substring(0, 5) + '...' : student;
             let iosStudent = student.length > 8 ? student.substring(0, 7) + '...' : student;
-            let content
+            let content;
             if(Platform.OS === 'android'){
                 content = ctgry + ' | ' + priceStud + ' € ' + androidStudent
             } else {
@@ -66,27 +70,27 @@ class CanteenWidget extends Component {
         }
 
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity onPress={() => {
-                    navigator.push({
-                        screen: 'app.Canteen',
-                        title: strings('canteen.screenTitle'),
-                        backButtonTitle: '',
-                        navigatorButtons: getBackButton(navigator),
-                        navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                            navBarBackgroundColor: colorScheme.botticelli,
-                            navBarTextColor: 'black'
-                        })
-                    });
-                }}>
-                    <View style={style.titleView}>
-                        <Text style={style.titleText}>
-                            {strings('dashboard.titleCanteen')} {'|'} {strings('dashboard.menu')}
-                        </Text>
-                    </View>
-                    {widgetContent}
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={() => {
+                navigator.push({
+                    screen: 'app.Canteen',
+                    title: strings('canteen.screenTitle'),
+                    backButtonTitle: '',
+                    navigatorButtons: getBackButton(navigator),
+                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
+                        navBarBackgroundColor: colorScheme.botticelli,
+                        navBarTextColor: 'black'
+                    })
+                });
+            }}>
+                <View style={style.widgetContainer}>
+                        <View style={style.titleView}>
+                            <Text style={style.titleText}>
+                                {strings('dashboard.titleCanteen')} {'|'} {strings('dashboard.menu')}
+                            </Text>
+                        </View>
+                        {widgetContent}
+                </View>
+            </TouchableOpacity>
         )
     }
 }

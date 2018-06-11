@@ -70,7 +70,10 @@ export default class SelectList extends Component {
     _renderRow(value, index, mode) {
         let rowGroups = [];
         rowGroups.push(
-            <View style={styles.rowContentGroup}>
+            <View
+                key={mode + 'row' + index + 'content'}
+                style={styles.rowContentGroup}
+            >
                 <Icon
                     name={mode === listMode.ADD ? 'add-circle' : 'remove-circle'}
                     size={iconStyle.size}
@@ -92,19 +95,32 @@ export default class SelectList extends Component {
                 icons.push(iconDown);
             } else if (index === this.selectedKeys.length - 1) {  // moving downwards not possible
                 icons.push(iconUp);
-                icons.push(<Icon name='keyboard-arrow-down' size={iconStyle.size} color={'transparent'}/>);
+                icons.push(  // invisible icon to keep the other icon in this row correctly aligned
+                    <Icon
+                        name='keyboard-arrow-down'
+                        size={iconStyle.size}
+                        color={'transparent'}
+                        key={'row-' + index + 'keyboard-arrow-down'
+                    }/>
+                );
             } else {  // normal row
                 icons.push(iconUp, iconDown);
             }
             rowGroups.push(
-                <View style={styles.rowContentGroup}>
+                <View
+                    style={styles.rowContentGroup}
+                    key={'widgetSelected-' + index + '-Icons'}
+                >
                     {icons}
                 </View>
             );
         }
 
         return (
-            <View style={styles.rowContainer}>
+            <View
+                style={styles.rowContainer}
+                key={mode + 'row' + index}
+            >
                 {rowGroups}
             </View>
         );
@@ -125,16 +141,16 @@ export default class SelectList extends Component {
     _onChangeMode(index, currentMode) {
         if (currentMode === listMode.ADD) {
             this.selectedKeys.push(this.available[index]);
-            this.props.onChangeOrder(this.selectedKeys);
         } else {
             this.selectedKeys.splice(index, 1);  // 1 -> remove one element
-            this.props.onChangeOrder(this.selectedKeys);
         }
+        this.props.onChangeOrder(this.selectedKeys);
     }
 
     _getArrowIcon(name, index, movementDirection) {
         return (
             <Icon
+                key={'row-' + index + name}
                 name={name}
                 size={iconStyle.size}
                 color={iconStyle.colorSelected}

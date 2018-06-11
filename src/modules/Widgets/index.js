@@ -11,7 +11,7 @@ import { EventWidget } from './EventWidget';
 import { OpeningHoursWidget } from './OpeningHoursWidget';
 import { SettingsWidget } from './SettingsWidget';
 
-export const widgetFactory = function (widget: widgetEnum, passedNavigator) {
+export const widgetFactory = function (widget, passedNavigator) {
     switch (widget) {
         case widgetEnum.BALANCE:
             return <BalanceWidget key={'widget_BALANCE'}/>;

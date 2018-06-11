@@ -9,6 +9,7 @@ export const ROOT_CHANGED = 'ROOT_CHANGED';
 export const CHANGED_USERNAME       = 'CHANGED_USERNAME';
 export const CHANGED_PASSWORD       = 'CHANGED_PASSWORD';
 export const CHANGED_REMEMBER_ME    = 'CHANGED_REMEMBER_ME';
+export const SET_IS_STUDENT         = 'SET_IS_STUDENT';
 
 // Dashboard
 export const SET_SELECTED_WIDGETS   = 'SET_SELECTED_WIDGETS';

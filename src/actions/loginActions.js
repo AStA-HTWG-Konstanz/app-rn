@@ -1,9 +1,11 @@
+import { Platform } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import * as types from 'src/actions/actionTypes';
 import connector from 'src/backend_connection/';
 import { fetchInitialData } from 'src/actions';
 import { getSelectedWidgets } from 'src/actions/dashboardActions';
 import { strings } from 'src/i18n';
-import Toast from "react-native-simple-toast";
+import Toast from 'react-native-simple-toast';
 
 export function appInitialized() {
     return async function(dispatch, getState) {
@@ -47,13 +49,31 @@ export function changeRememberMe (value) {
     }
 }
 
+export function setIsStudent(isStudent) {
+    return {
+        type: types.SET_IS_STUDENT,
+        isStudent: isStudent
+    }
+}
+
 // first try -> after initializing the app, we try to login with stored credentials
 export function login(firstTry) {
       return function(dispatch, getState) {
             const currentState = getState().loginReducer;
+            if (!currentState.username || currentState.username === '') {  // no credentials stored or entered
+                dispatch(changeAppRoot('login'));
+
+                if (Platform.OS === 'ios') {
+                    setTimeout(() => {  // first app start, hold splashscreen a little bit longer
+                        SplashScreen.hide();
+                    }, 1500);
+                }
+                return;
+            }
             connector.login(currentState.username, currentState.password, currentState.rememberMe)
-                .then((success) => {
-                    if(success){
+                .then((result) => {
+                    if(result.success){
+                        dispatch(setIsStudent(result.isStudent));
                         dispatch(changeAppRoot('after-login'));
 
                         // Start fetching data
@@ -61,6 +81,9 @@ export function login(firstTry) {
                         dispatch(getSelectedWidgets());  // get widget selection from local storage
                     }
                     else{
+                        if (Platform.OS === 'ios') {
+                            SplashScreen.hide();  // show login screen
+                        }
                         if (firstTry) {
                             dispatch(changeAppRoot('login'));
                         } else {

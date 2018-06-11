@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { colorScheme, squareWidget, widgetShadow } from 'src/config/styles';
+import { colorScheme, pRatio, squareWidget, widgetShadow, widgetTitleText } from 'src/config/styles';
+
 
 const {height, width} = Dimensions.get('window');
 
@@ -14,11 +15,7 @@ export const style = StyleSheet.create({
         backgroundColor : 'transparent',
         justifyContent  : 'center',
     },
-    titleText       : {
-        color           : 'white',
-        fontSize        : (width/100) * 6,
-        fontWeight      : 'normal'
-    },
+    titleText       : widgetTitleText,
     contentView     : {
         alignItems      : 'center',
         backgroundColor : 'transparent',
@@ -30,12 +27,19 @@ export const style = StyleSheet.create({
         fontWeight      : 'bold',
         lineHeight      : 40
     },
+    noDataView      : {
+        height          : (width/100)*13,
+        alignItems      : 'center',
+        justifyContent  : 'center'
+    },
     noData          : {
         color           : 'white',
         fontSize        : (width/100) * 10,
+        fontWeight      : 'bold'
     },
     noDataGerman    : {
         color           : 'white',
-        fontSize        : (width/100) * 6,
+        fontSize        : (width/100) * 7,
+        fontWeight      : 'bold'
     }
 });

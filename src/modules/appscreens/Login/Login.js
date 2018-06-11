@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
+import {KeyboardAvoidingView, Platform, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CheckBox from 'react-native-checkbox';
@@ -17,33 +17,32 @@ class Login extends Component{
     }
 
     componentDidMount() {
-        if (connector.getConnectionStatus() === false) {  // true, false, undefined <- undefined, if still fetching status
+        if (Platform.OS === 'ios' && connector.getConnectionStatus() === false) {  // true, false, undefined <- undefined, if still fetching status
             Toast.show(strings('general.notConnectedText'), Toast.LONG);
         }
     }
 
     render() {
-        return (
-            <View style={styles.page}>
+        const content = (
+            <View>
                 <Image style={styles.image}
-                    source={login_logo_white}
+                       source={login_logo_white}
                 />
-
                 <TextInput
                     style={styles.input}
-                       value={this.props.username ? this.props.username : ''}
-                       placeholder={strings('login.username')}
-                       underlineColorAndroid='transparent'
-                       placeholderTextColor='#999595'
-                       onChangeText={(text) => {this.props.actions.changeUsername(text)}}
+                    value={this.props.username ? this.props.username : ''}
+                    placeholder={strings('login.username')}
+                    underlineColorAndroid='transparent'
+                    placeholderTextColor='#999595'
+                    onChangeText={(text) => {this.props.actions.changeUsername(text)}}
                 />
                 <TextInput
                     secureTextEntry={true}
-                       style={styles.input}
-                       value={this.props.password ? this.props.password : ''}
-                       placeholder={strings('login.password')}
-                       placeholderTextColor='#999595'
-                       onChangeText={(text) => {this.props.actions.changePassword(text)}}
+                    style={styles.input}
+                    value={this.props.password ? this.props.password : ''}
+                    placeholder={strings('login.password')}
+                    placeholderTextColor='#999595'
+                    onChangeText={(text) => {this.props.actions.changePassword(text)}}
                 />
 
                 <View style={styles.placeholderLogin}/>
@@ -54,11 +53,11 @@ class Login extends Component{
                         checked = { this.props.rememberMe }
                         label={strings("login.remember")}
                         labelStyle = { {
-                                color: 'white',
-                                fontSize: 18,
-                                fontFamily: 'Swiss721',
-                                fontWeight: '100'
-                            }
+                            color: 'white',
+                            fontSize: 18,
+                            fontFamily: 'Swiss721',
+                            fontWeight: '100'
+                        }
                         }
                     />
                 </View>
@@ -68,11 +67,33 @@ class Login extends Component{
                         this.props.actions.login();
                     }}
                     style={styles.submitBtn}>
-                   <Text style={styles.submitText}>{strings('login.signin')}</Text>
+                    <Text style={styles.submitText}>{strings('login.signin')}</Text>
                 </TouchableOpacity>
-
             </View>
-        )
+        );
+
+        if (Platform.OS === 'ios') {
+            return (
+                <KeyboardAvoidingView
+                    behavior='position'
+                >
+                    <View style={styles.page}>
+                        {content}
+                    </View>
+                </KeyboardAvoidingView>
+            );
+        } else {
+            return (
+                <View style={styles.page}>
+                    <KeyboardAvoidingView
+                        behavior='padding'
+                    >
+                        {content}
+                    </KeyboardAvoidingView>
+                </View>
+            );
+        }
+
     }
 }
 

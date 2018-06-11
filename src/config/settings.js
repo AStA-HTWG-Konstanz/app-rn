@@ -15,9 +15,10 @@ export const widgetEnum = {
     NEWS    : 2,
 
     // upright widgets
-    BALANCE : 3,
+
 
     // square widgets
+    BALANCE : 3,
     EVENT   : 4,
     ENDLICHT: 5,
     GRADES  : 6,
@@ -27,13 +28,21 @@ export const settingsWidgetIndex = 7;
 
 export const widgetEnumKeys = Object.keys(widgetEnum);  // to access i18n
 export const lengthwiseThreshold = 3;
-export const squareThreshold = 4;
+export const squareThreshold = 3;
 
 
-export const widgetPreselection = [
-    widgetEnum.LECTURE,
+export const widgetPreselectionStudent = [
     widgetEnum.CANTEEN,
-    widgetEnum.BALANCE,
     widgetEnum.EVENT,
-    widgetEnum.NEWS
+    widgetEnum.BALANCE,
+    widgetEnum.GRADES,
+    widgetEnum.ENDLICHT,
+    widgetEnum.LECTURE
+];
+
+export const widgetPreselectionEmployee = [
+    widgetEnum.CANTEEN,
+    widgetEnum.EVENT,
+    widgetEnum.ENDLICHT,
+    widgetEnum.LECTURE
 ];

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, Text, View, FlatList, ScrollView} from 'react-native';
+import { Text, View, FlatList, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
@@ -9,7 +9,7 @@ import * as LSFActions from 'src/actions/lectureActions';
 import Panel from 'src/modules/Panel';
 import { strings } from 'src/i18n';
 import { style } from './styles';
-import { panelIcon } from 'src/config/styles';
+import { getBackgroundView, panelIcon } from 'src/config/styles';
 
 class LSF extends Component {
     constructor(props) {
@@ -21,35 +21,34 @@ class LSF extends Component {
     render() {
         let content;
         if (this.props.lectures) {
-            content = this._renderView();
+            content = (
+                <ScrollView style={style.lsfFrame}>
+                    <View>
+                        <FlatList
+                            data={this.props.lectures}
+                            renderItem={this._renderItem}
+                            keyExtractor={(item, index) => 'panel' + index}
+                        />
+                    </View>
+                </ScrollView>
+            );
         } else {
-            content =   <View style={{width: '100%', alignItems: 'center'}}>
-                            <Text style={{fontSize: 24}}>{strings("LSF.emptyTxt")}</Text>
-                            <Text>{strings("LSF.selectLecture")}</Text>
-                        </View>
+            content =   (
+                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{fontSize: 24}}>{strings("LSF.emptyTxt")}</Text>
+                    <Text>{strings("LSF.selectLecture")}</Text>
+                </View>
+            );
         }
 
-        return (
-            <View style={style.allAround}>
-                {content}
-            </View>
-        )
-    }
-
-    _renderView() {
-        return (
-                    <FlatList
-                        data={this.props.lectures}
-                        renderItem={this._renderItem}
-                        keyExtractor={(item, index) => 'panel' + index}
-                     />
-        );
+        return getBackgroundView(content, 3);
     }
 
     _renderItem = (listLectures) => {
 
         const  panelHeader = ({isOpen}) => {
-            return (
+
+            let headerContent = [
                 <View style={style.headerView}>
                     <View style={style.LSFpanelHeader}>
                         <Text style={style.LSFheaderText}>
@@ -63,28 +62,45 @@ class LSF extends Component {
                             />
                         </View>
                     </View>
-                    <View style = {style.lineStyle}/>
+                </View>
+            ];
+
+            if ( listLectures.index < this.props.lectures.length-1 ) {
+                headerContent.push(<View style = {style.lineStyle}/>);
+            } else {  // last element in list
+                if (isOpen) {
+                    headerContent.push(<View style = {style.lineStyle}/>);
+                }
+            }
+
+            return (
+                <View style={style.headerView}>
+                    {headerContent}
                 </View>
             );
         };
 
-        const panelContent = (
+        const panelContent = [
             <FlatList
                 data={listLectures.item['lectures']}
                 renderItem={this._renderLectures}
                 listKey={'Lecture_' + listLectures.index}
                 keyExtractor={(item, index) => 'lecture_' + index}
             />
-        );
+        ];
+
+        if (listLectures.index < this.props.lectures.length-1) {  // only if not last element
+            panelContent.push(<View style = {style.lineStyle}/>);
+        }
 
         return (
-            <View style={style.lectureContent}>
-                <Panel
-                    expanded={false}
-                    header={panelHeader}
-                    content={panelContent}
-                />
-            </View>
+                <View style={style.lectureContent}>
+                    <Panel
+                        expanded={false}
+                        header={panelHeader}
+                        content={<View>{panelContent}</View>}
+                    />
+                </View>
 
         )
     };

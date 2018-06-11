@@ -8,6 +8,7 @@ import { lengthwiseThreshold, settingsWidgetIndex, squareThreshold } from 'src/c
 import { getSettingsButton } from 'src/config/navigation';
 import { widgetFactory } from 'src/modules/Widgets';
 import { ActionCreators } from 'src/actions';
+import { getBackgroundView } from 'src/config/styles';
 
 
 class Dashboard extends Component{
@@ -112,21 +113,21 @@ class Dashboard extends Component{
     };
 
     render() {
-        return  (
+        const content = (
             <ScrollView
-                style={style.dashboard}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.props.isRefreshing || false}
-                        onRefresh={this._onRefresh.bind(this)}
-                    />
-                }
-            >
-                <View style={style.dashboardFrame}>
-                    {this._renderSelection()}
-                </View>
-            </ScrollView>
-        )
+            refreshControl={
+                <RefreshControl
+                    refreshing={this.props.isRefreshing || false}
+                    onRefresh={this._onRefresh.bind(this)}
+                />
+            }
+        >
+            <View style={style.dashboardFrame}>
+                {this._renderSelection()}
+            </View>
+        </ScrollView>
+        );
+        return getBackgroundView(content, 1);
     }
 }
 

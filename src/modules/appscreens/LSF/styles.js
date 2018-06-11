@@ -1,16 +1,13 @@
-import { Dimensions, Platform, PixelRatio, StyleSheet } from 'react-native';
-import { colorScheme } from 'src/config/styles';
+import { Dimensions, StyleSheet } from 'react-native';
+import { pRatio } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
-const pixelratio = PixelRatio.get();
-
-
 export const style = StyleSheet.create({
-    allAround: {
-        backgroundColor : colorScheme.botticelli,
-        paddingHorizontal: pixelratio*5,
-        paddingTop      : pixelratio*5,
-        flex            : 1
+    lsfFrame: {
+        marginTop       : pRatio*10,
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*10
     },
     headerView: {
         backgroundColor : 'white'
@@ -24,12 +21,12 @@ export const style = StyleSheet.create({
     LSFheaderText: {
         fontSize        : 20,
         fontWeight      : 'bold',
-        marginTop       : pixelratio*5,
-        marginLeft      : pixelratio*10
+        marginTop       : pRatio*7,
+        marginLeft      : pRatio*10
     },
     iconContainer: {
-        marginTop       : pixelratio*5,
-        marginRight     : pixelratio*10
+        marginTop       : pRatio*5,
+        marginRight     : pRatio*10
     },
     lectureContent: {
         backgroundColor : 'white',
@@ -38,11 +35,11 @@ export const style = StyleSheet.create({
         flexDirection   : 'row',
     },
     bodyView: {
-        marginLeft      : pixelratio*10,
-        marginBottom    : pixelratio*3
+        marginLeft      : pRatio*10,
+        marginBottom    : pRatio*3
     },
     contentBody: {
-        marginTop       : pixelratio*2
+        marginTop       : pRatio*2
     },
     titleText: {
         fontWeight      : 'bold',
@@ -51,8 +48,8 @@ export const style = StyleSheet.create({
     lineStyle:{
         borderWidth     : 1,
         borderColor     : 'lightgrey',
-        marginLeft      : pixelratio*10,
-        marginRight     : pixelratio*10,
-        marginBottom    : pixelratio*5
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*5
     },
 });

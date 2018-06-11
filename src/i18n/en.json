@@ -46,7 +46,8 @@
     "screenTitle"   : "News"
   },
   "grades"    : {
-    "title": "Grades"
+    "title": "Grades",
+    "noData"        : "No data yet"
   },
   "LSF"       : {
     "screenTitle"   : "Timetable",
@@ -62,6 +63,8 @@
     "language"      : "Language",
     "selectedWidgetsHeader" : "Selected Widgets",
     "availableWidgetsHeader" : "Available Widgets",
+    "impressumDev"  : "Developed by",
+    "impressumDesign": "Designed by",
     "BALANCE"       : "Balance",
     "CANTEEN"       : "Canteen",
     "ENDLICHT"      : "Endlicht",

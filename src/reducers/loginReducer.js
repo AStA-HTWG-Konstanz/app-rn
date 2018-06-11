@@ -26,6 +26,12 @@ export default function app(state = initialState, action = {}) {
                 ...state,
                 rememberMe: action.rememberMe
             };
+        case types.SET_IS_STUDENT:
+        return{
+            ...state,
+            isStudent: action.isStudent
+        };
+
         default:
             return state;
     }

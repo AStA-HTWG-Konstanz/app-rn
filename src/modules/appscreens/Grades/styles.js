@@ -1,48 +1,50 @@
-import { Dimensions, Platform, StyleSheet } from 'react-native';
-import { colorScheme } from 'src/config/styles';
+import { Dimensions, StyleSheet } from 'react-native';
+import { pRatio } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
 
 export const style = StyleSheet.create({
-    allAround: {
-        backgroundColor : colorScheme.botticelli,
-        height          : '100%'
-    },
-    page: {
-        paddingLeft     : '5%',
-        paddingRight    : '5%',
+    gradeFrame: {
+        marginTop       : pRatio * 10,
+        marginLeft      : pRatio * 10,
+        marginRight     : pRatio * 10,
+        marginBottom    : pRatio * 10,
     },
     gradesPanelHeader: {
-        height          : (height / 100) * 7,
+        height          : (height / 100) * 8,
         flexDirection   : 'row',
         justifyContent  : 'space-between'
-    },
-    headerView: {
-        backgroundColor : 'white',
     },
     gradesPanelHeaderText: {
         fontSize        : 20,
         fontWeight      : 'bold',
-        marginTop       : '5%',
-        marginLeft      : '5%'
+        marginTop       : pRatio*5,
+        marginLeft      : pRatio*10
     },
-    iconContainer: {
-        marginTop       : '4%',
-        marginRight     : '5%'
+    gradesPanelContainer : {
+        backgroundColor : 'white'
     },
-    listView: {
-        marginTop       : '10%',
+    iconContainer : {
+        marginTop       : pRatio*5,
+        marginRight     : pRatio*10,
+        backgroundColor : 'white',
+    },
+    contentView: {
+        backgroundColor : 'white',
+        height          : pRatio * 15,
+        paddingLeft     : '5%',
+        paddingRight    : '5%',
+        paddingBottom   : pRatio * 2,
+    },
+    contentHeaderText: {
+        fontSize        : 14,
+        fontWeight      : 'bold'
     },
     shortDesc: {
         paddingLeft     : '10%',
         paddingBottom   : '5%'
     },
-    contentView: {
-        backgroundColor : 'white',
-        paddingLeft     : '5%',
-        paddingRight    : '5%',
-        paddingBottom   : '5%',
-    },
+
     rowContent: {
         flexDirection   : 'row',
         justifyContent  : 'space-between'
@@ -55,9 +57,20 @@ export const style = StyleSheet.create({
     leftContent: {
         width           : '70%'
     },
-    contentHeaderText: {
-        fontSize        : 14,
-        fontWeight      : 'bold'
+    loadingView : {
+        height          : (height / 100) * 8,
+        alignItems      : 'center',
     },
+    loadingText : {
+        fontSize        : 40,
+        fontWeight      : 'bold',
+    },
+    lineStyle:{
+        borderWidth     : 1,
+        borderColor     : 'lightgrey',
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*5
+    }
 
 });

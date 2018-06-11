@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { style } from './styles';
 import { strings } from 'src/i18n';
-import { getBackButton } from 'src/config/navigation';
+import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
+import { colorScheme } from 'src/config/styles';
 
 class LectureWidget extends Component {
     constructor(props) {
@@ -55,32 +56,36 @@ class LectureWidget extends Component {
 
         const {navigator} = this.props;
         return  (
-            <View style={style.widgetContainer}>
-                <TouchableOpacity onPress={() => {
-                    navigator.push({
-                        screen: 'app.LSF',
-                        title: strings('LSF.screenTitle'),
-                        backButtonTitle: '',
-                        navigatorButtons: getBackButton(navigator)
+            <TouchableOpacity onPress={() => {
+                navigator.push({
+                    screen: 'app.LSF',
+                    title: strings('LSF.screenTitle'),
+                    backButtonTitle: '',
+                    navigatorButtons: getBackButton(navigator),
+                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
+                        navBarBackgroundColor: colorScheme.botticelli,
+                        navBarTextColor: 'black'
                     })
-                }}>
-                    <View style={style.titleView}>
-                        <Text style={style.titleText}>
-                            {title}
-                        </Text>
-                    </View>
-                    <View style={style.contentView}>
-                        <Text style={style.contentText}>
-                            {time}
-                        </Text>
-                    </View>
-                    <View style={style.contentView}>
-                        <Text style={style.titleText}>
-                            {room}
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                })
+            }}>
+                <View style={style.widgetContainer}>
+                        <View style={style.titleView}>
+                            <Text style={style.titleText}>
+                                {title}
+                            </Text>
+                        </View>
+                        <View style={style.contentView}>
+                            <Text style={style.contentText}>
+                                {time}
+                            </Text>
+                        </View>
+                        <View style={style.contentView}>
+                            <Text style={style.titleText}>
+                                {room}
+                            </Text>
+                        </View>
+                </View>
+            </TouchableOpacity>
         )
     }
 }

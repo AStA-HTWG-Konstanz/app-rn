@@ -36,14 +36,15 @@
   "endlicht"  : {
     "closed"        : "Geschlossen",
     "specialTitle"  : "Spezial",
-    "menuTitle"     : "Menü",
+    "menuTitle"     : "Angebot",
     "locationTitle" : "Lageplan"
   },
   "events"    : {
     "screenTitle"   : "Termine"
   },
   "grades"    : {
-    "title"         : "Noten"
+    "title"         : "Noten",
+    "noData"        : "Momentan keine Daten verfügbar"
   },
   "news"      : {
     "screenTitle"   : "News"
@@ -62,12 +63,14 @@
     "language"      : "Sprache",
     "selectedWidgetsHeader" : "Ausgewählte Widgets",
     "availableWidgetsHeader" : "Verfügbare Widgets",
+    "impressumDev"  : "Entwickelt von",
+    "impressumDesign": "Designed von",
     "BALANCE"       : "Guthaben",
     "CANTEEN"       : "Mensa",
     "ENDLICHT"      : "Endlicht",
     "EVENT"         : "Termine",
     "GRADES"        : "Noten",
-    "LECTURE"       : "LSF",
+    "LECTURE"       : "Stundenplan",
     "NEWS"          : "Aktuelles"
   },
   "language" : {

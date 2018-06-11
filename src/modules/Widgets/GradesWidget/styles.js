@@ -1,5 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { colorScheme, squareWidget, widgetShadow } from 'src/config/styles';
+import { colorScheme, squareWidget, widgetShadow, widgetTitleText } from 'src/config/styles';
+import { pRatio } from 'src/config/styles';
+
 
 const {height, width} = Dimensions.get('window');
 
@@ -14,10 +16,7 @@ export const style = StyleSheet.create({
         backgroundColor : 'transparent',
         justifyContent  : 'center',
     },
-    titleText       : {
-        color           : 'white',
-        fontSize        : (width/100) * 6,
-    },
+    titleText       : widgetTitleText,
     contentView     : {
         height          : (width/100) * 15,
         alignItems      : 'center',

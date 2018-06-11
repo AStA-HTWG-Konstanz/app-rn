@@ -1,23 +1,14 @@
-import { Dimensions, Platform, PixelRatio, StyleSheet } from 'react-native';
-import { colorScheme } from 'src/config/styles';
-
+import { Dimensions, StyleSheet } from 'react-native';
+import { pRatio } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
-const pixelratio = PixelRatio.get();
 
 export const style = StyleSheet.create({
-    contentContainer: {
-        backgroundColor : colorScheme.botticelli,
-        height          : '100%'
-    },
-    CanteenFrame: {
-        marginTop       : pixelratio*10,
-        marginLeft      : pixelratio*10,
-        marginRight     : pixelratio*10,
-        marginBottom    : pixelratio*10
-    },
-    headerView: {
-        backgroundColor : 'white'
+    canteenFrame: {
+        marginTop       : pRatio*10,
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*10
     },
     menuPanelHeader : {
         height          : (height / 100) * 8,
@@ -27,8 +18,8 @@ export const style = StyleSheet.create({
     menuPanelHeaderText : {
         fontSize        : 20,
         fontWeight      : 'bold',
-        marginTop       : pixelratio*5,
-        marginLeft      : pixelratio*10
+        marginTop       : pRatio*5,
+        marginLeft      : pRatio*10
     },
     menuPanelContainer : {
         backgroundColor : 'white'
@@ -36,19 +27,19 @@ export const style = StyleSheet.create({
     lineStyle:{
         borderWidth     : 1,
         borderColor     : 'lightgrey',
-        marginLeft      : pixelratio*10,
-        marginRight     : pixelratio*10,
-        marginBottom    : pixelratio*5
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*5
     },
     iconContainer : {
-        marginTop       : pixelratio*5,
-        marginRight     : pixelratio*10,
+        marginTop       : pRatio*5,
+        marginRight     : pRatio*10,
         backgroundColor : 'white',
     },
     menuContent : {
-        marginLeft      : pixelratio*10,
-        marginRight     : pixelratio*10,
-        marginBottom    : pixelratio*5
+        marginLeft      : pRatio*10,
+        marginRight     : pRatio*10,
+        marginBottom    : pRatio*5
     },
 
     title : {
@@ -58,4 +49,12 @@ export const style = StyleSheet.create({
     content : {
         fontSize        : 14,
     },
+    loadingView : {
+        height          : (height / 100) * 8,
+        alignItems      : 'center',
+    },
+    loadingText : {
+        fontSize        : 40,
+        fontWeight      : 'bold',
+    }
 });

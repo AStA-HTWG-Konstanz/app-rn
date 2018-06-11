@@ -1,21 +1,20 @@
-import {Dimensions, PixelRatio, Platform, StyleSheet} from 'react-native';
-import { colorScheme } from 'src/config/styles';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
+import { colorScheme, pRatio } from 'src/config/styles';
 
 const {height, width} = Dimensions.get('window');
-const pixelratio = PixelRatio.get();
 
 export const iconStyle = {
     colorSelected   : '#BEBEBE',
     colorAvailable  : colorScheme.persian_green,
-    size            : pixelratio * 15
+    size            : Platform.OS === 'ios' ? pRatio * 15 : pRatio * 12
 };
 
 export const styles = StyleSheet.create({
     container: {
-        marginBottom    : pixelratio * 5
+        marginBottom    : pRatio * 5
     },
     rowContainer: {
-        height          : pixelratio * 17,
+        height          : pRatio * 17,
         flexDirection   : 'row',
         alignItems      : 'center',
         justifyContent  : 'space-between',
@@ -35,7 +34,7 @@ export const styles = StyleSheet.create({
         marginLeft      : '10%'
     },
     placeholder : {
-        height: 10
+        height: pRatio * 15
     },
     widgetGroupTitle: {
         fontWeight      : 'bold',

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Image, Text, View, FlatList, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as gradesActions from 'src/actions/gradesActions';
@@ -10,6 +9,7 @@ import Panel from 'src/modules/Panel';
 import { strings } from 'src/i18n';
 import { style } from './styles';
 import { panelIcon } from 'src/config/styles';
+import {getBackgroundView} from "../../../config/styles";
 
 class Grades extends Component {
     constructor(props) {
@@ -17,27 +17,40 @@ class Grades extends Component {
     }
 
     render() {
-        const semester  = this.props.grades.gradesReport;
+        let content;
+        if (this.props.grades) {  // data already retrieved
+            content = this._renderView();
+        } else {  // loading in progress
+            content =
+                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{fontSize: 24}}>{strings("grades.noData")}</Text>
+                </View>
+        }
+        return getBackgroundView(content, 3);
+    }
 
-        return (
-            <View style={style.allAround}>
-                <FlatList style={style.listView}
-                    data={Object.keys(semester)}
-                    renderItem={this._renderSemester}
-                />
-            </View>
-        )
+    _renderView() {
+        const semester  = this.props.grades.gradesReport;
+        const content = (
+            <ScrollView>
+                <View style={style.gradeFrame}>
+                    <FlatList
+                              data={Object.keys(semester)}
+                              renderItem={this._renderSemester}
+                    />
+                </View>
+            </ScrollView>
+        );
+        return getBackgroundView(content, 4);
     }
 
     _renderSemester = (element) => {
-
         const currentSemester = this.props.grades.gradesReport[element.item];
         const grades = currentSemester.map((lecture) => {
             return this._renderLecture(lecture);
         });
         const panelHeader = ({isOpen}) => {
-            return (
-                <View style={style.headerView}>
+            let panelHeaderContent = [
                     <View style={style.gradesPanelHeader}>
                         <Text style={style.gradesPanelHeaderText}>
                             {element.item}
@@ -50,6 +63,18 @@ class Grades extends Component {
                             />
                         </View>
                     </View>
+            ];
+
+                if (element.index < Object.keys(this.props.grades.gradesReport).length-1) {
+                    panelHeaderContent.push(<View style = {style.lineStyle}/>);
+                } else {  // last element in list
+                    if (isOpen) {
+                        panelHeaderContent.push(<View style = {style.lineStyle}/>);
+                    }
+                }
+            return (
+                <View style={style.headerView}>
+                    {panelHeaderContent}
                 </View>
             );
         };
@@ -72,14 +97,18 @@ class Grades extends Component {
                     </View>
                 </View>
             </View>
-        )
+        );
 
-        const panelContent = (
+        const panelContent = [
             <View>
                 {contentHeader}
                 {grades}
             </View>
-        )
+        ];
+
+        if (element.index < Object.keys(this.props.grades.gradesReport).length-1) {
+            panelContent.push(<View style = {style.lineStyle}/>);
+        }
 
         const lectureContent = (
             <Panel expanded={false}
@@ -89,7 +118,7 @@ class Grades extends Component {
         )
 
         return (
-            <View style={style.page}>
+            <View style={style.gradesPanelContainer}>
                 <View style={{overflow: 'scroll'}}>
                     {lectureContent}
                 </View>
@@ -103,7 +132,7 @@ class Grades extends Component {
                 <View style={style.rowContent}>
                     <View style={style.leftContent}>
                         <Text style={style.contentText}>
-                            {lecture.lecture.length > 24 ? lecture.lecture.substring(0, 24) + '...' : lecture.lecture}
+                            {lecture.name.length > 24 ? lecture.name.substring(0, 24) + '...' : lecture.name}
                         </Text>
                     </View>
                     <View style={style.rightContent}>

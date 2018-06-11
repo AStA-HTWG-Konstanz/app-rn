@@ -3,10 +3,20 @@ import * as types from 'src/actions/actionTypes'
 export default function (state = {}, action) {
     switch (action.type) {
         case types.SET_NEWS:
-            return {
-                ...state,           // keep the existing state
-                news: action.news
-            };
+            if (action.page === 0) {  // refresh -> delete existing
+                return {
+                    ...state,           // keep the existing state
+                    news: action.news
+                };
+            } else {
+                let concat = state.news;
+                concat.push(action.news);
+                return {
+                    ...state,           // keep the existing state
+                    news: concat
+                };
+            }
+
         case types.SET_NUMBER_NEWS:
             return {
                 ...state,           // keep the existing state
