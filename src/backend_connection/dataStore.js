@@ -498,7 +498,7 @@ export default class DataStore {
         let headers;
 
         // Prepare headers
-        db.get('sessionprom-cookie').then((cookie) => {
+        db.get('session-cookie').then((cookie) => {
             headers = Object.assign({}, genericHeader, {
                 'Set-Cookie'    : cookie.data.name + '=' + cookie.data.value
             });
