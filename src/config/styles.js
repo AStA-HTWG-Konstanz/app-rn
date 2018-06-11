@@ -72,7 +72,7 @@ export const widgetShadow = {
             zIndex          : 100
         },
         android: {
-            elevation       : 7,
+            //elevation       : 7,
         }
     }),
 };
