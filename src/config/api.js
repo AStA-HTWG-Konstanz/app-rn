@@ -7,7 +7,7 @@ export var api = {
     endlicht    : endpoint + 'endlicht',
     events      : endpoint + 'events',
     grades      : endpoint + 'user/grades',
-    gradesCreate: endpoint + 'user/grades/refresh',
+    gradesRefresh: endpoint + 'user/grades/refresh',
     lectures    : endpoint + 'user/lectures',
     news        : endpoint + 'news/',
     news_ctgry  : endpoint + 'news/categories',
