@@ -51,7 +51,7 @@ class CanteenWidget extends Component {
                 <View>
                     <View style={style.contentView}>
                         <Text style={style.contentText}>
-                            {title.length > 13 ? title.substring(0, 13) + '...' : title}
+                            {title.length > 12 ? title.substring(0, 12) + '...' : title}
                         </Text>
                     </View>
                     <View style={style.contentView}>

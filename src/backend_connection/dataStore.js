@@ -360,7 +360,7 @@ export default class DataStore {
     }
 
     refreshGrades = (resolve, token) => {
-        const tokenPassed = token === undefined;
+        const tokenPassed = token !== undefined;
         if (!this.isConnected) {
             resolve(undefined);
             return;

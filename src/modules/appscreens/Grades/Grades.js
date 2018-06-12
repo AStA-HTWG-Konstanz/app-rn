@@ -30,7 +30,7 @@ class Grades extends Component {
     }
 
     _renderView() {
-        const semester  = this.props.grades.gradesReport;
+        const semester  = this.props.grades;
         const content = (
             <ScrollView>
                 <View style={style.gradeFrame}>
@@ -45,7 +45,7 @@ class Grades extends Component {
     }
 
     _renderSemester = (element) => {
-        const currentSemester = this.props.grades.gradesReport[element.item];
+        const currentSemester = this.props.grades[element.item];
         const grades = currentSemester.map((lecture) => {
             return this._renderLecture(lecture);
         });
@@ -65,7 +65,7 @@ class Grades extends Component {
                     </View>
             ];
 
-                if (element.index < Object.keys(this.props.grades.gradesReport).length-1) {
+                if (element.index < Object.keys(this.props.grades).length-1) {
                     panelHeaderContent.push(<View style = {style.lineStyle}/>);
                 } else {  // last element in list
                     if (isOpen) {
@@ -106,7 +106,7 @@ class Grades extends Component {
             </View>
         ];
 
-        if (element.index < Object.keys(this.props.grades.gradesReport).length-1) {
+        if (element.index < Object.keys(this.props.grades).length-1) {
             panelContent.push(<View style = {style.lineStyle}/>);
         }
 
@@ -115,7 +115,7 @@ class Grades extends Component {
                    content={panelContent}
                    header={panelHeader}
             />
-        )
+        );
 
         return (
             <View style={style.gradesPanelContainer}>
