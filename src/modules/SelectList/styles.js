@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
         justifyContent  : 'flex-start'
     },
     rowTitle: {
-        marginLeft      : '10%'
+        marginLeft      : pRatio * 3
     },
     placeholder : {
         height: pRatio * 15

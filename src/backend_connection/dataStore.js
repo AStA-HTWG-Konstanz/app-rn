@@ -105,7 +105,8 @@ export default class DataStore {
                                 }
                             })
                             .catch((err) => {
-
+                                console.log('invalid json response login', err);
+                                resolve({success: false, isStudent: undefined});
                             })
 
                     } else {
