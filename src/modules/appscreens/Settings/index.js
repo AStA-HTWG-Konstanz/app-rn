@@ -117,6 +117,10 @@ class Settings extends Component {
                     {strings('settings.impressumDesign')}
                 </Text>
                 <Text>{impressum['designers']}</Text>
+                <Text style={styles.designersTitle}>
+                    {strings('settings.impressumProf')}
+                </Text>
+                <Text>{impressum['profs']}</Text>
             </View>
         );
         const about = (

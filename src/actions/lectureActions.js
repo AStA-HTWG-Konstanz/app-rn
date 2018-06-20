@@ -4,8 +4,11 @@ import * as types from 'src/actions/actionTypes';
 import connector from 'src/backend_connection';
 
 export function getLectures() {
-    return (dispatch) => {
-        connector.getLectures()
+    return (dispatch, getState) => {
+        const currentState = getState().loginReducer;
+        const username = currentState.username;
+        const password = currentState.password;
+        connector.getLectures(username, password)
             .then( function (lectures) {
                     if (Platform.OS === 'ios') {
                         SplashScreen.hide();
