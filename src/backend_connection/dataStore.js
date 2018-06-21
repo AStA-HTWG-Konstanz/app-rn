@@ -316,7 +316,15 @@ export default class DataStore {
         return new Promise(function(resolve) {
             db.get('widgetSelection')
                 .then(function(doc) {
-                    resolve(doc.data);
+                    if (doc.data.includes(6)) {  // adjust selection to the new widgets (no news widget any longer)
+                        db.put({  // save preselection
+                            _id : 'widgetSelection',
+                            data: widgetPreselectionStudent
+                        });
+                        resolve(widgetPreselectionStudent);
+                    } else {
+                        resolve(doc.data);
+                    }
                 })
                 .catch(function(err) {
                     if (err.status === 404) {  // not found -> initial app start after installation

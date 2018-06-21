@@ -31,8 +31,8 @@ export function fetchInitialData() {
     return function (dispatch, getState) {
         const state = getState();
 
-        dispatch(newsActions.getAvailableNewsCategories());
-        dispatch(newsActions.getAvailableNumberOfNews());
+        //dispatch(newsActions.getAvailableNewsCategories());
+        //dispatch(newsActions.getAvailableNumberOfNews());
         //dispatch(openingHoursActions.getBibOpeningHours());
         dispatch(endlichtActions.getEndlichtData());
         dispatch(eventActions.getEvents());

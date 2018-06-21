@@ -12,23 +12,23 @@ export const widgetEnum = {
     // lengthwise widgets
     CANTEEN : 0,
     LECTURE : 1,
-    NEWS    : 2,
+    //NEWS    : 2,
 
     // upright widgets
 
 
     // square widgets
-    BALANCE : 3,
-    EVENT   : 4,
-    ENDLICHT: 5,
-    GRADES  : 6,
-    //last index (7) is reserved for settings widget
+    BALANCE : 2,
+    EVENT   : 3,
+    ENDLICHT: 4,
+    GRADES  : 5,
+    //last index (6) is reserved for settings widget
 };
-export const settingsWidgetIndex = 7;
+export const settingsWidgetIndex = 6;
 
 export const widgetEnumKeys = Object.keys(widgetEnum);  // to access i18n
-export const lengthwiseThreshold = 3;
-export const squareThreshold = 3;
+export const lengthwiseThreshold = 2;
+export const squareThreshold = 2;
 
 
 export const widgetPreselectionStudent = [
