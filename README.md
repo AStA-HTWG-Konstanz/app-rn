@@ -12,10 +12,11 @@
 
 
 ### How to run
+You will need to install **brew**, **NodeJS**, **npm**, **yarn**, **react-native cli** and either **Xcode** or **Android Studio** (including a simulator or a physical device).
 ```console
-foo@bar:~$ git clone https://github.com/AStA-HTWG-Konstanz/app.git && cd app
-foo@bar:~$ yarn install
-foo@bar:~$ react-native run-ios
+git clone https://github.com/AStA-HTWG-Konstanz/app.git && cd app
+yarn install
+react-native run-ios
 ```
 
 ### How to contribute
