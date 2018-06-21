@@ -22,7 +22,7 @@ export const widgetEnum = {
     EVENT   : 3,
     ENDLICHT: 4,
     GRADES  : 5,
-    //last index (6) is reserved for settings widget
+    //last index (see below) is reserved for settings widget
 };
 export const settingsWidgetIndex = 6;
 
