@@ -33,12 +33,12 @@ class GradesWidget extends Component {
                                 {strings('grades.title')}
                             </Text>
                         </View>
-                        <View style={widgetContentIcon}>
+                        <View style={Object.assign({}, widgetContentIcon, {marginTop: pRatio*9})}>
                             <Image
                                 source={student_hat}
                                 style={{
-                                    width: pRatio*50,
-                                    height: pRatio*30
+                                    width: pRatio*40,
+                                    height: pRatio*24
                                 }}
                             />
                         </View>

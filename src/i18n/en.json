@@ -65,6 +65,7 @@
     "availableWidgetsHeader" : "Available Widgets",
     "impressumDev"  : "Developed by",
     "impressumDesign": "Designed by",
+    "impressumProf" : "Supervised by",
     "BALANCE"       : "Balance",
     "CANTEEN"       : "Canteen",
     "ENDLICHT"      : "Endlicht",
@@ -75,6 +76,6 @@
   },
   "language" : {
     "en"            : "English",
-    "de"            : "German"
+    "de"            : "Deutsch"
   }
 }

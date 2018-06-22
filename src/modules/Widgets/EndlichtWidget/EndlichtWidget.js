@@ -95,6 +95,7 @@ class EndlichtWidget extends Component {
                                 source={coffee}
                                 style={{
                                     marginTop: -pRatio*7,
+                                    marginLeft: pRatio * 5,
                                     width: pRatio*40,
                                     height: pRatio*40
                                 }}
