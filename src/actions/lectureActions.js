@@ -5,10 +5,8 @@ import connector from 'src/backend_connection';
 
 export function getLectures() {
     return (dispatch, getState) => {
-        const currentState = getState().loginReducer;
-        const username = currentState.username;
-        const password = currentState.password;
-        connector.getLectures(username, password)
+        const {isStudent, username, password} = getState().loginReducer;
+        connector.getLectures(username, password, isStudent)
             .then( function (lectures) {
                     if (Platform.OS === 'ios') {
                         SplashScreen.hide();

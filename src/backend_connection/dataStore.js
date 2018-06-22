@@ -267,10 +267,10 @@ export default class DataStore {
      * @return Promise
      * @resolve Array of lectures (later on, array of days)
      */
-    getLectures(username, password) {
+    getLectures(username, password, isStudent) {
         const instance = this;
         return new Promise( function(resolve) {
-            instance.fireRequest(resolve, restTypes.POST, api.lectures, 'lectures', {username: username, password: password})
+            instance.fireRequest(resolve, restTypes.POST, api.lectures, 'lectures', {username: username, password: password, student: isStudent})
         });
     }
 
