@@ -110,10 +110,13 @@ export default class App extends Component {
 
 
 const loginNavStyle = {
-    navBarHidden: true
+    navBarHidden: true,
+    statusBarTextColorScheme: 'light'
 };
 
 const appNavStyle = Object.assign({}, genericNavBarStyle, {
     navBarBackgroundColor: colorScheme.botticelli,
-    navBarTextColor: 'black'
+    navBarTextColor: 'black',
+    statusBarTextColorScheme: 'dark',
+    statusBarColor: colorScheme.blue_stone_dark
 });
