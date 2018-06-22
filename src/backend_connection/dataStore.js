@@ -208,7 +208,7 @@ export default class DataStore {
             try {
                 const credentials = await Keychain.getGenericPassword();
                 if (credentials.username === '') {  // remember me was turned off
-                    return resolve({username: '', password: '', rememberMe: false});
+                    return resolve({username: '', password: '', rememberMe: true});
                 } else {
                     return resolve(Object.assign({}, credentials, {rememberMe: true}));
                 }
@@ -216,7 +216,7 @@ export default class DataStore {
                 if (__DEV__) {
                     console.log('No credentials found: ', error);
                 }
-                return resolve({username: '', password: '', rememberMe: false});
+                return resolve({username: '', password: '', rememberMe: true});
             }
         });
     }
