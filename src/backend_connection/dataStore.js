@@ -1,4 +1,5 @@
 import PouchDB from 'pouchdb-react-native';
+import * as Keychain from 'react-native-keychain';
 import I18n from 'react-native-i18n';
 import { NetInfo, Platform } from 'react-native';
 import randomToken from 'random-token';
@@ -41,11 +42,7 @@ export default class DataStore {
      */
     login(username, password, rememberMe) {
         const instance = this;
-        storeLocally('credentials', {
-            username: username,
-            password: password,
-            rememberMe: rememberMe
-        });
+        instance.setCredentials(username, password, rememberMe);
 
         // Prepare headers
         const headers = Object.assign({}, genericHeader, {
@@ -105,7 +102,8 @@ export default class DataStore {
                                 }
                             })
                             .catch((err) => {
-
+                                console.log('invalid json response login', err);
+                                resolve({success: false, isStudent: undefined});
                             })
 
                     } else {
@@ -206,30 +204,20 @@ export default class DataStore {
      * @resolve Object containing name, password and rememberMe ( rememberMe = false, if nothing has been stored)
      */
     getCredentials() {
-        return new Promise( function(resolve) {
-            db.get('credentials')
-                .then(function(doc) {
-                    if (doc.data.rememberMe) {
-                        resolve( doc.data );
-                    } else {
-                        resolve(
-                            {
-                                username    : '',
-                                password    : '',
-                                rememberMe  : true
-                            }
-                        );
-                    }
-                })
-                .catch(function() {
-                    resolve(
-                        {
-                            username    : '',
-                            password    : '',
-                            rememberMe  : true
-                        }
-                    );
-                });
+        return new Promise(async (resolve) => {
+            try {
+                const credentials = await Keychain.getGenericPassword();
+                if (credentials.username === '') {  // remember me was turned off
+                    return resolve({username: '', password: '', rememberMe: true});
+                } else {
+                    return resolve(Object.assign({}, credentials, {rememberMe: true}));
+                }
+            } catch (error) {
+                if (__DEV__) {
+                    console.log('No credentials found: ', error);
+                }
+                return resolve({username: '', password: '', rememberMe: true});
+            }
         });
     }
 
@@ -247,62 +235,17 @@ export default class DataStore {
         });
     }
 
-    getGrades() {
+    getGrades(username, password) {
         const instance = this;
 
         return new Promise(function (resolve) {
             db.get('gradesToken')
                 .then((doc) => {
-                    instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', {token: doc.data});
+                    instance.refreshGrades(username, password, resolve, doc.data);
                 })
                 .catch((err) => {
                     if (err.status === 404) {  //no token existing
-                        // generate token + manual fetch request
-                        const token = randomToken(12);
-
-                        if (!instance.isConnected) {
-                            resolve(undefined);
-                            return;
-                        }
-                        storeLocally('gradesToken', token);
-
-                        db.get('session-cookie').then((cookie) => {
-                            /*if (cookie === '') {  // no cookie available
-                                resolve(undefined);
-                                removeDocument('gradesToken');  // try to register at the next app launch
-                            }
-                            */
-
-                            instance.getCredentials().then((credentials) => {
-                                const headers = Object.assign({}, genericHeader, {
-                                    'Set-Cookie': cookie.data.name + '=' + cookie.data.value
-                                });
-                                const body = Object.assign({'token': token}, credentials);
-                                const request = {
-                                    method  : 'POST',
-                                    headers : headers,
-                                    body    : JSON.stringify(body)
-                                };
-
-                                fetch(api.gradesCreate, request)
-                                    .then((response) => {
-                                        if (response.ok) {
-                                            instance.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
-                                        }
-                                    })
-                                    .catch((err) => {
-                                        if (__DEV__) {
-                                            console.log('Failed to create grades token', err);
-                                        }
-                                        removeDocument('gradesToken');  // try to register at the next app launch
-                                    });
-                            });
-                        }).catch((err) => {
-                            if (__DEV__) {
-                                console.log('No cookie available when creating grades token', err);
-                            }
-                            removeDocument('gradesToken');  // try to register at the next app launch
-                        });
+                        instance.refreshGrades(resolve);  // invoke without token to generate a new one
                     }
             });
         });
@@ -324,12 +267,10 @@ export default class DataStore {
      * @return Promise
      * @resolve Array of lectures (later on, array of days)
      */
-    getLectures() {
+    getLectures(username, password, isStudent) {
         const instance = this;
         return new Promise( function(resolve) {
-            instance.getCredentials().then((credentials) => {
-                instance.fireRequest(resolve, restTypes.POST, api.lectures, 'lectures', credentials)
-            });
+            instance.fireRequest(resolve, restTypes.POST, api.lectures, 'lectures', {username: username, password: password, student: isStudent})
         });
     }
 
@@ -375,7 +316,15 @@ export default class DataStore {
         return new Promise(function(resolve) {
             db.get('widgetSelection')
                 .then(function(doc) {
-                    resolve(doc.data);
+                    if (doc.data.includes(6)) {  // adjust selection to the new widgets (no news widget any longer)
+                        db.put({  // save preselection
+                            _id : 'widgetSelection',
+                            data: widgetPreselectionStudent
+                        });
+                        resolve(widgetPreselectionStudent);
+                    } else {
+                        resolve(doc.data);
+                    }
                 })
                 .catch(function(err) {
                     if (err.status === 404) {  // not found -> initial app start after installation
@@ -403,6 +352,68 @@ export default class DataStore {
                 })
         });
     }
+
+    refreshGrades = (username, password, resolve, token) => {
+        const tokenPassed = token !== undefined;
+        if (!this.isConnected) {
+            resolve(undefined);
+            return;
+        }
+
+        if (!tokenPassed) {  // initial app start; no token stored
+            // generate token + manual fetch request
+            token = randomToken(12);
+            storeLocally('gradesToken', token);
+        }
+
+        db.get('session-cookie').then((cookie) => {
+            /*  Uncomment when backend fixed the issue with undefined=undefined as a valid cookie
+            if (cookie === '') {  // no cookie available
+                resolve(undefined);
+                removeDocument('gradesToken');  // try to register at the next app launch
+            }
+            */
+
+            const headers = Object.assign({}, genericHeader, {
+                'Set-Cookie': cookie.data.name + '=' + cookie.data.value
+            });
+            const body = Object.assign({'token': token}, {username: username, password: password});
+            const request = {
+                method  : 'POST',
+                headers : headers,
+                body    : JSON.stringify(body)
+            };
+
+            fetch(api.gradesRefresh, request)
+                .then((response) => {
+                    if (response.ok) {
+                        this.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                    } else {
+                        if (tokenPassed) {  // could  also be that qisserver is down -> don't refresh but get cached data from backend
+                            this.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                        } else {
+                            resolve(undefined);
+                        }
+                    }
+                }, () => {  // promise rejected -> request timeout
+                    if (__DEV__) {
+                        console.log('Promise of grades token request rejected');
+                    }
+                    resolve(undefined);
+                })
+                .catch((err) => {
+                    if (__DEV__) {
+                        console.log('Failed to create grades token', err);
+                    }
+                    resolve(undefined);
+                });
+        }).catch((err) => {
+            if (__DEV__) {
+                console.log('No cookie available when creating grades token', err);
+                resolve(undefined);
+            }
+        });
+    };
 
     setLanguage(language) {
         storeLocally('language', language);
@@ -447,6 +458,14 @@ export default class DataStore {
                     }
                 });
         });
+    }
+
+    setCredentials(username, password, rememberMe) {
+        if (rememberMe) {
+            Keychain.setGenericPassword(username, password).then(() => {});
+        } else {
+            Keychain.setGenericPassword('', '').then(() => {});  // don't store credentials
+        }
     }
 
     /**
@@ -514,6 +533,8 @@ export default class DataStore {
                         console.log(url, response.status);
                         getLocal();
                     }
+                }, () => {  // promise rejected -> request timeout
+                    getLocal();
                 })
                 .catch((error) => {
                     // Fetching didn't work. Getting local data

@@ -3,6 +3,7 @@ package com.htwgcampus;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.keychain.KeychainPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -30,7 +31,8 @@ public class MainApplication extends NavigationApplication {
         return Arrays.<ReactPackage>asList(
             new VectorIconsPackage(),
             new RNI18nPackage(),
-            new SplashScreenReactPackage()
+            new SplashScreenReactPackage(),
+            new KeychainPackage()
         );
     }
 

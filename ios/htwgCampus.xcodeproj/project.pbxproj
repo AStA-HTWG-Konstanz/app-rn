@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -23,6 +24,7 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		175A0047E67C47E58CFF4F0D /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7552AB7D2CC94B7EB8DCFBC3 /* libRNVectorIcons.a */; };
+		182E9522072842F7A399E649 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BFA630DD5746B4B75D4E4D /* libRNKeychain.a */; };
 		188AFF5D91BA41CD817AA635 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53AB175A55B4B6DB36F445E /* EvilIcons.ttf */; };
 		2160A5BD31AC4A56AE934D7E /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE1EF1775354FEFBFC15D3F /* libSplashScreen.a */; };
 		2D819723FA024DF1820C03F9 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1602043DD5494F9E527991 /* libReactNativeNavigation.a */; };
@@ -95,6 +97,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 15209BEF1D250F63000D0F44;
 			remoteInfo = LRDRCTSimpleToast;
+		};
+		016DB9EC20DA2B560068A902 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61BEDC6853C74FF39A22DBDA /* RNKeychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D82366F1B0CE05B005A9EF3;
+			remoteInfo = RNKeychain;
+		};
+		016DB9EE20DA2B560068A902 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61BEDC6853C74FF39A22DBDA /* RNKeychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6478985F1F38BF9100DA1C12;
+			remoteInfo = "RNKeychain-tvOS";
 		};
 		018B59DD207BFB740049E411 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -397,9 +413,11 @@
 		1AECCF8961304892AE5E20CB /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = LRDRCTSimpleToast.xcodeproj; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; };
 		1E467C5869734EEDB95988CA /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		33BFA630DD5746B4B75D4E4D /* libRNKeychain.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNKeychain.a; sourceTree = "<group>"; };
 		3EB70A6E40C94773A5DBAA97 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		3FE1EF1775354FEFBFC15D3F /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		61BEDC6853C74FF39A22DBDA /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		62A262247A3A4B3ABE41CB30 /* Swiss721_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Swiss721_bold.ttf; path = ../assets/fonts/Swiss721/Swiss721_bold.ttf; sourceTree = "<group>"; };
 		7552AB7D2CC94B7EB8DCFBC3 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -458,6 +476,7 @@
 				48F48DFBCF5C471AA322E0E0 /* libRNI18n.a in Frameworks */,
 				AF63C4C2E0BF45B4B805B997 /* libLRDRCTSimpleToast.a in Frameworks */,
 				2160A5BD31AC4A56AE934D7E /* libSplashScreen.a in Frameworks */,
+				182E9522072842F7A399E649 /* libRNKeychain.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +550,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		016DB9BD20DA2B560068A902 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				016DB9ED20DA2B560068A902 /* libRNKeychain.a */,
+				016DB9EF20DA2B560068A902 /* libRNKeychain.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		018B59D9207BFB720049E411 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +586,7 @@
 				EC3360C687C84EC3B956439A /* libRNI18n-tvOS.a */,
 				86FC5EA4E98944099FC69C6A /* libLRDRCTSimpleToast.a */,
 				3FE1EF1775354FEFBFC15D3F /* libSplashScreen.a */,
+				33BFA630DD5746B4B75D4E4D /* libRNKeychain.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -712,6 +741,7 @@
 				FA984DEFBAC54A1A9CA4E3ED /* RNI18n.xcodeproj */,
 				1AECCF8961304892AE5E20CB /* LRDRCTSimpleToast.xcodeproj */,
 				DCB4AF8086B247BEAE312BE4 /* SplashScreen.xcodeproj */,
+				61BEDC6853C74FF39A22DBDA /* RNKeychain.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -896,6 +926,10 @@
 					ProjectRef = FA984DEFBAC54A1A9CA4E3ED /* RNI18n.xcodeproj */;
 				},
 				{
+					ProductGroup = 016DB9BD20DA2B560068A902 /* Products */;
+					ProjectRef = 61BEDC6853C74FF39A22DBDA /* RNKeychain.xcodeproj */;
+				},
+				{
 					ProductGroup = 019CF949206D2F36003EB1DC /* Products */;
 					ProjectRef = 7B63B93C2B464925B0509B91 /* RNVectorIcons.xcodeproj */;
 				},
@@ -953,6 +987,20 @@
 			fileType = archive.ar;
 			path = libLRDRCTSimpleToast.a;
 			remoteRef = 0119230A20A874E800B77376 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		016DB9ED20DA2B560068A902 /* libRNKeychain.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNKeychain.a;
+			remoteRef = 016DB9EC20DA2B560068A902 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		016DB9EF20DA2B560068A902 /* libRNKeychain.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNKeychain.a;
+			remoteRef = 016DB9EE20DA2B560068A902 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		018B59DE207BFB740049E411 /* libRNI18n.a */ = {
@@ -1338,12 +1386,14 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = htwgCampusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1371,12 +1421,14 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = htwgCampusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1395,7 +1447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = HKNKD4H357;
 				HEADER_SEARCH_PATHS = (
@@ -1403,6 +1455,7 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = htwgCampus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
@@ -1426,13 +1479,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = HKNKD4H357;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = htwgCampus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;

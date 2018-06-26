@@ -41,6 +41,7 @@ class Settings extends Component {
 
 
         /***** News *****/
+        /*
         const newsHeader = this._getPanelHeader(strings('settings.news'));
         let newsContent;
         if (this.props.news_ctgry) {  // data available
@@ -61,7 +62,7 @@ class Settings extends Component {
                 content={newsContent}
             />
         );
-
+        */
         /***** Dashboard widgets *****/
         const widgetHeader = this._getPanelHeader('Widgets');
         let widgetContent;
@@ -117,6 +118,10 @@ class Settings extends Component {
                     {strings('settings.impressumDesign')}
                 </Text>
                 <Text>{impressum['designers']}</Text>
+                <Text style={styles.designersTitle}>
+                    {strings('settings.impressumProf')}
+                </Text>
+                <Text>{impressum['profs']}</Text>
             </View>
         );
         const about = (
@@ -137,12 +142,14 @@ class Settings extends Component {
         );
 
         /***** Plugging everything together *****/
+        /*
+            {news}
+            <View style={styles.separator}/>
+        */
         return (
             <ScrollView style={styles.page}>
                 {dismissDrawer}
                 <View style={styles.container}>
-                    {news}
-                    <View style={styles.separator}/>
                     {widgetSelection}
                     <View style={styles.separator}/>
                     {language}

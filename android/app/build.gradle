@@ -117,8 +117,8 @@ android {
         applicationId "com.htwgcampus"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 33
-        versionName "0.0.2"
+        versionCode 39
+        versionName "0.0.3"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -170,6 +170,7 @@ dependencies {
     compile project(':react-native-i18n')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-splash-screen')
+    compile project(':react-native-keychain')
 }
 
 // Run this once to be able to run the application with BUCK

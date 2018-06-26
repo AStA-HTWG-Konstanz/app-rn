@@ -94,9 +94,10 @@ class EndlichtWidget extends Component {
                             <Image
                                 source={coffee}
                                 style={{
-                                    marginTop: -pRatio*3,
-                                    width: pRatio*32,
-                                    height: pRatio*32
+                                    marginTop: -pRatio*7,
+                                    marginLeft: pRatio * 5,
+                                    width: pRatio*40,
+                                    height: pRatio*40
                                 }}
                             />
                         </View>
