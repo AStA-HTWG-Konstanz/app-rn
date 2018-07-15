@@ -34,7 +34,6 @@ export const style = StyleSheet.create({
     iconContainer : {
         marginTop       : pRatio*5,
         marginRight     : pRatio*10,
-        backgroundColor : 'white',
     },
     menuContent : {
         marginLeft      : pRatio*10,

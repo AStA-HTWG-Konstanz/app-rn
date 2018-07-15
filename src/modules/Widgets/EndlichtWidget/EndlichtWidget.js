@@ -112,4 +112,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps)(EndlichtWidget);
+export default connect(mapStateToProps, null, null, {"withRef" : true})(EndlichtWidget);

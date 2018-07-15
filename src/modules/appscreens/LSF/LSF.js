@@ -134,4 +134,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LSF);
+export default connect(mapStateToProps, mapDispatchToProps, null, {"withRef" : true})(LSF);

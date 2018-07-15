@@ -13,17 +13,58 @@ import Grades from 'src/modules/appscreens/Grades';
 import BackButton from 'src/modules/BackButton';
 import BurgerButton from 'src/modules/BurgerButton';
 
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+
+export function reduxHOC(Scene, store) {
+    return class extends Component {
+        static options = {
+            ...Scene.options,
+        };
+
+        componentDidMount() {
+            this.instance = this.refs.child.getWrappedInstance();
+        }
+
+        resendEvent = (eventName, params) => {
+            if (this.instance && this.instance[eventName]) {
+                this.instance[eventName](params);
+            }
+        };
+
+        componentDidAppear() {
+            this.resendEvent('componentDidAppear');
+        }
+
+        componentDidDisappear() {
+            this.resendEvent('componentDidDisappear');
+        }
+
+        onNavigationButtonPressed(buttonId) {
+            this.resendEvent('onNavigationButtonPressed', buttonId);
+        }
+
+        render() {
+            return (
+                <Provider store={store}>
+                    <Scene ref="child" {...this.props} />
+                </Provider>
+            );
+        }
+    };
+}
+
 export function registerComponents(store, Provider) {
     // Register screens
-    Navigation.registerComponent('app.Canteen', () => Canteen, store, Provider);
-    Navigation.registerComponent('app.Dashboard', () => Dashboard, store, Provider);
-    Navigation.registerComponent('app.Endlicht', () => Endlicht, store, Provider);
-    Navigation.registerComponent('app.Events', () => Events, store, Provider);
-    Navigation.registerComponent('app.Grades', () => Grades, store, Provider);
-    Navigation.registerComponent('app.Login', () => Login, store, Provider);
-    Navigation.registerComponent('app.News', () => News, store, Provider);
-    Navigation.registerComponent('app.Settings', () => Settings, store, Provider);
-    Navigation.registerComponent('app.LSF', () => LSF, store, Provider);
+    Navigation.registerComponent('app.Canteen', () => reduxHOC(Canteen, store));
+    Navigation.registerComponent('app.Dashboard', () => reduxHOC(Dashboard, store));
+    Navigation.registerComponent('app.Endlicht', () => reduxHOC(Endlicht, store));
+    Navigation.registerComponent('app.Events', () => reduxHOC(Events, store));
+    Navigation.registerComponent('app.Grades', () => reduxHOC(Grades, store));
+    Navigation.registerComponent('app.Login', () => reduxHOC(Login, store));
+    Navigation.registerComponent('app.News', () => reduxHOC(News, store));
+    Navigation.registerComponent('app.Settings', () => reduxHOC(Settings, store));
+    Navigation.registerComponent('app.LSF', () => reduxHOC(LSF, store));
 
     // Register navigation bar buttons
     Navigation.registerComponent('BackButton', () => BackButton);

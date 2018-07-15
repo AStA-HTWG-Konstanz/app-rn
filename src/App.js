@@ -57,35 +57,64 @@ export default class App extends Component {
     }
 
     startApp() {
-        let dashboardScreen = {
-            screen: 'app.Dashboard',
-            title: 'DASHBOARD',
-            navigatorStyle: appNavStyle
-        };
-
-        if (Platform.OS === 'android') {
-            dashboardScreen.navigatorButtons = {
-                leftButtons: [
-                    {
-                        id: 'sideMenu',
-                        icon: ic_burger_android,
-                        disableIconTint: true
-                    }
-                ]
-            }
-        }
-
         switch(this.currentRoot) {
             case 'login':
-                Navigation.startSingleScreenApp({
-                    screen: {
-                        screen: 'app.Login',
-                        title: 'HTWG Campus',
-                        navigatorStyle: loginNavStyle
-                    },
+                Navigation.setRoot({
+                    root: {
+                        stack: {
+                            children: [{
+                                component: {
+                                    name: 'app.Login'
+                                }
+                            }],
+                            options: {
+                                topBar: {
+                                    visible: false
+                                },
+                                statusBar: {
+                                    style: 'light'
+                                }
+                            }
+                        }
+                    }
                 });
                 break;
             case 'after-login':
+                Navigation.setRoot({
+                    root: {
+                        stack: {
+                            children: [{
+                                component: {
+                                    name: 'app.Dashboard'
+                                }
+                            }],
+                            options: {
+                                topBar: {
+                                    visible: false,
+                                    leftButtons : {
+                                        id: 'sideMenu',
+                                        component: {
+                                            name: 'BurgerButton'
+                                        },
+                                        disableIconTint: false
+                                    }
+                                },
+                                statusBar: {
+                                    style: 'light'
+                                }
+                            }
+                        },
+                        sideMenu: {
+                            left: {
+                                component: {
+                                    name: 'app.Settings'
+                                },
+                                width: 100
+                            }
+                        }
+                    }
+                });
+                /*
                 Navigation.startSingleScreenApp({
                     screen: dashboardScreen,
                     drawer: {
@@ -99,6 +128,7 @@ export default class App extends Component {
                         disableOpenGesture: true
                     }
                 });
+                */
                 break;
             default:
                 console.log('Unknown app root');
@@ -108,11 +138,6 @@ export default class App extends Component {
     }
 }
 
-
-const loginNavStyle = {
-    navBarHidden: true,
-    statusBarTextColorScheme: 'light'
-};
 
 const appNavStyle = Object.assign({}, genericNavBarStyle, {
     navBarBackgroundColor: colorScheme.botticelli,

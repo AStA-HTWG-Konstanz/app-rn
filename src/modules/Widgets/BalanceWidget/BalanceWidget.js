@@ -48,7 +48,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps)(BalanceWidget);
+export default connect(mapStateToProps, null, null, {"withRef" : true})(BalanceWidget);
 
 /*<View style={style.contentView}>
                     <Text style={style.contentText}>

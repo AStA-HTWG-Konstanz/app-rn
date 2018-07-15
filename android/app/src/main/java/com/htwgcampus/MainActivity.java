@@ -1,11 +1,11 @@
 package com.htwgcampus;
 
 import com.facebook.react.ReactActivity;
-import com.reactnativenavigation.controllers.SplashActivity;
+import com.reactnativenavigation.NavigationActivity;
 import org.devio.rn.splashscreen.SplashScreen;
 import android.os.Bundle;
 
-public class MainActivity extends SplashActivity {
+public class MainActivity extends NavigationActivity {
 
     /**
      * Returns the name of the main component registered from JavaScript.

@@ -99,4 +99,4 @@ const mapStateToProps = (state) => ({
     menu: state.canteenReducer.menu
 });
 
-export default connect(mapStateToProps)(CanteenWidget);
+export default connect(mapStateToProps, null, null, {"withRef" : true})(CanteenWidget);

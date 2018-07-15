@@ -59,4 +59,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps)(NewsWidget);
+export default connect(mapStateToProps, null, null, {"withRef" : true})(NewsWidget);

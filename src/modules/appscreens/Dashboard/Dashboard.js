@@ -14,9 +14,11 @@ import { getBackgroundView } from 'src/config/styles';
 class Dashboard extends Component{
     constructor(props) {
         super(props);
+        /*
         if (Platform.OS === 'ios') {
             props.navigator.setButtons(getSettingsButton(props.navigator));
         }
+        */
     }
 
     _renderSelection() {
@@ -143,4 +145,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps, null, {"withRef" : true})(Dashboard);

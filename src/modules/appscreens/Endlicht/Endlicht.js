@@ -115,4 +115,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Endlicht);
+export default connect(mapStateToProps, mapDispatchToProps, null, {"withRef" : true})(Endlicht);

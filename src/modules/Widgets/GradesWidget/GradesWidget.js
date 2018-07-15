@@ -53,4 +53,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps)(GradesWidget);
+export default connect(mapStateToProps, null, null, {"withRef" : true})(GradesWidget);

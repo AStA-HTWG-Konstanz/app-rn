@@ -49,4 +49,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps)(OpeningHoursWidget);
+export default connect(mapStateToProps, null, null, {"withRef" : true})(OpeningHoursWidget);

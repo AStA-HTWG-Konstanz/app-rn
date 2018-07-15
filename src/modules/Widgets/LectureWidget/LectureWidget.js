@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { Navigation } from 'react-native-navigation';
+
 import { style } from './styles';
 import { strings } from 'src/i18n';
 import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
@@ -57,15 +59,25 @@ class LectureWidget extends Component {
         const {navigator} = this.props;
         return  (
             <TouchableOpacity onPress={() => {
-                navigator.push({
-                    screen: 'app.LSF',
-                    title: strings('LSF.screenTitle'),
+                Navigation.push(this.props.componentId, {
+                    component: {
+                        name: 'app.LSF'
+                    },
+                    options: {
+                        topBar: {
+                            title: {
+                                text: strings('LSF.screenTitle')
+                            }
+                        }
+                    },
+                    /*  TODO: find in documentation
                     backButtonTitle: '',
                     navigatorButtons: getBackButton(navigator),
                     navigatorStyle: Object.assign({}, genericNavBarStyle, {
                         navBarBackgroundColor: colorScheme.botticelli,
                         navBarTextColor: 'black'
                     })
+                    */
                 })
             }}>
                 <View style={style.widgetContainer}>
@@ -95,4 +107,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps)(LectureWidget);
+export default connect(mapStateToProps, null, null, {"withRef" : true})(LectureWidget);

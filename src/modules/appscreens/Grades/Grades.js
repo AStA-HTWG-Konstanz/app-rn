@@ -161,4 +161,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Grades);
+export default connect(mapStateToProps, mapDispatchToProps, null, {"withRef" : true})(Grades);
