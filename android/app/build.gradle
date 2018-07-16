@@ -171,7 +171,6 @@ dependencies {
     compile project(':react-native-linear-gradient')
     compile project(':react-native-splash-screen')
     compile project(':react-native-keychain')
-    compile project(':react-native-navigation')
 }
 
 // Run this once to be able to run the application with BUCK
