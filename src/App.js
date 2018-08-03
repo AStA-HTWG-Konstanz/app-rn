@@ -1,13 +1,13 @@
 import React, {Component} from 'react'; // eslint-disable-line
 import { Provider } from 'react-redux';
-import { Platform } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import SplashScreen from 'react-native-splash-screen';
 
 import { registerComponents } from 'src/NavigationRegistry';
 import configureStore from 'src/store/configureStore';
 import { basicStyleSetup } from 'src/config/styles';
-import { genericNavBarStyle } from 'src/config/navigation';
+import { getTopBarOptions } from 'src/config/navigation';
 import * as canteenActions from 'src/actions/canteenActions';
 import * as loginActions from 'src/actions/loginActions';
 import * as languageActions from 'src/actions/languageActions';
@@ -15,6 +15,7 @@ import {colorScheme} from 'src/config/styles';
 import {ic_burger_android} from 'src/images';
 import connector from 'src/backend_connection';
 
+const {width} = Dimensions.get('window');
 
 // Setup
 const store = configureStore({});  // empty initial state
@@ -82,66 +83,49 @@ export default class App extends Component {
             case 'after-login':
                 Navigation.setRoot({
                     root: {
-                        stack: {
-                            children: [{
-                                component: {
-                                    name: 'app.Dashboard'
-                                }
-                            }],
-                            options: {
-                                topBar: {
-                                    visible: false,
-                                    leftButtons : {
-                                        id: 'sideMenu',
-                                        component: {
-                                            name: 'BurgerButton'
-                                        },
-                                        disableIconTint: false
-                                    }
-                                },
-                                statusBar: {
-                                    style: 'light'
-                                }
-                            }
-                        },
                         sideMenu: {
+                            id: 'idSideMenu',
                             left: {
                                 component: {
-                                    name: 'app.Settings'
-                                },
-                                width: 100
+                                    id: 'idSettings',
+                                    name: 'app.Settings',
+                                    options: {
+                                        disableOpenGesture: true
+                                    }
+                                }
+
+                            },
+                            center: {
+                                stack: {
+                                    id: 'idAppRoot',
+                                    children: [
+                                        {
+                                            component: {
+                                                id: 'idDashboard',
+                                                name: 'app.Dashboard',
+                                                options: getTopBarOptions('Dashboard', false, false)  // topBarTitle, isDarkScreen, isDetailScreen
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            options: {
+                                sideMenu: {
+                                    left: {
+                                        width: width,  // 100% screen width
+                                    },
+                                }
                             }
                         }
                     }
                 });
-                /*
-                Navigation.startSingleScreenApp({
-                    screen: dashboardScreen,
-                    drawer: {
-                        left: {
-                            screen: 'app.Settings'
-                        },
-                        style: {
-                            leftDrawerWidth: 100,  // % of the screen width
-                            contentOverlayColor: 'rgba(0,0,0,0.35)'
-                        },
-                        disableOpenGesture: true
-                    }
-                });
-                */
                 break;
             default:
-                console.log('Unknown app root');
+                if (__DEV__) {
+                    console.log('Unknown app root');
+                }
                 break;
         }
 
     }
 }
-
-
-const appNavStyle = Object.assign({}, genericNavBarStyle, {
-    navBarBackgroundColor: colorScheme.botticelli,
-    navBarTextColor: 'black',
-    statusBarTextColorScheme: 'dark',
-    statusBarColor: colorScheme.blue_stone_dark
-});

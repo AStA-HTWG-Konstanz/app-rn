@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Image, Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Navigation} from 'react-native-navigation';
 
 import { ic_back } from 'src/images';
 import { navBarButton } from 'src/config/styles';
@@ -24,7 +25,7 @@ export default class BackButton extends Component {
         return (
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => this.props.passedNavigator.pop()}
+                onPress={() => Navigation.pop(this.props.componentId)}
             >
                 <View style={styles.button}>
                     <Image

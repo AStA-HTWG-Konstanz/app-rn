@@ -3,11 +3,12 @@ import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { style } from './styles';
-import { colorScheme, pRatio, widgetContentIcon } from 'src/config/styles';
+import { pRatio, widgetContentIcon } from 'src/config/styles';
 import { strings } from 'src/i18n';
-import { genericNavBarStyle, getBackButton }  from 'src/config/navigation';
+import { getTopBarOptions }  from 'src/config/navigation';
 import { coffee } from 'src/images';
 import moment from 'moment';
+import { Navigation } from 'react-native-navigation';
 
 class EndlichtWidget extends Component {
     constructor(props) {
@@ -70,19 +71,16 @@ class EndlichtWidget extends Component {
             )
         }
         */
-        const {navigator} = this.props;
+        const {componentId} = this.props;
         return  (
             <TouchableOpacity onPress={() => {
-                navigator.push({
-                    screen: 'app.Endlicht',
-                    title: 'Endlicht',
-                    backButtonTitle: '',
-                    navigatorButtons: getBackButton(navigator),
-                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                        navBarBackgroundColor: colorScheme.botticelli,
-                        navBarTextColor: 'black'
-                    })
-                })
+                Navigation.push(componentId, {
+                    component: {
+                        id: 'idEndlicht',
+                        name: 'app.Endlicht',
+                        options: getTopBarOptions('Endlicht', false, true)
+                    }
+                });
             }}>
                 <View style={style.widgetContainer}>
                         <View style={style.titleView}>

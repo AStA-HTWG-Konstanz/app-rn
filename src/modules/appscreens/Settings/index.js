@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, FlatList, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CheckBox from 'react-native-checkbox';
@@ -29,10 +30,12 @@ class Settings extends Component {
                     size={iconStyle.size}
                     color={iconStyle.color}
                     onPress={() => {
-                        this.props.navigator.toggleDrawer({
-                            side: 'left',
-                            animated: true,
-                            to: 'missing'  // missing = the opposite of current state
+                        Navigation.mergeOptions(this.props.componentId, {
+                            sideMenu: {
+                                left: {
+                                    visible: false
+                                }
+                            }
                         });
                     }}
                 />

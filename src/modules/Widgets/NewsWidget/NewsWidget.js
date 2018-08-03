@@ -3,8 +3,8 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { style } from './styles';
 import { strings } from 'src/i18n';
-import { colorScheme } from 'src/config/styles';
-import { genericNavBarStyle, getBackButton }  from 'src/config/navigation';
+import { getTopBarOptions}  from 'src/config/navigation';
+import { Navigation } from 'react-native-navigation';
 
 class NewsWidget extends Component {
     constructor(props) {
@@ -18,19 +18,16 @@ class NewsWidget extends Component {
             numberNews = this.props.numberNews;
         }
 
-        const {navigator} = this.props;
+        const {componentId} = this.props;
         return  (
             <TouchableOpacity onPress={() => {
-                navigator.push({
-                    screen: 'app.News',
-                    title: strings('news.screenTitle'),
-                    backButtonTitle: '',
-                    navigatorButtons: getBackButton(navigator),
-                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                        navBarBackgroundColor: colorScheme.botticelli,
-                        navBarTextColor: 'black'
-                    })
-                })
+                Navigation.push(componentId, {
+                    component: {
+                        id: 'idNews',
+                        name: 'app.News',
+                        options: getTopBarOptions(strings('news.screenTitle'), false, true)
+                    }
+                });
             }}>
                 <View style={style.widgetContainer}>
                         <View style={style.titleView}>

@@ -328,7 +328,8 @@ export default class DataStore {
                 })
                 .catch(function(err) {
                     if (err.status === 404) {  // not found -> initial app start after installation
-                        getLocally('isStudent').then((isStudent) => {
+                        getLocally('isStudent')
+                        .then((isStudent) => {
                             if (isStudent) {
                                 db.put({  // save preselection
                                     _id : 'widgetSelection',
@@ -341,8 +342,14 @@ export default class DataStore {
                                     data: widgetPreselectionEmployee
                                 });
                                 resolve(widgetPreselectionEmployee);
-                            }
-                        });
+                            }})
+                            .catch(() => {
+                                db.put({  // save preselection
+                                    _id : 'widgetSelection',
+                                    data: widgetPreselectionStudent
+                                });
+                                resolve(widgetPreselectionStudent);
+                            });
                     } else {
                         if (__DEV__) {
                             console.log('getSelectedWidgets: ', err);
@@ -353,7 +360,7 @@ export default class DataStore {
         });
     }
 
-    refreshGrades = (username, password, resolve, token) => {
+    refreshGrades = (username, password, res, token) => {
         const tokenPassed = token !== undefined;
         if (!this.isConnected) {
             resolve(undefined);
@@ -392,25 +399,25 @@ export default class DataStore {
                         if (tokenPassed) {  // could  also be that qisserver is down -> don't refresh but get cached data from backend
                             this.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
                         } else {
-                            resolve(undefined);
+                            res(undefined);
                         }
                     }
                 }, () => {  // promise rejected -> request timeout
                     if (__DEV__) {
                         console.log('Promise of grades token request rejected');
                     }
-                    resolve(undefined);
+                    res(undefined);
                 })
                 .catch((err) => {
                     if (__DEV__) {
                         console.log('Failed to create grades token', err);
                     }
-                    resolve(undefined);
+                    res(undefined);
                 });
         }).catch((err) => {
             if (__DEV__) {
                 console.log('No cookie available when creating grades token', err);
-                resolve(undefined);
+                res(undefined);
             }
         });
     };

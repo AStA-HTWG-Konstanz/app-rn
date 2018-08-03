@@ -22,7 +22,7 @@ class Dashboard extends Component{
     }
 
     _renderSelection() {
-        const {navigator} = this.props;
+        const {componentId} = this.props;
 
         let views = [];
         if (this.props.widgetSelection) {
@@ -33,10 +33,10 @@ class Dashboard extends Component{
             let i = 0;
             while (i < widgetSelection.length) {  // don't forget to increment i after adding a widget
                 if (widgetSelection[i] < lengthwiseThreshold) {  // most simple case. Just add widget because it takes the full width
-                    views.push(widgetFactory(widgetSelection[i], navigator));
+                    views.push(widgetFactory(widgetSelection[i], componentId));
                     ++i;
                 } else if (widgetSelection[i] >= lengthwiseThreshold  && widgetSelection[i] < squareThreshold) {  // upright widget on the left side
-                    const leftUpright = widgetFactory(widgetSelection[i], navigator);
+                    const leftUpright = widgetFactory(widgetSelection[i], componentId);
                     ++i;
 
                     // Check if next widgets fit beside the upright widget
@@ -46,7 +46,7 @@ class Dashboard extends Component{
                             break;
                         }
                         if (widgetSelection[i] >= squareThreshold) {
-                            besideWidgets.push(widgetFactory(widgetSelection[i], navigator));
+                            besideWidgets.push(widgetFactory(widgetSelection[i], componentId));
                             ++i;
                         } else {
                             break;
@@ -71,15 +71,15 @@ class Dashboard extends Component{
                                 style={style.singleWidget}
                                 key={'uprightContainer' + i}
                             >
-                                {widgetFactory(widgetSelection[i], navigator)}
-                                {widgetFactory(widgetSelection[++i], navigator)}
+                                {widgetFactory(widgetSelection[i], componentId)}
+                                {widgetFactory(widgetSelection[++i], componentId)}
                             </View>
                         );
                         ++i;
                     } else if (widgetSelection[i+1] >= lengthwiseThreshold  && widgetSelection[i+1] < squareThreshold) {  // upright widget on the right side
-                        let besideWidgets = [widgetFactory(widgetSelection[i], navigator)];
+                        let besideWidgets = [widgetFactory(widgetSelection[i], componentId)];
                         if (widgetSelection[i+2] >= squareThreshold) {
-                            besideWidgets.push(widgetFactory(widgetSelection[i+2], navigator));
+                            besideWidgets.push(widgetFactory(widgetSelection[i+2], componentId));
                         } else {
 
                         }

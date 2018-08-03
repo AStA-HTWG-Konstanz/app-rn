@@ -66,7 +66,7 @@ export function registerComponents(store, Provider) {
     Navigation.registerComponent('app.Settings', () => reduxHOC(Settings, store));
     Navigation.registerComponent('app.LSF', () => reduxHOC(LSF, store));
 
-    // Register navigation bar buttons
+    // Register topBar buttons
     Navigation.registerComponent('BackButton', () => BackButton);
     Navigation.registerComponent('BurgerButton', () => BurgerButton);
 }

@@ -6,8 +6,7 @@ import { Navigation } from 'react-native-navigation';
 
 import { style } from './styles';
 import { strings } from 'src/i18n';
-import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
-import { colorScheme } from 'src/config/styles';
+import { getTopBarOptions } from 'src/config/navigation';
 
 class LectureWidget extends Component {
     constructor(props) {
@@ -56,29 +55,16 @@ class LectureWidget extends Component {
             time = strings("general.noDataTxt");
         }
 
-        const {navigator} = this.props;
+        const {componentId} = this.props;
         return  (
             <TouchableOpacity onPress={() => {
-                Navigation.push(this.props.componentId, {
+                Navigation.push(componentId, {
                     component: {
-                        name: 'app.LSF'
-                    },
-                    options: {
-                        topBar: {
-                            title: {
-                                text: strings('LSF.screenTitle')
-                            }
-                        }
-                    },
-                    /*  TODO: find in documentation
-                    backButtonTitle: '',
-                    navigatorButtons: getBackButton(navigator),
-                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                        navBarBackgroundColor: colorScheme.botticelli,
-                        navBarTextColor: 'black'
-                    })
-                    */
-                })
+                        id: 'idLSF',
+                        name: 'app.LSF',
+                        options: getTopBarOptions(strings('LSF.screenTitle'), false, true)
+                    }
+                });
             }}>
                 <View style={style.widgetContainer}>
                         <View style={style.titleView}>

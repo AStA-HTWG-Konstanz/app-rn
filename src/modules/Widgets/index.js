@@ -11,26 +11,26 @@ import { EventWidget } from './EventWidget';
 import { OpeningHoursWidget } from './OpeningHoursWidget';
 import { SettingsWidget } from './SettingsWidget';
 
-export const widgetFactory = function (widget, passedNavigator) {
+export const widgetFactory = function (widget, componentId) {
     switch (widget) {
         case widgetEnum.BALANCE:
             return <BalanceWidget key={'widget_BALANCE'}/>;
         case widgetEnum.CANTEEN:
-            return <CanteenWidget navigator={passedNavigator} key={'widget_CANTEEN'}/>;
+            return <CanteenWidget componentId={componentId} key={'widget_CANTEEN'}/>;
         case widgetEnum.EVENT:
-            return <EventWidget navigator={passedNavigator} key={'widget_EVENT'}/>;
+            return <EventWidget componentId={componentId} key={'widget_EVENT'}/>;
         case widgetEnum.ENDLICHT:
-            return <EndlichtWidget navigator={passedNavigator} key={'widget_ENDLICHT'}/>;
+            return <EndlichtWidget componentId={componentId} key={'widget_ENDLICHT'}/>;
         case widgetEnum.GRADES:
-            return <GradesWidget navigator={passedNavigator} key={'widget_GRADES'}/>;
+            return <GradesWidget componentId={componentId} key={'widget_GRADES'}/>;
         case widgetEnum.LECTURE:
-            return <LectureWidget navigator={passedNavigator} key={'widget_LECTURE'}/>;
+            return <LectureWidget componentId={componentId} key={'widget_LECTURE'}/>;
         case widgetEnum.NEWS:
-            return <NewsWidget navigator={passedNavigator} key={'widget_NEWS'}/>;
+            return <NewsWidget componentId={componentId} key={'widget_NEWS'}/>;
         //case widgetEnum.OPENING:
-        //    return <OpeningHoursWidget navigator={passedNavigator} key={'widget_OPENING'}/>;
+        //    return <OpeningHoursWidget componentId={componentId} key={'widget_OPENING'}/>;
         case settingsWidgetIndex:
-            return <SettingsWidget navigator={passedNavigator} key={'widget_SETTINGS'}/>;
+            return <SettingsWidget componentId={componentId} key={'widget_SETTINGS'}/>;
         default:
             if (__DEV__) {
                 console.log('Unsupported Widget: ', widget);

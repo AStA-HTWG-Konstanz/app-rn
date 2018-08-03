@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { style } from './styles'
 import { strings } from 'src/i18n';
-import { colorScheme } from 'src/config/styles';
-import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
+import { getTopBarOptions } from 'src/config/navigation';
+import { Navigation } from 'react-native-navigation';
 import { View, Text } from 'react-native';
 
 class CanteenWidget extends Component {
@@ -21,10 +21,11 @@ class CanteenWidget extends Component {
                 return i;
             }
         }
+        return 0;  // should not be reached
     }
 
     render() {
-        const {navigator} = this.props;
+        const {componentId} = this.props;
         let widgetContent;
         const currentDay = moment().format('d');
 
@@ -71,15 +72,12 @@ class CanteenWidget extends Component {
 
         return  (
             <TouchableOpacity onPress={() => {
-                navigator.push({
-                    screen: 'app.Canteen',
-                    title: strings('canteen.screenTitle'),
-                    backButtonTitle: '',
-                    navigatorButtons: getBackButton(navigator),
-                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                        navBarBackgroundColor: colorScheme.botticelli,
-                        navBarTextColor: 'black'
-                    })
+                Navigation.push(componentId, {
+                    component: {
+                        id: 'idCanteen',
+                        name: 'app.Canteen',
+                        options: getTopBarOptions(strings('canteen.screenTitle'), false, true)
+                    }
                 });
             }}>
                 <View style={style.widgetContainer}>

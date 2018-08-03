@@ -3,9 +3,10 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { style } from './styles';
 import { strings } from 'src/i18n';
-import { colorScheme, pRatio, widgetContentIcon } from 'src/config/styles';
-import { genericNavBarStyle, getBackButton } from 'src/config/navigation';
+import { pRatio, widgetContentIcon } from 'src/config/styles';
+import { getTopBarOptions } from 'src/config/navigation';
 import { calendar } from 'src/images';
+import { Navigation } from 'react-native-navigation';
 
 class EventWidget extends Component {
     constructor(props) {
@@ -13,18 +14,15 @@ class EventWidget extends Component {
     }
 
     render() {
-        const {navigator} = this.props;
+        const {componentId} = this.props;
         return  (
             <TouchableOpacity onPress={() => {
-                navigator.push({
-                    screen: 'app.Events',
-                    title: strings('events.screenTitle'),
-                    backButtonTitle: '',
-                    navigatorButtons: getBackButton(navigator),
-                    navigatorStyle: Object.assign({}, genericNavBarStyle, {
-                        navBarBackgroundColor: colorScheme.botticelli,
-                        navBarTextColor: 'black'
-                    })
+                Navigation.push(componentId, {
+                    component: {
+                        id: 'idEvents',
+                        name: 'app.Events',
+                        options: getTopBarOptions(strings('events.screenTitle'), false, true)
+                    }
                 });
             }}>
                 <View style={style.widgetContainer}>
