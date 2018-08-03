@@ -56,7 +56,8 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
             },
         },
         statusBar: {
-            style   : isDarkScreen ? 'light' : 'dark'
+            style   : isDarkScreen ? 'light' : 'dark',  // iOS
+            backgroundColor: isDarkScreen? colorScheme.botticelli : colorScheme.blue_stone_dark  // Android
         }
     };
 

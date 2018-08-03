@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 
 import { style } from './styles'
 import { lengthwiseThreshold, settingsWidgetIndex, squareThreshold } from 'src/config/settings';
-import { getSettingsButton } from 'src/config/navigation';
 import { widgetFactory } from 'src/modules/Widgets';
 import { ActionCreators } from 'src/actions';
 import { getBackgroundView } from 'src/config/styles';
@@ -28,7 +27,7 @@ class Dashboard extends Component{
         if (this.props.widgetSelection) {
             let widgetSelection = Object.assign([], this.props.widgetSelection);
             // HACK: push settings widget at the end of the list
-            widgetSelection.push(settingsWidgetIndex);
+            //widgetSelection.push(settingsWidgetIndex);
 
             let i = 0;
             while (i < widgetSelection.length) {  // don't forget to increment i after adding a widget
