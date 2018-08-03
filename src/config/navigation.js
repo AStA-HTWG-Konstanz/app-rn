@@ -42,27 +42,8 @@ export const getSettingsButton = (navigator) => {
     }
 };
 
-export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen) => {
-    let topBarButton;
-    if (isDetailScreen) {  // topBarButton is the back button
-        topBarButton = {
-            id: 'idBackButton',
-            component: {
-                name: 'BackButton',
-            },
-            text: ''
-        }
-    } else {  // Dashboard -> burger button
-        topBarButton = {
-            id: 'idBurgerButton',
-            component: {
-                name: 'BurgerButton'
-            },
-            text: ''
-        }
-    }
-
-    return {
+export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, screenId) => {
+    let topBarOptions = {
         topBar: {
             title   : {
                 text        : topBarTitle,
@@ -73,19 +54,40 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen) => {
             background: {
                 color       : isDarkScreen ? colorScheme.blue_stone_dark : colorScheme.botticelli
             },
-            leftButtons: [topBarButton]
         },
         statusBar: {
             style   : isDarkScreen ? 'light' : 'dark'
-        },
-        sideMenu: {
+        }
+    };
+
+    if (isDetailScreen) {  // topBarButton is the back button
+        topBarOptions.topBar.leftButtons = {
+            id: 'idBackButton',
+            component: {
+                name: 'BackButton',
+                passProps: {screenId}
+            },
+            text: ''
+        }
+    } else {  // Dashboard
+        topBarOptions.topBar.leftButtons = {
+            id: 'idBurgerButton',
+            component: {
+                name: 'BurgerButton'
+            },
+            text: ''
+        };
+
+        topBarOptions.sideMenu = {
             left: {
                 component: {
                     name: 'app.Settings'
                 }
             }
         }
-    };
+    }
+
+    return topBarOptions;
 };
 
 export const genericNavBarStyle = {

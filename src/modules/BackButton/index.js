@@ -25,7 +25,7 @@ export default class BackButton extends Component {
         return (
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => Navigation.pop(this.props.componentId)}
+                onPress={() => Navigation.pop(this.props.screenId)}
             >
                 <View style={styles.button}>
                     <Image

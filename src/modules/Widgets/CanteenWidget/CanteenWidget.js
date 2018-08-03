@@ -76,7 +76,7 @@ class CanteenWidget extends Component {
                     component: {
                         id: 'idCanteen',
                         name: 'app.Canteen',
-                        options: getTopBarOptions(strings('canteen.screenTitle'), false, true)
+                        options: getTopBarOptions(strings('canteen.screenTitle'), false, true, 'idCanteen')
                     }
                 });
             }}>

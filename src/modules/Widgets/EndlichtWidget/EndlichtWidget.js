@@ -78,7 +78,7 @@ class EndlichtWidget extends Component {
                     component: {
                         id: 'idEndlicht',
                         name: 'app.Endlicht',
-                        options: getTopBarOptions('Endlicht', false, true)
+                        options: getTopBarOptions('Endlicht', false, true, 'idEndlicht')
                     }
                 });
             }}>

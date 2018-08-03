@@ -21,7 +21,7 @@ class EventWidget extends Component {
                     component: {
                         id: 'idEvents',
                         name: 'app.Events',
-                        options: getTopBarOptions(strings('events.screenTitle'), false, true)
+                        options: getTopBarOptions(strings('events.screenTitle'), false, true, 'idEvents')
                     }
                 });
             }}>

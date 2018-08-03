@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Image, Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Navigation} from 'react-native-navigation';
 
 import { ic_burger } from 'src/images';
 import { navBarButton } from 'src/config/styles';
@@ -23,10 +24,12 @@ export default class BurgerButton extends Component {
         return (
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => this.props.passedNavigator.toggleDrawer({
-                    side: 'left',
-                    animated: true,
-                    to: 'missing'  // missing = the opposite of current state
+                onPress={() => Navigation.mergeOptions('idDashboard', {
+                    sideMenu: {
+                        left: {
+                            visible: true
+                        }
+                    }
                 })}
             >
                 <View style={styles.button}>

@@ -25,7 +25,7 @@ class NewsWidget extends Component {
                     component: {
                         id: 'idNews',
                         name: 'app.News',
-                        options: getTopBarOptions(strings('news.screenTitle'), false, true)
+                        options: getTopBarOptions(strings('news.screenTitle'), false, true, 'idNews')
                     }
                 });
             }}>

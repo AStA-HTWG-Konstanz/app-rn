@@ -62,7 +62,7 @@ class LectureWidget extends Component {
                     component: {
                         id: 'idLSF',
                         name: 'app.LSF',
-                        options: getTopBarOptions(strings('LSF.screenTitle'), false, true)
+                        options: getTopBarOptions(strings('LSF.screenTitle'), false, true, 'idLSF')
                     }
                 });
             }}>

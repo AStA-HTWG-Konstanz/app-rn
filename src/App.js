@@ -101,7 +101,7 @@ export default class App extends Component {
                                     children: [
                                         {
                                             component: {
-                                                id: 'idDashboard',
+                                                id: 'idDashboard',  // if you change this id, also change it in BurgerButton/index.js
                                                 name: 'app.Dashboard',
                                                 options: getTopBarOptions('Dashboard', false, false)  // topBarTitle, isDarkScreen, isDetailScreen
                                             }

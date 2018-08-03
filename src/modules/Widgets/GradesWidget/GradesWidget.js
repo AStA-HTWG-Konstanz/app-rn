@@ -21,7 +21,7 @@ class GradesWidget extends Component {
                     component: {
                         id: 'idGrades',
                         name: 'app.Grades',
-                        options: getTopBarOptions(strings('grades.title'), false, true)
+                        options: getTopBarOptions(strings('grades.title'), false, true, 'idGrades')
                     }
                 });
             }}>
