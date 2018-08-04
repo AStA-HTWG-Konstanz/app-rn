@@ -40,24 +40,27 @@
     "locationTitle" : "Lageplan"
   },
   "events"    : {
-    "screenTitle"   : "Termine"
+    "screenTitle"   : "TERMINE",
+    "widgetTitle"   : "Termine"
   },
   "grades"    : {
-    "title"         : "Noten",
+    "screenTitle"   : "NOTEN",
+    "widgetTitle"   : "Noten",
     "noData"        : "Momentan keine Daten verfügbar"
   },
   "news"      : {
-    "screenTitle"   : "News"
+    "screenTitle"   : "NEWS",
+    "widgetTitle"   : "Termine"
   },
   "LSF"       : {
-    "screenTitle"   : "Stundenplan",
+    "screenTitle"   : "STUNDENPLAN",
     "emptyTxt"      : "Keine Vorlesungen verfügbar",
     "selectLecture" : "Bitte pflege deinen Stundenplan im LSF"
   },
   "timetable" : {},
   "asta"      : {},
   "settings"  : {
-    "screenTitle"   : "Menü",
+    "screenTitle"   : "MENÜ",
     "about"         : "Über",
     "news"          : "News",
     "language"      : "Sprache",

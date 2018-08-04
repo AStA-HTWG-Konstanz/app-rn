@@ -21,14 +21,14 @@ class GradesWidget extends Component {
                     component: {
                         id: 'idGrades',
                         name: 'app.Grades',
-                        options: getTopBarOptions(strings('grades.title'), false, true, 'idGrades')
+                        options: getTopBarOptions(strings('grades.screenTitle'), false, true, 'idGrades')
                     }
                 });
             }}>
                 <View style={style.widgetContainer}>
                         <View style={style.titleView}>
                             <Text style={style.titleText}>
-                                {strings('grades.title')}
+                                {strings('grades.widgetTitle')}
                             </Text>
                         </View>
                         <View style={Object.assign({}, widgetContentIcon, {marginTop: pRatio*9})}>

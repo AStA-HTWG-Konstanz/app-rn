@@ -103,7 +103,7 @@ export default class App extends Component {
                                             component: {
                                                 id: 'idDashboard',  // if you change this id, also change it in BurgerButton/index.js
                                                 name: 'app.Dashboard',
-                                                options: getTopBarOptions('Dashboard', false, false)  // topBarTitle, isDarkScreen, isDetailScreen
+                                                options: getTopBarOptions('DASHBOARD', false, false)  // topBarTitle, isDarkScreen, isDetailScreen
                                             }
                                         }
                                     ]
@@ -112,7 +112,9 @@ export default class App extends Component {
                             options: {
                                 sideMenu: {
                                     left: {
-                                        width: width,  // 100% screen width
+                                        width: width,  // 100% screen width,
+                                        visible: false,
+                                        enabled: false
                                     },
                                 }
                             }

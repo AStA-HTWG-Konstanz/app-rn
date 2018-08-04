@@ -29,9 +29,9 @@
     "noLectureTxt"  : "Weekend"
   },
   "canteen"   : {
-    "screenTitle"   : "WEEKLY MENU",
+    "screenTitle"   : "MENU",
     "student"       : "Students",
-    "employee"       : "Employees"
+    "employee"      : "Employees"
   },
   "endlicht"  : {
     "closed"        : "Closed",
@@ -40,24 +40,27 @@
     "locationTitle" : "Location"
   },
   "events"    : {
-    "screenTitle"   : "Events"
-  },
-  "news"      : {
-    "screenTitle"   : "News"
+    "screenTitle"   : "EVENTS",
+    "widgetTitle"   : "Events"
   },
   "grades"    : {
-    "title": "Grades",
+    "screenTitle"   : "Grades",
+    "widgetTitle"   : "Grades",
     "noData"        : "No data yet"
   },
+  "news"      : {
+    "screenTitle"   : "NEWS",
+    "widgetTitle"   : "News"
+  },
   "LSF"       : {
-    "screenTitle"   : "Timetable",
+    "screenTitle"   : "TIMETABLE",
     "emptyTxt"      : "No lectures found",
     "selectLecture" : "Please schedule your timetable (LSF)"
   },
   "lsf"       : {},
   "asta"      : {},
   "settings"  : {
-    "screenTitle"   : "Settings",
+    "screenTitle"   : "SETTINGS",
     "about"         : "About",
     "news"          : "News",
     "language"      : "Language",

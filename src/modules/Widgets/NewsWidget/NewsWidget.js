@@ -32,7 +32,7 @@ class NewsWidget extends Component {
                 <View style={style.widgetContainer}>
                         <View style={style.titleView}>
                             <Text style={style.titleText}>
-                                News&nbsp;({numberNews})
+                                {strings('news.widgetTitle') (numberNews)}
                             </Text>
                         </View>
                         <View style={style.contentView}>

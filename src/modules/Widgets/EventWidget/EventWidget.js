@@ -28,7 +28,7 @@ class EventWidget extends Component {
                 <View style={style.widgetContainer}>
                     <View style={style.titleView}>
                         <Text style={style.titleText}>
-                            {strings('events.screenTitle')}
+                            {strings('events.widgetTitle')}
                         </Text>
                     </View>
                     <View style={widgetContentIcon}>
