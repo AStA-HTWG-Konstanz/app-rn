@@ -1,6 +1,5 @@
 package com.htwgcampus;
 
-import com.facebook.react.ReactActivity;
 import com.reactnativenavigation.NavigationActivity;
 import org.devio.rn.splashscreen.SplashScreen;
 import android.os.Bundle;
