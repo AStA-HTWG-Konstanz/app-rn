@@ -33,6 +33,13 @@ export default class App extends Component {
 
         if (Platform.OS === 'android') {
             SplashScreen.hide();
+            Navigation.events().registerAppLaunchedListener(() => {
+                Navigation.setDefaultOptions({
+                    topBar: {
+                        visible: false,
+                    },
+                });
+            });
         }
     }
 
@@ -69,8 +76,12 @@ export default class App extends Component {
                             options: {
                                 topBar: {
                                     visible: false,
-                                    drawBehind: true
-                                },
+                                    drawBehind: true,
+                                    animate: false,
+                                    background: {
+                                        color: '#999'
+                                    }
+                                 },
                                 statusBar: {
                                     style: 'light'
                                 }
