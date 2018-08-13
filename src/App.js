@@ -11,8 +11,6 @@ import { getTopBarOptions } from 'src/config/navigation';
 import * as canteenActions from 'src/actions/canteenActions';
 import * as loginActions from 'src/actions/loginActions';
 import * as languageActions from 'src/actions/languageActions';
-import {colorScheme} from 'src/config/styles';
-import {ic_burger_android} from 'src/images';
 import connector from 'src/backend_connection';
 
 const {width} = Dimensions.get('window');
@@ -70,7 +68,8 @@ export default class App extends Component {
                             }],
                             options: {
                                 topBar: {
-                                    visible: false
+                                    visible: false,
+                                    drawBehind: true
                                 },
                                 statusBar: {
                                     style: 'light'
