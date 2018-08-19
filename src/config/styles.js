@@ -2,7 +2,7 @@
 import React from 'react';
 import { Dimensions, Image, Platform, PixelRatio, View } from 'react-native';
 import CheckBox from 'react-native-checkbox';
-import { setCustomText, setCustomTextInput } from 'react-native-global-props';
+import { setCustomListView, setCustomText, setCustomTextInput, setCustomScrollView } from 'react-native-global-props';
 import {checkbox_checked, checkbox_unchecked} from 'src/images';
 import { option1, option2, option3, option4, option5, option6 } from 'src/images';
 
@@ -49,6 +49,16 @@ export const basicStyleSetup = function() {
         style: {
             fontFamily  : 'Swiss721',
         }
+    });
+
+    // Scrollview
+    setCustomScrollView({
+        showsVerticalScrollIndicator: false
+    });
+
+    // ListView
+    setCustomListView({
+        showsVerticalScrollIndicator: false
     });
 
     // Checkbox

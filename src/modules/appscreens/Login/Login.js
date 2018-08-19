@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CheckBox from 'react-native-checkbox';
 import Toast from 'react-native-simple-toast';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 
 import { ActionCreators } from 'src/actions';
 import { styles } from './styles';
@@ -57,8 +58,7 @@ class Login extends Component{
                             fontSize: 18,
                             fontFamily: 'Swiss721',
                             fontWeight: '100'
-                        }
-                        }
+                        } }
                     />
                 </View>
 
@@ -85,11 +85,12 @@ class Login extends Component{
         } else {
             return (
                 <View style={styles.page}>
-                    <KeyboardAvoidingView
-                        behavior='padding'
+                    <KeyboardAwareScrollView
+                        enableOnAndroid
+                        showsVerticalScrollIndicator={false}
                     >
                         {content}
-                    </KeyboardAvoidingView>
+                    </KeyboardAwareScrollView>
                 </View>
             );
         }

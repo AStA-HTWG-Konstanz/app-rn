@@ -12,12 +12,12 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
                 color       : isDarkScreen ? 'white' : 'black'
             },
             background: {
-                color       : isDarkScreen ? colorScheme.blue_stone_dark : colorScheme.botticelli
+                color       : isDarkScreen ? colorScheme.oxford_blue : colorScheme.botticelli
             },
         },
         statusBar: {
             style           : isDarkScreen ? 'light' : 'dark',  // iOS
-            backgroundColor : isDarkScreen? colorScheme.botticelli : colorScheme.blue_stone_dark  // Android
+            backgroundColor : isDarkScreen? colorScheme.botticelli : colorScheme.oxford_blue  // Android
         }
     };
 

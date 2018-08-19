@@ -12,6 +12,7 @@ import * as canteenActions from 'src/actions/canteenActions';
 import * as loginActions from 'src/actions/loginActions';
 import * as languageActions from 'src/actions/languageActions';
 import connector from 'src/backend_connection';
+import {colorScheme} from "./config/styles";
 
 const {width} = Dimensions.get('window');
 
@@ -38,6 +39,9 @@ export default class App extends Component {
                     topBar: {
                         visible: false,
                     },
+                    statusBar: {
+                        backgroundColor : colorScheme.oxford_blue
+                    }
                 });
             });
         }
@@ -78,9 +82,6 @@ export default class App extends Component {
                                     visible: false,
                                     drawBehind: true,
                                     animate: false,
-                                    background: {
-                                        color: '#999'
-                                    }
                                  },
                                 statusBar: {
                                     style: 'light'
@@ -88,7 +89,7 @@ export default class App extends Component {
                             }
                         }
                     }
-                });
+                }).catch((err) => { console.log('Navigation set login root problem: ', err)});
                 break;
             case 'after-login':
                 Navigation.setRoot({
@@ -130,7 +131,7 @@ export default class App extends Component {
                             }
                         }
                     }
-                });
+                }).catch((err) => { console.log('Navigation set new dashboard root problem: ', err)});
                 break;
             default:
                 if (__DEV__) {
