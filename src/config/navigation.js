@@ -1,6 +1,8 @@
 import { colorScheme } from 'src/config/styles';
 import { pRatio } from 'src/config/styles';
+import { Dimensions } from 'react-native';
 
+const {width} = Dimensions.get('window');
 
 export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, screenId) => {
     let topBarOptions = {
@@ -31,19 +33,22 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
             text: ''
         }
     } else {  // Dashboard
-        topBarOptions.topBar.leftButtons = {
-            id              : 'idBurgerButton',
+        topBarOptions.topBar.leftButtons = [{
+            id              : 'sideMenu',
             component: {
+                id          : 'idSideMenuBtn',
                 name        : 'BurgerButton'
             },
             text: ''
-        };
-
+        }];
         topBarOptions.sideMenu = {
             left: {
                 component: {
                     name    : 'app.Settings'
-                }
+                },
+                width: width,  // 100% screen width
+                visible: false,
+                enabled: false
             }
         }
     }

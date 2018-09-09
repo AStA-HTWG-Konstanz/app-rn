@@ -34,16 +34,6 @@ export default class App extends Component {
 
         if (Platform.OS === 'android') {
             SplashScreen.hide();
-            Navigation.events().registerAppLaunchedListener(() => {
-                Navigation.setDefaultOptions({
-                    topBar: {
-                        visible: false,
-                    },
-                    statusBar: {
-                        backgroundColor : colorScheme.oxford_blue
-                    }
-                });
-            });
         }
     }
 
@@ -95,14 +85,11 @@ export default class App extends Component {
                 Navigation.setRoot({
                     root: {
                         sideMenu: {
-                            id: 'idSideMenu',
+                            id: 'sideMenu',
                             left: {
                                 component: {
                                     id: 'idSettings',
-                                    name: 'app.Settings',
-                                    options: {
-                                        disableOpenGesture: true
-                                    }
+                                    name: 'app.Settings'
                                 }
 
                             },
@@ -118,15 +105,6 @@ export default class App extends Component {
                                             }
                                         }
                                     ]
-                                }
-                            },
-                            options: {
-                                sideMenu: {
-                                    left: {
-                                        width: width,  // 100% screen width,
-                                        visible: false,
-                                        enabled: false
-                                    },
                                 }
                             }
                         }

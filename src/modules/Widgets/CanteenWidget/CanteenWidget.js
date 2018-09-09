@@ -35,7 +35,7 @@ class CanteenWidget extends Component {
                     <Text style={style.contentText}>{strings('dashboard.weekend')}</Text>
                 </View>
             )
-        } else if (this.props.menu) {  // data retrieved
+        } else if (this.props.menu && this.props.menu.menu.length > 0) {  // data retrieved
             const mealIndex = this.getTodaysMeal();
             const {title, ctgry, priceStud} = this.props.menu.menu[mealIndex]['meals'][0];
             let student = strings('canteen.student');

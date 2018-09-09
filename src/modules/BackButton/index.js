@@ -3,7 +3,6 @@ import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 
 import { ic_back } from 'src/images';
-import { navBarButton } from 'src/config/styles';
 
 
 const styles = StyleSheet.create({
@@ -12,7 +11,10 @@ const styles = StyleSheet.create({
         justifyContent  : 'center',
         alignItems      : 'center',
     },
-    image: navBarButton
+    image: {
+        width: 30,
+        height: 30
+    }
 });
 
 

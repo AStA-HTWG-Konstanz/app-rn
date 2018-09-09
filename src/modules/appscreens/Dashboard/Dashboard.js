@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Platform, RefreshControl, ScrollView, View} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Navigation } from 'react-native-navigation';
 
 import { style } from './styles'
 import { lengthwiseThreshold, settingsWidgetIndex, squareThreshold } from 'src/config/settings';
@@ -13,11 +14,6 @@ import { getBackgroundView } from 'src/config/styles';
 class Dashboard extends Component{
     constructor(props) {
         super(props);
-        /*
-        if (Platform.OS === 'ios') {
-            props.navigator.setButtons(getSettingsButton(props.navigator));
-        }
-        */
     }
 
     _renderSelection() {

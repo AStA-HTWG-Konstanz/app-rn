@@ -28,11 +28,6 @@ export const panelIcon = {
     color   : colorScheme.persian_green
 };
 
-export const navBarButton = {
-    width: 37,
-    height: 37
-};
-
 // Supposed to be invoked by the entry point to the app -> App.js
 // Swiss721 or Blogger Sans are available fonts from our corporate design
 export const basicStyleSetup = function() {
