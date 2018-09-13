@@ -42,17 +42,26 @@ export default class App extends Component {
         const {root} = state.loginReducer;
         const {language} = state.languageReducer;
         // handle a root change
-        if (this.currentRoot !== root || this.language !== language) {
+        if (this.currentRoot !== root ) {
             this.currentRoot = root;
-
-            if (this.language !== language) {
-                store.dispatch(canteenActions.getMenu(language));
-            }
-            this.language = language;
 
             if (this.currentRoot !== undefined) {
                 this.startApp();
             }
+        } else if (this.language !== language) {
+            this.language = language;
+            Navigation.setRoot({
+                root: {
+                    stack: {
+                        children: [
+                        ],
+                        options: {}
+                    }
+                }
+            });
+            store.dispatch(canteenActions.getMenu(language));
+
+            this.startApp();
         }
     }
 
@@ -88,18 +97,15 @@ export default class App extends Component {
                             id: 'sideMenu',
                             left: {
                                 component: {
-                                    id: 'idSettings',
                                     name: 'app.Settings'
                                 }
 
                             },
                             center: {
                                 stack: {
-                                    id: 'idAppRoot',
                                     children: [
                                         {
                                             component: {
-                                                id: 'idDashboard',  // if you change this id, also change it in BurgerButton/index.js
                                                 name: 'app.Dashboard',
                                                 options: getTopBarOptions('DASHBOARD', false, false)  // topBarTitle, isDarkScreen, isDetailScreen
                                             }

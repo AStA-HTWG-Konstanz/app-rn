@@ -26,7 +26,7 @@ export default class BurgerButton extends Component {
         return (
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => Navigation.mergeOptions('idDashboard', {
+                onPress={() => Navigation.mergeOptions(this.props.screenId, {
                     sideMenu: {
                         left: {
                             visible: true

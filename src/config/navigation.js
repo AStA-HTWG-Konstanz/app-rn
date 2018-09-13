@@ -1,6 +1,6 @@
 import { colorScheme } from 'src/config/styles';
 import { pRatio } from 'src/config/styles';
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 const {width} = Dimensions.get('window');
 
@@ -11,7 +11,8 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
                 text        : topBarTitle,
                 fontSize    : pRatio * 10,
                 fontFamily  : 'Swiss721',
-                color       : isDarkScreen ? 'white' : 'black'
+                color       : isDarkScreen ? 'white' : 'black',
+                //alignment   : 'center'
             },
             background: {
                 color       : isDarkScreen ? colorScheme.oxford_blue : colorScheme.botticelli
@@ -24,23 +25,17 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
     };
 
     if (isDetailScreen) {  // topBarButton is the back button
-        topBarOptions.topBar.leftButtons = {
-            id: 'idBackButton',
-            component: {
-                name        : 'BackButton',
-                passProps   : {screenId}
-            },
-            text: ''
+        if (Platform.OS === 'ios') {
+            topBarOptions.topBar.leftButtons = {
+                id: 'idBackButton',
+                component: {
+                    name: 'BackButton',
+                    passProps: {screenId}
+                },
+                text: ''
+            }
         }
     } else {  // Dashboard
-        topBarOptions.topBar.leftButtons = [{
-            id              : 'sideMenu',
-            component: {
-                id          : 'idSideMenuBtn',
-                name        : 'BurgerButton'
-            },
-            text: ''
-        }];
         topBarOptions.sideMenu = {
             left: {
                 component: {

@@ -9,11 +9,51 @@ import { lengthwiseThreshold, settingsWidgetIndex, squareThreshold } from 'src/c
 import { widgetFactory } from 'src/modules/Widgets';
 import { ActionCreators } from 'src/actions';
 import { getBackgroundView } from 'src/config/styles';
+import { ic_burger_android } from 'src/images';
 
 
 class Dashboard extends Component{
     constructor(props) {
         super(props);
+
+        Navigation.events().bindComponent(this);
+
+        let leftBurgerButton = {
+            id: 'sideMenu'
+        };
+
+        if (Platform.OS === 'ios') {
+            leftBurgerButton.component = {
+                id: 'idSideMenuBtn',
+                name: 'BurgerButton',
+                passProps: {screenId: props.componentId}
+            }
+        } else {
+            leftBurgerButton.icon = ic_burger_android;
+        }
+
+        Navigation.mergeOptions(this.props.componentId, {
+            topBar: {
+                title : {
+                    alignment: 'center'
+                },
+                leftButtons: [
+                    leftBurgerButton
+                ]
+            }
+        });
+    }
+
+    navigationButtonPressed = ({ buttonId }) => {
+        if (Platform.OS === 'android' && buttonId ===  'idSideMenu') {
+            Navigation.mergeOptions('idDashboard', {
+                sideMenu: {
+                    left: {
+                        visible: true
+                    }
+                }
+            });
+        }
     }
 
     _renderSelection() {
