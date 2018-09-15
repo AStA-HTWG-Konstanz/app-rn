@@ -4,6 +4,7 @@ export const checkbox_checked = require('./Checkbox_checked.png');
 export const checkbox_unchecked = require('./Checkbox_unchecked.png');
 export const coffee = require('./coffee.png');
 export const ic_back = require('./ic_back.png');
+export const ic_back_android = require('./ic_back_android.png');
 export const ic_burger = require('./ic_burger.png');
 export const ic_burger_android = require('./ic_burger_android.png');
 export const student_hat = require('./student_hat.png');

@@ -45,8 +45,8 @@ class Dashboard extends Component{
     }
 
     navigationButtonPressed = ({ buttonId }) => {
-        if (Platform.OS === 'android' && buttonId ===  'idSideMenu') {
-            Navigation.mergeOptions('idDashboard', {
+        if (Platform.OS === 'android' && buttonId ===  'sideMenu') {
+            Navigation.mergeOptions(this.props.componentId, {
                 sideMenu: {
                     left: {
                         visible: true
@@ -54,7 +54,7 @@ class Dashboard extends Component{
                 }
             });
         }
-    }
+    };
 
     _renderSelection() {
         const {componentId} = this.props;

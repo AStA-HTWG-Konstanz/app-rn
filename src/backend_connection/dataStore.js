@@ -394,10 +394,10 @@ export default class DataStore {
             fetch(api.gradesRefresh, request)
                 .then((response) => {
                     if (response.ok) {
-                        this.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                        this.fireRequest(res, restTypes.POST, api.grades, 'grades', body);
                     } else {
                         if (tokenPassed) {  // could  also be that qisserver is down -> don't refresh but get cached data from backend
-                            this.fireRequest(resolve, restTypes.POST, api.grades, 'grades', body);
+                            this.fireRequest(res, restTypes.POST, api.grades, 'grades', body);
                         } else {
                             res(undefined);
                         }

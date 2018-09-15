@@ -1,6 +1,7 @@
 import { colorScheme } from 'src/config/styles';
 import { pRatio } from 'src/config/styles';
 import { Dimensions, Platform } from 'react-native';
+import { ic_back_android } from 'src/images';
 
 const {width} = Dimensions.get('window');
 
@@ -12,7 +13,7 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
                 fontSize    : pRatio * 10,
                 fontFamily  : 'Swiss721',
                 color       : isDarkScreen ? 'white' : 'black',
-                //alignment   : 'center'
+                alignment   : 'center'
             },
             background: {
                 color       : isDarkScreen ? colorScheme.oxford_blue : colorScheme.botticelli
@@ -33,6 +34,11 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
                     passProps: {screenId}
                 },
                 text: ''
+            }
+        } else {
+            topBarOptions.topBar.leftButtons = {
+                id: 'back',
+                icon: ic_back_android
             }
         }
     } else {  // Dashboard

@@ -94,7 +94,7 @@ export default class App extends Component {
                 Navigation.setRoot({
                     root: {
                         sideMenu: {
-                            id: 'sideMenu',
+                            id: 'IDsideMenu',
                             left: {
                                 component: {
                                     name: 'app.Settings'
