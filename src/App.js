@@ -14,8 +14,6 @@ import * as languageActions from 'src/actions/languageActions';
 import connector from 'src/backend_connection';
 import {colorScheme} from "./config/styles";
 
-const {width} = Dimensions.get('window');
-
 // Setup
 const store = configureStore({});  // empty initial state
 
@@ -73,19 +71,19 @@ export default class App extends Component {
                         stack: {
                             children: [{
                                 component: {
-                                    name: 'app.Login'
-                                }
+                                    name: 'app.Login',
+                                    options: {
+                                        topBar: {
+                                            visible: false,
+                                            drawBehind: true,
+                                            animate: false
+                                        },
+                                        statusBar: {
+                                            style: 'light'
+                                        }
+                                    }
+                                },
                             }],
-                            options: {
-                                topBar: {
-                                    visible: false,
-                                    drawBehind: true,
-                                    animate: false,
-                                 },
-                                statusBar: {
-                                    style: 'light'
-                                }
-                            }
                         }
                     }
                 }).catch((err) => { console.log('Navigation set login root problem: ', err)});
