@@ -44,7 +44,7 @@ class Endlicht extends Component{
         {
             timeView = <Text>{strings('endlicht.closedText')}</Text>
         } else {
-            timeView = <Text>{openingTime} - {closingTime}</Text>
+            timeView = <Text>{openingTime} - {closingTime} </Text>
         }
 
 
@@ -105,16 +105,16 @@ class Endlicht extends Component{
                                 1 € Pfand
                             </Text>
                         </View>
+                        <View style={style.content}>
+                            <Text style={style.header}>{strings('endlicht.openingHeader')}{'\n'}</Text>
+                            {timeView}
+                        </View>
                         <View style={style.locationHeader}>
                             <Text style={style.header}>{strings('endlicht.locationTitle')}</Text>
                         </View>
                         <View style={style.map}>
                             <Image source={require('src/images/Campusplan_Endlicht.png')} style={style.endlichtImage}
                             resizeMode={'cover'}/>
-                        </View>
-                        <View>
-                            <Text>{strings('endlicht.openingHeader')}{'\n'}</Text>
-                            {timeView}
                         </View>
                     </View>
                 </View>
