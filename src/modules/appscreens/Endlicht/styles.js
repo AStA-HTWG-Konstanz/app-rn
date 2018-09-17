@@ -55,7 +55,8 @@ export const style = StyleSheet.create({
     openingHeader: {
         marginTop       : pRatio*5,
         marginLeft      : pRatio*5,
-        fontWeight      : 'bold'
+        fontWeight      : 'bold',
+        fontSize        : 20
     },
     map: {
         marginLeft      : pRatio*5,
