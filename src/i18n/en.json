@@ -38,7 +38,7 @@
     "specialTitle"  : "Special",
     "menuTitle"     : "Menu",
     "locationTitle" : "Location",
-    "openingHeader" : "Today's opening hours:",
+    "openingHeader" : "Today's opening hours",
     "closedText"    : "Closed",
     "clockDesc"     : ""
 

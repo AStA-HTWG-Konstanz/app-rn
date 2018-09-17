@@ -42,9 +42,9 @@ class Endlicht extends Component{
 
         if (this.props.endlichtData.endlicht.openingHours[today].startTime == '0' && this.props.endlichtData.endlicht.openingHours[today].endTime == '0')
         {
-            timeView = <Text style={style.addContent}>{strings('endlicht.closedText')}</Text>
+            timeView = <Text style={style.openingContent}>{strings('endlicht.closedText')}</Text>
         } else {
-            timeView = <Text style={style.addContent}>{openingTime} - {closingTime} {strings('endlicht.clockDesc')}</Text>
+            timeView = <Text style={style.openingContent}>{openingTime} - {closingTime} {strings('endlicht.clockDesc')}</Text>
         }
 
 

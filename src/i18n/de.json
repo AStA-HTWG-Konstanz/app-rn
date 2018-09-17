@@ -38,7 +38,7 @@
     "specialTitle"  : "Spezial",
     "menuTitle"     : "Angebot",
     "locationTitle" : "Lageplan",
-    "openingHeader" : "Öffnungszeiten von Heute:",
+    "openingHeader" : "Öffnungszeiten von Heute",
     "closedText"    : "Geschlossen",
     "clockDesc"     : "Uhr"
   },
