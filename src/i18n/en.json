@@ -37,7 +37,10 @@
     "closed"        : "Closed",
     "specialTitle"  : "Special",
     "menuTitle"     : "Menu",
-    "locationTitle" : "Location"
+    "locationTitle" : "Location",
+    "openingHeader" : "Today's opening hours:",
+    "closedText"    : "Closed"
+
   },
   "events"    : {
     "screenTitle"   : "EVENTS",

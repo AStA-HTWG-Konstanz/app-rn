@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Text, View, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
+
 
 import * as endlichtActions from 'src/actions/endlichtActions';
 import { strings } from 'src/i18n';
@@ -31,9 +33,21 @@ class Endlicht extends Component{
     }
 
     _renderView() {
-        let special, specialPrice, specialContent, title;
+        let special, specialPrice, specialContent, openingTime, closingTime, today, timeView;
         special = this.props.endlichtData.endlicht.special.name;
         specialPrice = this.props.endlichtData.endlicht.special.price;
+        today = moment().format('YYYY-MM-DD');
+        openingTime = this.props.endlichtData.endlicht.openingHours[today].startTime;
+        closingTime = this.props.endlichtData.endlicht.openingHours[today].endTime;
+
+        if (this.props.endlichtData.endlicht.openingHours[today].startTime.equals("0") && this.props.endlichtData.endlicht.openingHours[today].endTime.equals("0"))
+        {
+            timeView = <Text>{strings('endlicht.closedText')}</Text>
+        } else {
+            timeView = <Text>{openingTime} - {closingTime}</Text>
+        }
+
+
 
         if (typeof this.props.endlichtData.endlicht.special.price !== "undefined") {
             specialContent = <View style={style.special}>
@@ -97,6 +111,10 @@ class Endlicht extends Component{
                         <View style={style.map}>
                             <Image source={require('src/images/Campusplan_Endlicht.png')} style={style.endlichtImage}
                             resizeMode={'cover'}/>
+                        </View>
+                        <View>
+                            <Text>{strings('endlicht.openingHeader')}{'\n'}</Text>
+                            {timeView}
                         </View>
                     </View>
                 </View>
