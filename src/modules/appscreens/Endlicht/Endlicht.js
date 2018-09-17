@@ -106,7 +106,7 @@ class Endlicht extends Component{
                             </Text>
                         </View>
                         <View style={style.content}>
-                            <Text style={style.}>{strings('endlicht.openingHeader')}{'\n'}</Text>
+                            <Text style={style.openingHeader}>{strings('endlicht.openingHeader')}{'\n'}</Text>
                             {timeView}
                         </View>
                         <View style={style.locationHeader}>
