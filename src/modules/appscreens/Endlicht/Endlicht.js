@@ -44,7 +44,7 @@ class Endlicht extends Component{
         {
             timeView = <Text style={style.addContent}>{strings('endlicht.closedText')}</Text>
         } else {
-            timeView = <Text style={style.addContent}>{openingTime} - {closingTime} </Text>
+            timeView = <Text style={style.addContent}>{openingTime} - {closingTime} {strings('clockDesc')}</Text>
         }
 
 
