@@ -58,6 +58,10 @@ export const style = StyleSheet.create({
         fontWeight      : 'bold',
         fontSize        : 20
     },
+    openingContent: {
+        marginLeft      : pRatio*5,
+        fontSize        : 16
+    },
     map: {
         marginLeft      : pRatio*5,
         marginTop       : pRatio*5,
