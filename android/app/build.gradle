@@ -93,22 +93,6 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-def getPassword() {
-    def stdout = new ByteArrayOutputStream()
-    def stderr = new ByteArrayOutputStream()
-    exec {
-        commandLine 'bash', "/Users/vagrant/export_password.sh"
-        standardOutput = stdout
-        errorOutput = stderr
-        ignoreExitValue true
-    }
-    //noinspection GroovyAssignabilityCheck
-    stdout.toString().trim()
-}
-
-def releasekeypass = getPassword()
-def releasekeyalias = getPassword()
-
 android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
@@ -121,6 +105,14 @@ android {
         versionName "0.0.3"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file(RNSAMPLE_RELEASE_STORE_FILE)
+            storePassword RNSAMPLE_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword RNSAMPLE_RELEASE_KEY_PASSWORD
         }
     }
     splits {

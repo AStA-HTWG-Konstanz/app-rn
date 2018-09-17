@@ -18,6 +18,9 @@ default_platform(:android)
 platform :android do
 
    before_all do
+     ensure_git_branch(
+        branch: ENV["BRANCH"]
+     )
      ensure_git_status_clean
      increment_version_code(
              gradle_file_path: "./app/build.gradle"
@@ -25,8 +28,8 @@ platform :android do
      git_commit(path: "./app/build.gradle", message: "🤖 Changed build number for 👾 [skip ci]")
      push_to_git_remote(
         remote: "origin",
-        local_branch: "development",
-        remote_branch: "development",
+        local_branch: ENV["BRANCH"],
+        remote_branch: ENV["BRANCH"],
         tags: false
      )
    end
@@ -38,37 +41,34 @@ platform :android do
         build_type: "Release"
         properties: {
                 'android.useDeprecatedNdk' => true,
-                'android.injected.signing.store.file' => 'app/rn-sample-key.keystore',
-                'android.injected.signing.store.password' => ENV["RNSAMPLE_RELEASE_STORE_PASSWORD"],
-                'android.injected.signing.key.alias'=> ENV["RNSAMPLE_RELEASE_KEY_ALIAS"],
-                'android.injected.signing.key.password' => ENV["RNSAMPLE_RELEASE_KEY_PASSWORD"]
+                'android.injected.signing.store.file' => ENV["RELEASE_STORE_PATH"],
+                'android.injected.signing.store.password' => ENV["RELEASE_STORE_PASSWORD"],
+                'android.injected.signing.key.alias'=> ENV["RELEASE_KEY_ALIAS"],
+                'android.injected.signing.key.password' => ENV["RELEASE_KEY_PASSWORD"]
         }
     )
     supply(
         track: "internal",
-        apk: "/Users/vagrant/git/android/app/build/outputs/apk/release/app-release.apk"
+        apk: ENV["APK_PATH"]
     )
     end
 
     desc "Deploy a new beta test version to the Google Play Store"
         lane :beta do
-        increment_version_code(
-            gradle_file_path: "./app/build.gradle"
-        )
         gradle(
             task: "assemble",
             build_type: "Release"
             properties: {
-                    'android.useDeprecatedNdk' => true,
-                    'android.injected.signing.store.file' => 'app/rn-sample-key.keystore',
-                    'android.injected.signing.store.password' => ENV["RNSAMPLE_RELEASE_STORE_PASSWORD"],
-                    'android.injected.signing.key.alias'=> ENV["RNSAMPLE_RELEASE_KEY_ALIAS"],
-                    'android.injected.signing.key.password' => ENV["RNSAMPLE_RELEASE_KEY_PASSWORD"]
+                  'android.useDeprecatedNdk' => true,
+                  'android.injected.signing.store.file' => ENV["RELEASE_STORE_PATH"],
+                  'android.injected.signing.store.password' => ENV["RELEASE_STORE_PASSWORD"],
+                  'android.injected.signing.key.alias'=> ENV["RELEASE_KEY_ALIAS"],
+                  'android.injected.signing.key.password' => ENV["RELEASE_KEY_PASSWORD"]
             }
         )
         supply(
             track: "alpha",
-            apk: "/Users/vagrant/git/android/app/build/outputs/apk/release/app-release.apk"
+            apk: ENV["APK_PATH"]
         )
     end
 end
