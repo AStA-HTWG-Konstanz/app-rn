@@ -123,14 +123,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-        signingConfigs {
-            release {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword releasekeypass
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword releasekeyalias
-            }
-        }
     splits {
         abi {
             reset()

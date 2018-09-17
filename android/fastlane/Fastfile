@@ -16,20 +16,40 @@
 default_platform(:android)
 
 platform :android do
+
+   before_all do
+     ensure_git_status_clean
+     increment_version_code(
+             gradle_file_path: "./app/build.gradle"
+     )
+     git_commit(path: "./app/build.gradle", message: "🤖 Changed build number for 👾 [skip ci]")
+     push_to_git_remote(
+        remote: "origin",
+        local_branch: "development",
+        remote_branch: "development",
+        tags: false
+     )
+   end
+
    desc "Deploy a new internal test version to the Google Play Store"
     lane :internal do
-    increment_version_code(
-        gradle_file_path: "./app/build.gradle"
-    )
     gradle(
         task: "assemble",
         build_type: "Release"
+        properties: {
+                'android.useDeprecatedNdk' => true,
+                'android.injected.signing.store.file' => 'app/rn-sample-key.keystore',
+                'android.injected.signing.store.password' => ENV["RNSAMPLE_RELEASE_STORE_PASSWORD"],
+                'android.injected.signing.key.alias'=> ENV["RNSAMPLE_RELEASE_KEY_ALIAS"],
+                'android.injected.signing.key.password' => ENV["RNSAMPLE_RELEASE_KEY_PASSWORD"]
+        }
     )
     supply(
         track: "internal",
         apk: "/Users/vagrant/git/android/app/build/outputs/apk/release/app-release.apk"
     )
     end
+
     desc "Deploy a new beta test version to the Google Play Store"
         lane :beta do
         increment_version_code(
@@ -38,6 +58,13 @@ platform :android do
         gradle(
             task: "assemble",
             build_type: "Release"
+            properties: {
+                    'android.useDeprecatedNdk' => true,
+                    'android.injected.signing.store.file' => 'app/rn-sample-key.keystore',
+                    'android.injected.signing.store.password' => ENV["RNSAMPLE_RELEASE_STORE_PASSWORD"],
+                    'android.injected.signing.key.alias'=> ENV["RNSAMPLE_RELEASE_KEY_ALIAS"],
+                    'android.injected.signing.key.password' => ENV["RNSAMPLE_RELEASE_KEY_PASSWORD"]
+            }
         )
         supply(
             track: "alpha",
