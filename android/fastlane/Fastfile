@@ -47,10 +47,10 @@ platform :android do
                 'android.injected.signing.key.password' => ENV["RELEASE_KEY_PASSWORD"]
         }
     )
-    supply(
-        track: "internal",
-        apk: ENV["APK_PATH"]
-    )
+    #supply(
+    #    track: "internal",
+    #    apk: ENV["APK_PATH"]
+    #)
     end
 
     desc "Deploy a new beta test version to the Google Play Store"
@@ -66,9 +66,9 @@ platform :android do
                   'android.injected.signing.key.password' => ENV["RELEASE_KEY_PASSWORD"]
             }
         )
-        supply(
-            track: "alpha",
-            apk: ENV["APK_PATH"]
-        )
+       #supply(
+       #     track: "alpha",
+       #     apk: ENV["APK_PATH"]
+        #)
     end
 end
