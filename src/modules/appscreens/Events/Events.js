@@ -39,7 +39,7 @@ class Events extends Component{
                 <View style={style.eventFrame}>
                     <View style={style.eventPanelContainer}>
                         <View style={style.headerView}>
-                            <Text style={style.headerText}>SoSe18</Text>
+                            <Text style={style.headerText}>WiSe18/19</Text>
                         </View>
                         <View style = {style.lineStyle}/>
                         <View style={style.eventContent}>
