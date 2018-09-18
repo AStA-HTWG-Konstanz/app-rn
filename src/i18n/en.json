@@ -38,11 +38,9 @@
     "specialTitle"  : "Special",
     "menuTitle"     : "Menu",
     "locationTitle" : "Location",
-    "openingHeader" : "Today's opening hours",
+    "openingHeader" : "Opening hours",
     "closedText"    : "Closed",
     "clockDesc"     : ""
-
-
   },
   "events"    : {
     "screenTitle"   : "EVENTS",

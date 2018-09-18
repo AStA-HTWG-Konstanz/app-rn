@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
 
     image: {
         width               : (width/100) * 60,
-        height              : pRatio > 2 && Platform.OS === 'ios' ? (height/100)*30 : (height/100) * 35,  // iPhone X
+        height              : pRatio > 2 && Platform.OS === 'ios' ? (height/100)*32 : (height/100) * 37,  // iPhone X
         marginTop           : pRatio * 5,
         marginLeft          : (width/100) * 10,
         marginBottom        : (height/100) *5
