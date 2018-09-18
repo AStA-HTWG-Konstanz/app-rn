@@ -33,15 +33,14 @@ class Endlicht extends Component{
     }
 
     _renderView() {
-        let special, specialPrice, specialContent, openingTime, closingTime, today, timeView;
+        let special, specialPrice, specialContent, openingTime, closingTime, timeView;
         special = this.props.endlichtData.endlicht.special.name;
         specialPrice = this.props.endlichtData.endlicht.special.price;
-        today = moment().format('YYYY-MM-DD');
-        openingTime = this.props.endlichtData.endlicht.openingHours[today].startTime;
-        closingTime = this.props.endlichtData.endlicht.openingHours[today].endTime;
+        const currentOpeningHours = this.props.endlichtData.endlicht.openingHours[moment().format('YYYY-MM-DD')];
+        openingTime = currentOpeningHours.startTime;
+        closingTime = currentOpeningHours.endTime;
 
-        if (this.props.endlichtData.endlicht.openingHours[today].startTime == '0' && this.props.endlichtData.endlicht.openingHours[today].endTime == '0')
-        {
+        if (currentOpeningHours.startTime === '0' && currentOpeningHours.endTime === '0') {
             timeView = <Text style={style.openingContent}>{strings('endlicht.closedText')}</Text>
         } else {
             timeView = <Text style={style.openingContent}>{openingTime} - {closingTime} {strings('endlicht.clockDesc')}</Text>
@@ -72,6 +71,10 @@ class Endlicht extends Component{
             <ScrollView style={style.contentContainer}>
                 <View style={style.endlichtFrame}>
                     <View style={style.page}>
+                        <View style={style.content}>
+                            <Text style={style.openingHeader}>{strings('endlicht.openingHeader')}{'\n'}</Text>
+                            {timeView}
+                        </View>
                         <View style={style.content}>
                             {specialContent}
                             <View style={style.menu}>
@@ -104,10 +107,6 @@ class Endlicht extends Component{
                                 auch Laktosefrei{'\n'}
                                 1 € Pfand
                             </Text>
-                        </View>
-                        <View style={style.content}>
-                            <Text style={style.openingHeader}>{strings('endlicht.openingHeader')}{'\n'}</Text>
-                            {timeView}
                         </View>
                         <View style={style.locationHeader}>
                             <Text style={style.header}>{strings('endlicht.locationTitle')}</Text>
