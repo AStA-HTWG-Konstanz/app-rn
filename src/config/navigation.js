@@ -26,7 +26,7 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
     };
 
     if (isDetailScreen) {  // topBarButton is the back button
-        if (Platform.OS === 'ios') {
+        //if (Platform.OS === 'ios') {
             topBarOptions.topBar.leftButtons = {
                 id: 'idBackButton',
                 component: {
@@ -35,12 +35,12 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
                 },
                 text: ''
             }
-        } else {
+        /* } else {
             topBarOptions.topBar.leftButtons = {
                 id: 'back',
                 icon: ic_back_android
             }
-        }
+        } */
     } else {  // Dashboard
         topBarOptions.sideMenu = {
             left: {
