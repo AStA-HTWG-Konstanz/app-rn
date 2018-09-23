@@ -37,16 +37,13 @@ class Endlicht extends Component{
         special = this.props.endlichtData.endlicht.special.name;
         specialPrice = this.props.endlichtData.endlicht.special.price;
         const currentOpeningHours = this.props.endlichtData.endlicht.openingHours[moment().format('YYYY-MM-DD')];
-        openingTime = currentOpeningHours.startTime;
-        closingTime = currentOpeningHours.endTime;
-
-        if (currentOpeningHours.startTime === '0' && currentOpeningHours.endTime === '0') {
-            timeView = <Text style={style.openingContent}>{strings('endlicht.closedText')}</Text>
-        } else {
+        if (currentOpeningHours) {
+            openingTime = currentOpeningHours.startTime;
+            closingTime = currentOpeningHours.endTime;
             timeView = <Text style={style.openingContent}>{openingTime} - {closingTime} {strings('endlicht.clockDesc')}</Text>
+        } else {
+            timeView = <Text style={style.openingContent}>{strings('endlicht.closedText')}</Text>
         }
-
-
 
         if (typeof this.props.endlichtData.endlicht.special.price !== "undefined") {
             specialContent = <View style={style.special}>

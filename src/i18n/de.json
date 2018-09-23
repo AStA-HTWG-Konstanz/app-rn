@@ -39,7 +39,7 @@
     "menuTitle"     : "Angebot",
     "locationTitle" : "Lageplan",
     "openingHeader" : "Öffnungszeiten",
-    "closedText"    : "Geschlossen",
+    "closedText"    : "Heute geschlossen",
     "clockDesc"     : "Uhr"
   },
   "events"    : {

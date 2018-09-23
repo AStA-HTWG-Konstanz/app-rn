@@ -39,7 +39,7 @@
     "menuTitle"     : "Menu",
     "locationTitle" : "Location",
     "openingHeader" : "Opening hours",
-    "closedText"    : "Closed",
+    "closedText"    : "Today closed",
     "clockDesc"     : ""
   },
   "events"    : {
