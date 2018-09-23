@@ -12,6 +12,7 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
                 text        : topBarTitle,
                 fontSize    : pRatio * 10,
                 fontFamily  : 'Swiss721',
+                fontWeight  : 'normal',
                 color       : isDarkScreen ? 'white' : 'black',
                 alignment   : 'center'
             },
