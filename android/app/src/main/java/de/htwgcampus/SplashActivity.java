@@ -1,4 +1,4 @@
-package com.htwgcampus;
+package de.htwgcampus;
 
 import android.content.Intent;
 import android.os.Bundle;

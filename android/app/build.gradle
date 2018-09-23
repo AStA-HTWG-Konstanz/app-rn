@@ -98,7 +98,7 @@ android {
     buildToolsVersion "27.0.3"
 
     defaultConfig {
-        applicationId "com.htwgcampus"
+        applicationId "de.htwgcampus"
         minSdkVersion 23
         targetSdkVersion 27
         versionCode 43

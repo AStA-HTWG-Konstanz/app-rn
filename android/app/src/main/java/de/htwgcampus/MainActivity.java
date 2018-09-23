@@ -1,4 +1,4 @@
-package com.htwgcampus;
+package de.htwgcampus;
 
 import com.facebook.react.ReactActivity;
 import com.reactnativenavigation.controllers.SplashActivity;
