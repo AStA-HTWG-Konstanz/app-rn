@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { colorScheme, wideRectangleWidget, widgetShadow, widgetTitleText } from 'src/config/styles';
 
-const {height, width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export const style = StyleSheet.create({
 
@@ -28,6 +28,10 @@ export const style = StyleSheet.create({
     contentText     : {
         color           : 'white',
         fontSize        : (width/100) * 10,
-        fontWeight      : 'bold'
+        fontWeight      : 'bold',
+        flex            : 1
+    },
+    truncateContainer: {
+        flexDirection   : 'row',
     }
 });

@@ -50,9 +50,15 @@ class CanteenWidget extends Component {
             widgetContent = (
                 <View>
                     <View style={style.contentView}>
-                        <Text style={style.contentText}>
-                            {title.length > 12 ? title.substring(0, 12) + '...' : title}
-                        </Text>
+                        <View style={style.truncateContainer}>
+                            <Text
+                                style={style.contentText}
+                                numberOfLines={1}
+                                ellipsizeMode='tail'
+                            >
+                                {title}
+                            </Text>
+                        </View>
                     </View>
                     <View style={style.contentView}>
                         <Text style={style.titleText}>
