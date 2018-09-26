@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Text, View, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
 
 import * as endlichtActions from 'src/actions/endlichtActions';
 import { strings } from 'src/i18n';
@@ -31,9 +32,17 @@ class Endlicht extends Component{
     }
 
     _renderView() {
-        let special, specialPrice, specialContent, title;
+        let special, specialPrice, specialContent, openingTime, closingTime, timeView;
         special = this.props.endlichtData.endlicht.special.name;
         specialPrice = this.props.endlichtData.endlicht.special.price;
+        const currentOpeningHours = this.props.endlichtData.endlicht.openingHours[moment().format('YYYY-MM-DD')];
+        if (currentOpeningHours) {
+            openingTime = currentOpeningHours.startTime;
+            closingTime = currentOpeningHours.endTime;
+            timeView = <Text style={style.openingContent}>{openingTime} - {closingTime} {strings('endlicht.clockDesc')}</Text>
+        } else {
+            timeView = <Text style={style.openingContent}>{strings('endlicht.closedText')}</Text>
+        }
 
         if (typeof this.props.endlichtData.endlicht.special.price !== "undefined") {
             specialContent = <View style={style.special}>
@@ -58,6 +67,10 @@ class Endlicht extends Component{
             <ScrollView style={style.contentContainer}>
                 <View style={style.endlichtFrame}>
                     <View style={style.page}>
+                        <View style={style.content}>
+                            <Text style={style.openingHeader}>{strings('endlicht.openingHeader')}{'\n'}</Text>
+                            {timeView}
+                        </View>
                         <View style={style.content}>
                             {specialContent}
                             <View style={style.menu}>
