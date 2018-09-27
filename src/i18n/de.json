@@ -37,7 +37,10 @@
     "closed"        : "Geschlossen",
     "specialTitle"  : "Spezial",
     "menuTitle"     : "Angebot",
-    "locationTitle" : "Lageplan"
+    "locationTitle" : "Lageplan",
+    "openingHeader" : "Öffnungszeiten",
+    "closedText"    : "Heute geschlossen",
+    "clockDesc"     : "Uhr"
   },
   "events"    : {
     "screenTitle"   : "Termine"
