@@ -10,9 +10,7 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
         topBar: {
             title   : {
                 text        : topBarTitle,
-                fontSize    : pRatio * 10,
-                fontFamily  : 'Swiss721',
-                fontWeight  : 'normal',
+                fontSize    : pRatio * 18,
                 color       : isDarkScreen ? 'white' : 'black',
                 alignment   : 'center'
             },
@@ -25,6 +23,8 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
             backgroundColor : isDarkScreen? colorScheme.botticelli : colorScheme.oxford_blue  // Android
         }
     };
+
+    if (Platform.OS === 'android') topBarOptions.topBar.title['fontFamily']  = 'Swiss721';  // ios doesn't work at the moment
 
     if (isDetailScreen) {  // topBarButton is the back button
         //if (Platform.OS === 'ios') {
