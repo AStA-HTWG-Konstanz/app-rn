@@ -1,60 +1,21 @@
 import React, { Component } from 'react';
-import { Platform, RefreshControl, ScrollView, View} from 'react-native';
+import { RefreshControl, ScrollView, View} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Navigation } from 'react-native-navigation';
 
 import { style } from './styles'
 import { lengthwiseThreshold, settingsWidgetIndex, squareThreshold } from 'src/config/settings';
 import { widgetFactory } from 'src/modules/Widgets';
 import { ActionCreators } from 'src/actions';
 import { getBackgroundView } from 'src/config/styles';
-import { ic_burger_android } from 'src/images';
 
 
 class Dashboard extends Component{
+
     constructor(props) {
         super(props);
 
-        Navigation.events().bindComponent(this);
-
-        let leftBurgerButton = {
-            id: 'sideMenu'
-        };
-
-        if (Platform.OS === 'ios') {
-            leftBurgerButton.component = {
-                id: 'idSideMenuBtn',
-                name: 'BurgerButton',
-                passProps: {screenId: props.componentId}
-            }
-        } else {
-            leftBurgerButton.icon = ic_burger_android;
-        }
-
-        Navigation.mergeOptions(this.props.componentId, {
-            topBar: {
-                title : {
-                    alignment: 'center'
-                },
-                leftButtons: [
-                    leftBurgerButton
-                ]
-            }
-        });
     }
-
-    navigationButtonPressed = ({ buttonId }) => {
-        if (Platform.OS === 'android' && buttonId ===  'sideMenu') {
-            Navigation.mergeOptions(this.props.componentId, {
-                sideMenu: {
-                    left: {
-                        visible: true
-                    }
-                }
-            });
-        }
-    };
 
     _renderSelection() {
         const {componentId} = this.props;

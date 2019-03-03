@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Navigation} from 'react-native-navigation';
 
-import { ic_burger } from 'src/images';
+import {ic_burger} from 'src/images';
+import {Navigation} from 'react-native-navigation';
 
 const styles = StyleSheet.create({
     button: {
@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
         alignItems      : 'center',
     },
     image: {
-        width: 37,
-        height: 37
+        width: 30,
+        height: 30
     }
 });
 
@@ -26,13 +26,15 @@ export default class BurgerButton extends Component {
         return (
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => Navigation.mergeOptions(this.props.screenId, {
-                    sideMenu: {
-                        left: {
-                            visible: true
+                onPress={() => Navigation.mergeOptions(this.props.screenId,
+                    {
+                        sideMenu: {
+                            left: {
+                                visible: true
+                            }
                         }
-                    }
-                })}
+                    })
+                }
             >
                 <View style={styles.button}>
                     <Image

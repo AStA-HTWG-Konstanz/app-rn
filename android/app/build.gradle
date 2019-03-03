@@ -73,7 +73,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-        entryFile: "index.js"
+    entryFile: "index.js"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -93,62 +93,29 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-def getPassword() {
-    def stdout = new ByteArrayOutputStream()
-    def stderr = new ByteArrayOutputStream()
-    exec {
-        commandLine 'bash', "/Users/vagrant/export_password.sh"
-        standardOutput = stdout
-        errorOutput = stderr
-        ignoreExitValue true
-    }
-    //noinspection GroovyAssignabilityCheck
-    stdout.toString().trim()
-}
-
-def releasekeypass = getPassword()
-def releasekeyalias = getPassword()
-
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.htwgcampus"
-        minSdkVersion 23
-        targetSdkVersion 27
-        versionCode 39
-        versionName "0.0.3"
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative55"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-        signingConfigs {
-            release {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword releasekeypass
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword releasekeyalias
-            }
-        }
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86"
+            include "armeabi-v7a", "x86", "arm64-v8a"
         }
     }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -156,7 +123,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
+            def versionCodes = ["armeabi-v7a":1, "x86":2, "arm64-v8a": 3]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
@@ -167,15 +134,14 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-splash-screen')
+    implementation project(':react-native-linear-gradient')
+    implementation project(':react-native-keychain')
+    implementation project(':react-native-i18n')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation project(':react-native-navigation')
-    implementation project(':react-native-vector-icons')
-    implementation project(':react-native-i18n')
-    implementation project(':react-native-linear-gradient')
-    implementation project(':react-native-splash-screen')
-    implementation project(':react-native-keychain')
 }
 
 // Run this once to be able to run the application with BUCK

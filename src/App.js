@@ -23,6 +23,7 @@ export default class App extends Component {
         store.dispatch(languageActions.getLanguage());  // Get user selection
 
         registerComponents(store, Provider);
+
         basicStyleSetup();
         connector.createFirstDoc();  // initial database creation
 
@@ -30,9 +31,9 @@ export default class App extends Component {
         store.subscribe(this.onStoreUpdate.bind(this));
         store.dispatch(loginActions.appInitialized());
 
-        if (Platform.OS === 'android') {
+        //if (Platform.OS === 'android') {
             SplashScreen.hide();
-        }
+        //}
     }
 
     onStoreUpdate() {
@@ -104,8 +105,9 @@ export default class App extends Component {
                                     children: [
                                         {
                                             component: {
+                                                id: 'idDashboard',
                                                 name: 'app.Dashboard',
-                                                options: getTopBarOptions('DASHBOARD', false, false)  // topBarTitle, isDarkScreen, isDetailScreen
+                                                options: getTopBarOptions('DASHBOARD', false, false, 'idDashboard')  // topBarTitle, isDarkScreen, isDetailScreen
                                             }
                                         }
                                     ]

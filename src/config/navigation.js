@@ -10,7 +10,6 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
         topBar: {
             title   : {
                 text        : topBarTitle,
-                fontSize    : pRatio * 18,
                 color       : isDarkScreen ? 'white' : 'black',
                 alignment   : 'center'
             },
@@ -27,22 +26,24 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
     if (Platform.OS === 'android') topBarOptions.topBar.title['fontFamily']  = 'Swiss721';  // ios doesn't work at the moment
 
     if (isDetailScreen) {  // topBarButton is the back button
-        //if (Platform.OS === 'ios') {
-            topBarOptions.topBar.leftButtons = {
-                id: 'idBackButton',
-                component: {
-                    name: 'BackButton',
-                    passProps: {screenId}
-                },
-                text: ''
-            }
-        /* } else {
-            topBarOptions.topBar.leftButtons = {
-                id: 'back',
-                icon: ic_back_android
-            }
-        } */
+        topBarOptions.topBar.leftButtons = {
+            id: 'idBackButton',
+            component: {
+                name: 'BackButton',
+                passProps: {screenId}
+            },
+            text: ''
+        }
     } else {  // Dashboard
+        topBarOptions.topBar.leftButtons = {
+            id: 'idSideMenuBtn',
+            component: {
+                name: 'BurgerButton',
+                passProps: {screenId}
+            },
+            text: ''
+        };
+
         topBarOptions.sideMenu = {
             left: {
                 component: {
@@ -52,7 +53,7 @@ export const getTopBarOptions = (topBarTitle, isDarkScreen, isDetailScreen, scre
                 visible: false,
                 enabled: false
             }
-        }
+        };
     }
 
     return topBarOptions;
